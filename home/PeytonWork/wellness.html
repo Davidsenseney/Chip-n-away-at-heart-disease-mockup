@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to our custom Design System -->
+    <link rel="stylesheet" href="stylewellness.css">
+    <title>Chip'n Away | Leadership Community</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        apple: {
+                            bg: '#d9f99d',      /* Crisp Green Apple background */
+                            panel: '#ecfccb',   /* Slightly lighter green apple for panels */
+                            dark: '#1a2e05',    /* Very dark green for text and nav */
+                            nav: '#2a4a0b',     /* Secondary dark green */
+                            red: '#dc2626',     /* Crisp Apple Red */
+                            redHover: '#b91c1c' /* Darker red for hover states */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="stylewellness.css">
+</head>
+
+
+
+
+<body class="font-sans antialiased flex flex-col min-h-screen">
+
+    <nav class="sticky top-0 z-50 bg-apple-dark/95 backdrop-blur-md border-b border-gray-800 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24 relative">
+                
+                <div class="flex-1 flex items-center justify-start">
+                    <div class="flex-shrink-0 flex items-center gap-2 lg:gap-3">
+                        <div class="w-[80px] h-[80px] rounded-full bg-apple-panel flex items-center justify-center border-2 border-apple-red overflow-hidden">
+                            <img src="images/chiplogo.png" alt="Chip'n Away Logo" class="w-full h-full object-contain">
+                        </div>
+                        <span class="font-heading font-bold text-xl lg:text-2xl tracking-wider uppercase text-white hidden sm:block">Chip'n Away</span>
+                    </div>
+                    
+                    <!-- LEFT MENU PADDING: Adjust mr-[40px] to change the gap between "About" and the Whistle -->
+                    <div class="hidden md:flex space-x-4 lg:space-x-8 ml-auto mr-[20px] lg:mr-[20px]">
+                        <a href="#home" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Home</a>
+                        <a href="#about" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">About</a>
+                    </div>
+                </div>
+
+                <!-- WHISTLE GRAPHIC SIZE & HANG -->
+                <div class="flex-shrink-0 flex items-center justify-center z-50 px-2 lg:px-4">
+                    <!-- SIZE: Adjust w-[120px] and lg:w-[160px] -->
+                    <!-- HANG DROP: Adjust translate-y-[20px] and lg:translate-y-[30px] -->
+                    <a href="#home" class="group flex items-center justify-center w-[80px] lg:w-100px] transform transition-transform duration-300 hover:scale-105 translate-y-[10px] lg:translate-y-[20px]">
+                        <img src="images/whistle_graphic.png" alt="whistle_graphic" class="w-full h-auto object-contain drop-shadow-2xl">
+                    </a>
+                </div>
+
+                <div class="flex-1 flex items-center justify-end">
+                    <!-- RIGHT MENU PADDING: Adjust ml-[40px] to change the gap between the Whistle and "Contact" -->
+                    <div class="hidden md:flex space-x-4 lg:space-x-8 mr-auto ml-[10px] lg:ml-[20px]">
+                        <a href="#contact" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Contact</a>
+                        <a href="#contact" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">More</a>
+                    </div>
+
+                    <div class="flex items-center gap-3 lg:gap-4">
+                        <a href="#home" class="chip-btn-primary text-xs lg:text-sm whitespace-nowrap">
+                            Donate
+                        </a>
+                        <a href="#about" class="chip-btn-primary text-xs lg:text-sm whitespace-nowrap">
+                            Join Community
+                        </a>
+                        
+                        <button id="mobile-menu-btn" class="md:hidden text-white hover:text-apple-red focus:outline-none">
+                            <i data-lucide="menu" class="w-8 h-8"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-apple-nav border-b border-gray-700">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#home" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Home</a>
+                <a href="#about" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">About</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Contact</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">More</a>
+                <a href="#about" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Join Community</a>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+    <section>
+        <div class="wellnessbanner">
+            <div class = "column-container">
+                <img src="images/columnone.jpg" class ="column-banner"   />
+                <div class="columncontent"> 
+                    <h3>Nutrition</h3>
+                    <p> Description of why eating good food is good for you :)</p>
+                </div>
+                <a href="#Nutrition" class="column-button"> Learn More</a>
+            </div>
+
+        <div class = "column-container">
+                <img src="images/columntwo.jpg" class ="column-banner"   />
+                <div class="columncontent"> 
+                    <h3>Fitness</h3>
+                    <p> Description of why exercising and leading a fit lifestyle is beneficial </p>
+                </div>
+                <a href="#Fitness" class="column-button"> Learn More</a>
+            </div>
+
+        <div class = "column-container">
+                <img src="images/columnthree.jpg" class ="column-banner"   />
+                <div class="columncontent"> 
+                    <h3>Prevention</h3>
+                    <p> Description talking about heart disease prevention and how you can yada yada </p>
+                </div>
+                <a href="#Prevention" class="column-button"> Learn More</a>
+
+            </div>
+        </div>
+          </div>
+    </section>
+
+
+
+
+
+
+<section class="maincontent">
+    <div class="container-text">
+        <div class="text-box"> 
+            <h1 id="Nutrition"> Nutrition Header</h1>
+            <p> Nutrition text</p>
+        </div>
+    </div>
+    <div class="container-images" style="background-color: transparent; border: none;">
+        
+        <div class="websitecolumns" style="width: 100%">
+            <div class="websitecolumnsimages">
+                <img src="images/websitecolumn1.jpg" alt="Description">
+            </div>
+            <h1> Header describing the cdc and what they provide in addition to what were saying</h1>
+
+        </div> <div class="websitecolumns" style="width: 100%">
+            </div>
+
+        <div class="websitecolumns" style="width: 100%">
+            </div>
+    </div> 
+</section>
+    
+
+<section class="maincontent2">
+    <div class="container-images">
+        <div class="page-image">
+            <img src="images/fitness-1.jpg" alt="Fitness">
+        </div>
+        <div class="sub-container-text">
+            Other websites with information similar to corresponding paragraph
+        </div>
+        <div class="sub-container">
+            <div class="websitecolumns"></div>
+            <div class="websitecolumns"></div>
+            <div class="websitecolumns"></div>
+        </div>
+    </div>
+
+    <div class="container-text">
+        <div class="text-box">
+            <h1 id="Fitness"> Fitness Header</h1>
+            <p> Fitness text</p>
+        </div>
+    </div>
+</section>
+
+<section class="maincontent">
+    <div class="container-text">
+        <div class="text-box">
+            <h1 id="Prevention"> Fitness Header</h1>
+            <p> Fitness text</p>
+        </div>
+    </div>
+
+    <div class="container-images">
+        <div class="page-image">
+            <img src="images/prevention-1.jpg" alt="Fitness">
+        </div>
+        <div class="sub-container-text">
+            Other websites with information similar to corresponding paragraph
+        </div>
+        <div class="sub-container">
+            <div class="websitecolumns"></div>
+            <div class="websitecolumns"></div>
+            <div class="websitecolumns"></div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <footer id="contact" class="bg-apple-dark py-12 border-t border-apple-nav mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+                
+                <div>
+                    <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
+                        <div class="w-8 h-8 rounded-full bg-apple-red flex items-center justify-center text-white font-bold text-sm">
+                            C
+                        </div>
+                        <span class="font-heading font-bold text-xl tracking-wider uppercase text-white">Chip'n Away</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Cultivating clarity and belief for the leaders of tomorrow.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#home" class="hover:text-apple-red transition-colors">Home</a></li>
+                        <li><a href="#about" class="hover:text-apple-red transition-colors">About</a></li>
+                        <li><a href="#contact" class="hover:text-apple-red transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm">Contact Us</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li class="flex items-center justify-center md:justify-start gap-3">
+                            <i data-lucide="mail" class="w-4 h-4 text-apple-red"></i>
+                            info@chipnaway.com
+                        </li>
+                        <li class="flex items-center justify-center md:justify-start gap-3">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-apple-red"></i>
+                            Innovation Hub, Suite 100
+                        </li>
+                    </ul>
+                    
+                    <div class="flex items-center justify-center md:justify-start gap-4 mt-6">
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-apple-red transition-colors">
+                            <i data-lucide="facebook" class="w-4 h-4 text-white"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-apple-red transition-colors">
+                            <i data-lucide="twitter" class="w-4 h-4 text-white"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-apple-red transition-colors">
+                            <i data-lucide="linkedin" class="w-4 h-4 text-white"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; 2024 Chip'n Away. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Render standard icons
+        lucide.createIcons();
+
+        // Mobile menu toggle logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileLinks = menu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+    </script>
+    
+</body>
+</html>
