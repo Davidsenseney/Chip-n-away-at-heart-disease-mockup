@@ -167,21 +167,45 @@ html {
 ---------------------------------------------------------------------------- */
 
 .wellnessbanner{
-    height: 550px;
+    min-height: 750px;
+    height: auto;
     width: 100%;
     background-image: url(images/wellnessbannerimage.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;    
-    
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap; /* kind of weird but it keeps the columns where they need to be on portrait monitors and */
+    align-items: flex-end;
     justify-content: center;
-    align-items: center;
 
-    padding: 30px;
-    gap: 5rem;
+    padding-bottom: 0;
+    gap: 2rem 5rem;
+    overflow: visible;
+    position: relative;
+    margin-bottom: 30rem;
+}
+
+
+@media (max-width: 1024px) {
+    .wellnessbanner {
+        flex-direction: column;
+        align-items: stretch;
+        align-content: stretch;
+        height: auto;
+        padding-top: 100px;
+        margin-bottom: 4rem;
+        gap: 1.25rem;
+    }
+
+    .column-container {
+        width: 100%;
+        max-width: 28rem;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 10px;
+        position: static;
+        z-index: auto;
+    }
 }
 
 /* ------------------------------------------------------------------------------
@@ -203,23 +227,28 @@ html {
 
 
 .column-container {
-    width: 25%;
-    aspect-ratio: 9.5/10 ;
-    background-color: var(--color-apple-nav);
-
+    flex: 1 1 280px;
+    min-width: min(280px, 100%);
+    width: 100%;
     max-width: 400px;
-    border-radius: 20px;
 
+    min-height:450px;
+
+
+    background-color: var(--color-apple-nav);
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     overflow: hidden;
     color: white;
-    z-index:10;
-
-    margin-top: 25vh;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+
+    position: relative;
+    margin-bottom: -225px;
+    z-index:20;
 }
 .column-container:hover{
     transform: translateY(-10px);
@@ -229,13 +258,21 @@ html {
 .column-container h3 {
     padding: 20px 20px;
     color:inherit;
-    font-weight: bold ;
-    font-size: 1.5rem;
+    font-weight: bolder ;
+    font-size: 2rem;
 }
 
 .column-container p {
      color:inherit;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    overflow-wrap: anywhere;
+    word-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    box-sizing: border-box;
+
 }
 /* Banner image for the columns */
 .column-banner {
@@ -282,6 +319,7 @@ html {
 .maincontent2 {
     display:flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 10rem;
@@ -291,7 +329,7 @@ html {
     max-width: 100%;
     min-width: 0;
     box-sizing: border-box;
-    overflow-x: auto;
+    overflow-x: hidden;
 }
 /* Main content parts that are specific to just them, its like this because i want to use a Z-pattern though the webpage */
 .maincontent {
@@ -303,6 +341,14 @@ html {
 }
 
 
+@media (max-width: 1024px) {
+    .maincontent, .maincontent2 {
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
+
+
 /* ------------------------------------------------------------------------------
 
     4. second portion of the main content blocks, this is the text box and the image box section.
@@ -311,18 +357,20 @@ html {
 
 .container-text, 
 .container-images{
-    height:50rem;
-    width:50rem;
+    min-height:40rem;
+    width: 100%;
+    max-width:600px;
+    min-width: 0;
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    box-sizing: border-box;
     
 }
 
 
 .container-images{
     flex-direction: column;
-    border: 5px solid rgb(0, 0, 0);
     border-radius: 15px;
     background-color:#84a051;
 
@@ -334,7 +382,7 @@ html {
     align-content: row;
     gap: 3rem;            
     width: auto;        
-    background-color:#84a051;
+    background-color:#596c37;
     border-radius: 20px;
     margin-bottom: 3rem;
 
@@ -350,12 +398,15 @@ html {
     width: 400px;
     height: auto;
     padding: 10px 10px 10px 10px;
-    background-color:#1a2e05;
+    background-color:#ffffff;
     border-radius: 25px;
-    color: white;
+    color: rgb(0, 0, 0);
     margin-top: 5rem;
-    margin-bottom: 2rem;
-
+    margin-bottom: 15px;
+    font-weight: 500;
+    font-size: 1.2rem;
+    box-shadow: 0 40px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
 }
 
 
@@ -392,6 +443,9 @@ html {
     height: 50rem;
     border-radius: 15px;
     padding: 25px 25px 25px 25px;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+    word-wrap: break-word;
 }
 
 
@@ -407,6 +461,8 @@ html {
     max-width: 800px;
     line-height: 1.6;
     margin: 1.5rem 0 3rem 0;
+    font-family: var(--font-heading);
+
 }
 
 
@@ -417,30 +473,50 @@ html {
 ---------------------------------------------------------------------------- */
 
 .websitecolumns {
-    height: 200px;
-    width: 200px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 0;
     border-radius: 20px;
-    background-color:#41572b;
+    background-color:#ffffff;
     margin-top: 2rem;
     margin-bottom: 2rem;
     display: flex;
     flex-direction: row;
-    padding-left: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.25rem;
+    padding: 1rem 1.25rem;
+    box-sizing: border-box;
     box-shadow: 0 40px 12px rgba(0, 0, 0, 0.08);
+    
 }
 
+
+
+
 .websitecolumns h1{
+    flex: 1 1 12rem;
+    min-width: 0;
     font-size: 1.3rem;
-    font-family: var(--font-heading);
     align-self: center;
-    color: white;
-    padding: 20px 20px 20px 20px;
+    color: rgb(0, 0, 0);
+    padding: 0.5rem 0;
+    margin: 0;
+    font-family: var(--font-primary);
+    font-weight: 600;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+    word-wrap: break-word;
+    hyphens: auto;
 }
 
 
 .websitecolumnsimages {
+    flex: 0 1 200px;
     width: 200px;
-    min-width: 200px;
+    max-width: min(200px, 40vw);
+    min-width: 0;
     height: auto;
     border-radius: 15px;
     overflow: hidden;
@@ -450,13 +526,119 @@ html {
 
 }
 
+.websitecolumnsimages a,
+.websitecolumnsimages img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+
 .websitecolumnsimages:hover{
     background-color: #0c0202;
     transform: scale(1.05);
+}
+
+@media (min-width: 1020px) {
+    .websitecolumns {
+        min-height: 200px;
+    }
+}
+@media (max-width: 1020px) {
+    .websitecolumns {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .websitecolumnsimages {
+        flex: 0 0 auto;
+        max-width: 100%;
+        width: 100%;
+        align-self: center;
+    }
+}
+
+
+
+
+.card-link .card-item{
+    list-style: none;
+}
+
+
+.card-list .card-item .card-link{
+    max-width: 250px;
+    min-height: 310px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    margin:10px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
+    transition: 0.2s ease;
+}
+
+
+
+.card-list .card-item .card-link:hover{
+    border-color: blue;
 }
 
 
 
 
 
+.card-list .card-link .card-image{
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card-list .card-link .badge{
+    color: blue;
+    background: white;
+    margin-top: 5px;
+    margin-bottom: 6px;
+    font-weight: 500;
+    background: white;
+    font-size: 1.20rem;
+    line-height: 1.2;
+    min-height: 2.4em;
+}
+
+.card-list .card-link .card-title {
+    color: black;
+    font-weight: 450;
+    margin: 0.15rem 0;
+}
+
+
+
+.swiper-button-next,
+.swiper-button-prev {
+    width: 32px;
+    height: 32px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    color: var(--color-apple-red);
+
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    transform: scale(1.08);
+    opacity: 0.85;
+}
+
+
+
+.swiper-pagination-bullet-active {
+    background: #dc2626;
+}
 

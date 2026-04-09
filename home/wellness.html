@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Link to our custom Design System -->
     <link rel="stylesheet" href="stylewellness.css">
+    <!-- Swiperjs css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
     <title>Chip'n Away | Leadership Community</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -53,8 +55,8 @@
                     
                     <!-- LEFT MENU PADDING: Adjust mr-[40px] to change the gap between "About" and the Whistle -->
                     <div class="hidden md:flex space-x-4 lg:space-x-8 ml-auto mr-[20px] lg:mr-[20px]">
-                        <a href="#home" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Home</a>
-                        <a href="#about" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">About</a>
+                        <a href="index.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Home</a>
+                        <a href="coaches.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">About</a>
                     </div>
                 </div>
 
@@ -69,19 +71,28 @@
 
                 <div class="flex-1 flex items-center justify-end">
                     <!-- RIGHT MENU PADDING: Adjust ml-[40px] to change the gap between the Whistle and "Contact" -->
-                    <div class="hidden md:flex space-x-4 lg:space-x-8 mr-auto ml-[10px] lg:ml-[20px]">
+                    <div class="hidden md:flex space-x-4 lg:space-x-8 mr-auto ml-[10px] lg:ml-[20px] pr-6">
                         <a href="#contact" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Contact</a>
-                        <a href="#contact" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">More</a>
+                        <a href="wellness.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm mr-4">Wellness</a>
                     </div>
 
-                    <div class="flex items-center gap-3 lg:gap-4">
-                        <a href="#home" class="chip-btn-primary text-xs lg:text-sm whitespace-nowrap">
+                    <div class="flex items-center gap-5 lg:gap-4">
+                        <a href="#home" class="chip-btn-primary px-3 py-1.5 text-xs lg:text-sm whitespace-nowrap">
                             Donate
                         </a>
-                        <a href="#about" class="chip-btn-primary text-xs lg:text-sm whitespace-nowrap">
+                        <a href="#wellness" class="chip-btn-primary px-3 py-1.5 ml-4text-xs lg:text-sm whitespace-nowrap">
                             Join Community
+
                         </a>
-                        
+                        <button id="nav-wellness-pill" type="button" class="hidden md:inline-flex items-center gap-2 px-3 py-2 rounded-full bg-apple-panel/90 border border-white/10 text-apple-dark hover:bg-apple-panel transition-colors shadow-sm">
+                            <i data-lucide="timer" class="w-4 h-4 text-apple-red"></i>
+                            <span class="text-xs font-semibold uppercase tracking-widest">Chips</span>
+                            <span id="nav-wellness-count" class="min-w-[1.5rem] text-center text-xs font-bold px-2 py-0.5 rounded-full bg-white/80 border border-apple-dark/10">
+                                0
+                            </span>
+                        </button>
+
+
                         <button id="mobile-menu-btn" class="md:hidden text-white hover:text-apple-red focus:outline-none">
                             <i data-lucide="menu" class="w-8 h-8"></i>
                         </button>
@@ -101,10 +112,12 @@
             </div>
         </div>
     </nav>
+
+
 <!--  my section banners and nutrition-->
     <section class="w-full min-w-0">
         <div class="wellnessbanner">
-            <div class = "column-container">
+            <div class ="column-container">
                 <img src="images/columnone.jpg" class ="column-banner">
                 <div class="columncontent"> 
                     <h3>Nutrition</h3>
@@ -132,27 +145,87 @@
         </div>
     </section>
 
-
-    <section class="maincontent" style="margin-top: 25rem;">
-        <div class="container-text">
-            <div class="text-box"> 
+<!-- also my section this is the nutrition section -->
+    <section class="maincontent">
+        <div class="container-text" style="height: auto; margin-right: 10rem">
+            <div class="text-box" style="height: auto; width:auto"> 
                 <h1 id="Nutrition" style="font-weight: bolder;"> Eat Well, Live Longer</h1>
-                <p style="font-size: 1.2rem; font-weight: 350;"> Nutrition isn't just about eating food to fuel you through the day, its also one way to prevent heart disease. Everything you eat 
+                <p style="font-size: 1.1rem; font-weight: 350; margin-bottom: 10px;"> Nutrition isn't just about eating food to fuel you through the day, its also one way to prevent heart disease. Everything you eat 
                     directly affects all aspects of your health, which is exactly why having a balanced healthy diet is important for not only preventing health diseases 
                     but also building a foundation to live a long active life.</p>
-                <h1 style="font-size: 1.5rem; font-weight: bolder; "> Understanding Nutrition</h1>
-                <p style="font-size: 1.2rem; font-weight: 350;">
+                <h1 style="font-size: 1.5rem; font-weight: bolder;"> Understanding Nutrition</h1>
+                <p style="font-size: 1.1rem; font-weight: 350;">
                     Through participating healthy eating habits and choosing healthier alternatives in daily life, you can make a lasting change 
                     that can help you stay healthy and prevent diseases. Government organizations such as the "Centers For Disease Control And Prevention", Nation Insitutes on Health" and 
                     "The U.S Department of Agriculture" provide valuable research-backed information into healthy eating and nutrition.</p>
 
+
+
+
+                <div class="sub-container swiper" style="margin-bottom: 0px"> <!-- wrapper for the columns for food-->
+                    <ul class="card-list swiper-wrapper">
+                        <li class="card-item swiper-slide">
+                            <a href="https://medlineplus.gov/recipes/tofu-scramble/" target="_blank" rel="noreferrer" class="card-link">
+                                <img src="images/card1.jpg" alt="Tofu Scramble" class="card-image">
+                                <h2 class="badge"> Tofu Scramble (1 Cup)</h2>
+                                <h2 class ="card-title"> Carbs: 10g</h2>
+                                <h2 class ="card-title"> Protein: 11g</h2>
+                                <h2 class ="card-title"> Fats: 7g</h2>
+                                <h2 class ="card-title"> Total: 140 Calories </h2>
+                            </a>
+                        </li>
+                        <li class="card-item swiper-slide">
+                            <a href="https://medlineplus.gov/recipes/zesty-tomato-soup/" target="_blank" rel="noreferrer" class="card-link">
+                                <img src="images/card2.jpg" alt="TomatoSoup" class="card-image">
+                                <h2 class="badge"> Tomato Soup (1 Cup)</h2>
+                                <h2 class ="card-title"> Carbs: 16g</h2>
+                                <h2 class ="card-title"> Protein: 5g</h2>
+                                <h2 class ="card-title"> Fats: 0g</h2>
+                                <h2 class ="card-title"> Total: 94 Calories </h2>
+                            </a>
+                        </li>
+                        <li class="card-item swiper-slide">
+                            <a href="https://medlineplus.gov/recipes/baked-tofu/" target="_blank" rel="noreferrer" class="card-link">
+                                <img src="images/card3.jpg" alt="BakedTofu" class="card-image">
+                                <h2 class="badge"> Baked Tofu (~92g)</h2>
+                                <h2 class ="card-title"> Carbs: 5g</h2>
+                                <h2 class ="card-title"> Protein: 7g</h2>
+                                <h2 class ="card-title"> Fats: 6g</h2>
+                                <h2 class ="card-title"> Total: 100 Calories </h2>
+                            </a>
+                        </li>
+                        <li class="card-item swiper-slide">
+                            <a href="https://medlineplus.gov/recipes/almond-rice-pudding/" target="_blank" rel="noreferrer" class="card-link">
+                                <img src="images/card4.jpg" alt="AlmondRicePudding" class="card-image">
+                                <h2 class="badge"> Almond Rice Pudding (1/2 Cup)</h2>
+                                <h2 class ="card-title"> Carbs: 37g</h2>
+                                <h2 class ="card-title"> Protein: 3g</h2>
+                                <h2 class ="card-title"> Fats: 1.5g</h2>
+                                <h2 class ="card-title"> Total: 180 Calories </h2>
+                            </a>
+                        </li>
+                        <li class="card-item swiper-slide">
+                            <a href="https://medlineplus.gov/recipes/fabulous-fig-bars/" target="_blank" rel="noreferrer" class="card-link">
+                                <img src="images/card5.jpg" alt="FigBars" class="card-image">
+                                <h2 class="badge"> Fig Bars (1 bar)</h2>
+                                <h2 class ="card-title"> Carbs: 34g</h2>
+                                <h2 class ="card-title"> Protein: 3g</h2>
+                                <h2 class ="card-title"> Fats: 5g</h2>
+                                <h2 class ="card-title"> Total: 180 Calories </h2>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+
+                </div>
             </div>
         </div>
+
         <div class="container-images" style="background-color: transparent; border: none;">
             
-
-
-
             <div class="websitecolumns" style="width: 100%">
                 <div class="websitecolumnsimages">
                 <a href="https://www.cdc.gov/nutrition/php/about/index.html" target="_blank" rel="noreferrer">
@@ -194,7 +267,7 @@
 
 
 
-<!-- Reemas section-->
+<!-- Reemas section (fitness section)-->
         <section id="wellness" class="py-20 px-4 sm:px-6 lg:px-8">
             <div class="max-w-6xl mx-auto">
                 <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
@@ -397,24 +470,65 @@
             </div>
         </section>
 
-<!-- Mackenzies section -->
-<section class="maincontent">
-    <div class="container-text">
-        <div class="text-box">
-            <h1 id="Prevention"> Fitness Header</h1>
-            <p> Fitness text</p>
+<!-- Mackenzies section prevention section -->
+<section class="maincontent" style="align-items: stretch;">
+    <div class="container-text" style="width: auto; max-width: none; height: auto; justify-content: stretch; max-height: 800px; align-self:center;">
+        <div class="text-box" style="height:100%; width: auto; max-width: none; max-height: 800px;">
+            <h1 id="Prevention">Monitor and Prevent</h1>
+            <p> <i> Knowing your numbers is crucial for preventing heart disease. </i> Regular check-ups and monitoring of blood pressure, cholesterol, 
+                and other health indicators can help identify potential risks early on. Genetic factors can also play a role in heart disease risk - 
+                an often unnoticed role until later on in life - so being honest with your doctor about known family health history is incredibly
+                important. Getting tested in order to discover any potential <i> unknown </i> family health history is also recommended. </p>
+            <p> Avoiding risk factors such as smoking and excessive alcohol consumption can also reduce the risk of heart disease. While these factors 
+                are well-known, it is still just as important to avoid these habits as it is to eat a healthy diet and exercise regularly. However,
+                it's important to remember that heart disease <i>can</i> affect anyone, regardless of their lifestyle choices. </p>
+            <p> In addition, knowing the signs and symptoms of heart disease can help you seek medical attention when needed. Certain warning signs, 
+                like <b>shortness of breath, chest pain, weakness, dizziness, nausea, and rapid heartbeat</b> should not be ignored. <i>If you 
+                experience any of these symptoms, it's important to seek medical attention immediately.</i></p>
+            <p> Utilizing the resources and information available can help you make informed decisions about your heart health. Eating well, regularly
+                exercising, and avoiding risk factors are all important steps in preventing heart disease, but it's also important to stay informed and 
+                proactive about your health.
+            </p>
+            <p> <b>If you have any concerns about your heart health, consult with your doctor.</b></p>
         </div>
     </div>
 
-    <div class="container-images">
+    <div class="container-images" style="height: auto; min-height: 100%; justify-content: stretch; max-height: 800px; align-self:center;">
         <div class="page-image">
             <img src="images/prevention-1.jpg" alt="Fitness">
         </div>
-        <div class="sub-container-text">
-            Other websites with information similar to corresponding paragraph
+
+        <div class="sub-container-text"> 
+            
+                For more information on heart disease prevention, check out these websites!
+            </div>
+            <div class="sub-container" style="padding: 0px 20px 0px 20px; width: 100%;">
+                <div class="websitecolumns"> 
+                    <div class="websitecolumnsimages" style="box-shadow: none; background-color: transparent !important;">
+                        <a href="https://igit.me/American-Heart-Assoc" target="_blank">
+                            <img src="Images/aha.jpg" alt="American Heart Association">
+                        </a> 
+                    </div>
+                </div>
+            <div class="websitecolumns"> 
+                <div class="websitecolumnsimages" style="box-shadow: none; background-color: transparent !important;">
+                    <a href="https://igit.me/Johns-Hopkins-Med" target="_blank">
+                        <img src="Images/jhm.jpg" alt="Johns Hopkins Medicine">
+                    </a> 
+                </div>
+            </div>
+
+            <div class="websitecolumns"> 
+                <div class="websitecolumnsimages" style="box-shadow: none; background-color: transparent !important;">
+                    <a href="https://igit.me/CVS-Health" target="_blank">
+                        <img src="Images/cvs.jpg" alt="CVS Health">
+                    </a> 
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
 
 
 
@@ -478,6 +592,35 @@
             </div>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.sub-container.swiper', {
+            loop: true,
+            spaceBetween: 20,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1
+                },
+                768: {
+                    slidesPerView: 2
+                },
+                1024: {
+                    slidesPerView: 3
+                },
+            }
+        });
+    </script>
+
     <script>
         lucide.createIcons();
 
@@ -489,6 +632,7 @@
                 menu.classList.toggle('hidden');
             });
         }
+
 
         // Whistle-Stop Wellness (isolated feature)
         (() => {
