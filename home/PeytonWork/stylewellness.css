@@ -32,6 +32,8 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
+    width: 100%;
+    max-width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -42,7 +44,6 @@ h1, h2, h3, h4, h5, h6 {
 /* Smooth scrolling for page anchor links */
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 25rem;
 }
 
 /* =========================================
@@ -177,11 +178,10 @@ html {
     flex-direction: row;
     flex-wrap: wrap; /* kind of weird but it keeps the columns where they need to be on portrait monitors and */
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
 
     padding: 30px;
     gap: 5rem;
-    margin-bottom: 25rem;
 }
 
 /* ------------------------------------------------------------------------------
@@ -204,7 +204,7 @@ html {
 
 .column-container {
     width: 25%;
-    aspect-ratio: 4/5 ;
+    aspect-ratio: 9.5/10 ;
     background-color: var(--color-apple-nav);
 
     max-width: 400px;
@@ -217,10 +217,8 @@ html {
     overflow: hidden;
     color: white;
     z-index:10;
-    
-    margin-top: 20vh;
 
-
+    margin-top: 25vh;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .column-container:hover{
@@ -229,6 +227,7 @@ html {
 }
 /* overrides the h3 that was already set above for some reason, and p */
 .column-container h3 {
+    padding: 20px 20px;
     color:inherit;
     font-weight: bold ;
     font-size: 1.5rem;
@@ -241,11 +240,12 @@ html {
 /* Banner image for the columns */
 .column-banner {
     width: 100%;
-    height: 120px;
+    height: 150px;
     object-fit: cover;
     object-position: center;
     display: block;
     flex-shrink: 0;
+
 }
 
 /* the buttons that will jump you through the page */
@@ -287,10 +287,15 @@ html {
     gap: 10rem;
     min-height: 100vh;
     padding: 3rem ;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-x: auto;
 }
 /* Main content parts that are specific to just them, its like this because i want to use a Z-pattern though the webpage */
 .maincontent {
-    background-color: #9ab36c;
+    background-color: rgb(179, 210, 121);
 }   
 
 .maincontent2 {
@@ -311,6 +316,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    
 }
 
 
@@ -379,7 +385,7 @@ html {
 
 .text-box {
     color: black;
-    background-color: #ffffff;
+    background-color: #d9edb4;
     font-family: var(--font-primary);
     max-width: 50rem;
     width: 100%;
@@ -413,37 +419,41 @@ html {
 .websitecolumns {
     height: 200px;
     width: 200px;
-    border-radius: 15px;
+    border-radius: 20px;
     background-color:#41572b;
     margin-top: 2rem;
     margin-bottom: 2rem;
     display: flex;
     flex-direction: row;
     padding-left: 20px;
+    box-shadow: 0 40px 12px rgba(0, 0, 0, 0.08);
 }
 
 .websitecolumns h1{
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-family: var(--font-heading);
     align-self: center;
     color: white;
-    margin-bottom: 3rem;
-    padding-left: 1rem;
+    padding: 20px 20px 20px 20px;
 }
 
 
 .websitecolumnsimages {
-    height: 160px;
-    width: 300px;
-    min-width: 50px;
-    background-color: #000000;
+    width: 200px;
+    min-width: 200px;
+    height: auto;
     border-radius: 15px;
     overflow: hidden;
     align-self: center;
     object-fit: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
 }
 
-
+.websitecolumnsimages:hover{
+    background-color: #0c0202;
+    transform: scale(1.05);
+}
 
 
 
