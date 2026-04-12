@@ -34,7 +34,7 @@
 </head>
 <body class="font-sans antialiased flex flex-col min-h-screen">
 
-    <!-- NAV BAR - Same as homepage -->
+    <!-- NAV BAR -->
     <nav class="sticky top-0 z-50 bg-apple-dark/95 backdrop-blur-md border-b border-gray-800 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-24 relative">
@@ -53,17 +53,14 @@
                     </div>
                 </div>
 
-                <!-- Whistle on coaches page links back to home -->
-                <div class="flex-shrink-0 flex flex-col items-center justify-center z-50 px-2 lg:px-4">
-                    <a href="index.html" 
-                       class="group flex items-center justify-center w-[80px] lg:w-[130px] transform transition-all duration-300 hover:scale-110 hover:rotate-6 translate-y-[10px] lg:translate-y-[20px]">
+                <!-- WHISTLE - Slightly lowered to show a bit of the leaf, same size as home page -->
+                <div class="flex-shrink-0 flex items-center justify-center z-50 px-2 lg:px-4">
+                    <a href="index.html"
+                       class="group flex items-center justify-center w-[80px] lg:w-[130px] transform transition-all duration-300 hover:scale-110 hover:rotate-6 translate-y-[8px] lg:translate-y-[14px]">
                         <img src="whistle_graphic.png" 
                              alt="Back to Home" 
                              class="w-full h-auto object-contain drop-shadow-2xl">
                     </a>
-                    <span class="mt-1 text-[10px] uppercase tracking-widest text-white/70 font-medium hidden lg:block">
-                        Home
-                    </span>
                 </div>
 
                 <div class="flex-1 flex items-center justify-end">
@@ -96,15 +93,16 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero + Story Section (unchanged) -->
     <main class="flex-1">
         <section class="relative min-h-[65vh] flex items-center justify-center bg-apple-dark overflow-hidden">
             <div class="absolute inset-0 bg-[radial-gradient(at_center,#1a2e05_0%,transparent_70%)]"></div>
             
-            <div class="relative z-10 text-center px-6 max-w-3xl">
-                <span class="inline-block px-6 py-2 bg-apple-red/10 text-apple-red text-sm font-medium tracking-widest rounded-full border border-apple-red/30 mb-8">
+            <div class="relative z-10 text-center px-6 max-w-3xl pt-12">
+                <span class="inline-block px-6 py-2 bg-apple-red/10 text-apple-red text-sm font-medium tracking-widest rounded-full border border-apple-red/30 mb-8 mt-8">
                     IN LOVING MEMORY
                 </span>
+                
                 <h1 class="text-5xl md:text-6xl font-heading font-bold text-white leading-none tracking-tighter mb-6">
                     Coach Narleski "Chip" Malone
                 </h1>
@@ -118,7 +116,6 @@
             </div>
         </section>
 
-        <!-- Dedication / Story Section -->
         <section class="py-20 bg-apple-panel">
             <div class="max-w-4xl mx-auto px-6">
                 <div class="prose prose-lg max-w-none text-apple-dark">
@@ -152,8 +149,6 @@
             </div>
         </section>
     </main>
-
-    <!-- You can paste your full footer here if you have one -->
 
     <script>
         lucide.createIcons();
