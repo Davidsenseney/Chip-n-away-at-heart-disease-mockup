@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stlyesheet.css">
+    <title>Contact Us - Chip'n Away</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        apple: {
+                            bg: '#d9f99d',
+                            panel: '#ecfccb',
+                            dark: '#1a2e05',
+                            nav: '#2a4a0b',
+                            red: '#dc2626',
+                            redHover: '#b91c1c'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- NAV BAR -->
+    <nav class="sticky top-0 z-50 bg-apple-dark/95 backdrop-blur-md border-b border-gray-800 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24 relative">
+                
+                <div class="flex-1 flex items-center justify-start">
+                    <div class="flex-shrink-0 flex items-center gap-2 lg:gap-3">
+                        <div class="w-[80px] h-[80px] rounded-full bg-apple-panel flex items-center justify-center border-2 border-apple-red overflow-hidden">
+                            <img src="chiplogo.png" alt="Chip'n Away Logo" class="w-full h-full object-contain">
+                        </div>
+                        <span class="font-heading font-bold text-xl lg:text-2xl tracking-wider uppercase text-white hidden sm:block">Chip'n Away</span>
+                    </div>
+                    
+                    <div class="hidden md:flex space-x-4 lg:space-x-8 ml-auto mr-[20px]">
+                        <a href="index.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Home</a>
+                        <a href="coaches.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">About</a>
+                    </div>
+                </div>
+
+                <!-- WHISTLE -->
+                <div class="flex-shrink-0 flex items-center justify-center z-50 px-2 lg:px-4">
+                    <a href="index.html"
+                       class="group flex items-center justify-center w-[80px] lg:w-[130px] transform transition-all duration-300 hover:scale-110 hover:rotate-6 translate-y-[8px] lg:translate-y-[14px]">
+                        <img src="whistle_graphic.png" 
+                             alt="Back to Home" 
+                             class="w-full h-auto object-contain drop-shadow-2xl">
+                    </a>
+                </div>
+
+                <div class="flex-1 flex items-center justify-end">
+                    <div class="hidden md:flex space-x-4 lg:space-x-8 mr-auto ml-[10px] lg:ml-[20px]">
+                        <a href="contact.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Contact</a>
+                        <a href="#more" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">More</a>
+                    </div>
+
+                    <div class="flex items-center gap-3 lg:gap-4">
+                        <a href="#donate" class="chip-btn-primary text-xs lg:text-sm whitespace-nowrap">Donate</a>
+                        <a href="#join" class="chip-btn-primary text-xs lg:text-sm whitespace-nowrap">Join Community</a>
+                        
+                        <button id="mobile-menu-btn" class="md:hidden text-white hover:text-apple-red focus:outline-none">
+                            <i data-lucide="menu" class="w-8 h-8"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-apple-nav border-b border-gray-700">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="index.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Home</a>
+                <a href="coaches.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">About</a>
+                <a href="contact.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Contact</a>
+                <a href="#more" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">More</a>
+                <a href="#join" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Join Community</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <main class="flex-1">
+        <section class="relative min-h-[80vh] flex items-center justify-center bg-apple-dark overflow-hidden py-20">
+            <div class="absolute inset-0 bg-[radial-gradient(at_center,#1a2e05_0%,transparent_70%)]"></div>
+            
+            <div class="relative z-10 w-full max-w-2xl px-6">
+                <div class="text-center mb-12">
+                    <span class="inline-block px-6 py-2 bg-apple-red/10 text-apple-red text-sm font-medium tracking-widest rounded-full border border-apple-red/30 mb-6">
+                        GET IN TOUCH
+                    </span>
+                    <h1 class="text-5xl md:text-6xl font-heading font-bold text-white leading-none tracking-tighter mb-4">
+                        Contact Us
+                    </h1>
+                    <p class="text-xl text-apple-panel">
+                        Join our mission to fight heart disease. We'd love to hear from you!
+                    </p>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-apple-red/10">
+                    <form id="contactForm" class="space-y-6">
+                        <!-- First Name & Last Name Row -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="firstName" class="block text-sm font-semibold text-apple-dark mb-2">
+                                    First Name <span class="text-apple-red">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="firstName" 
+                                    name="firstName" 
+                                    required
+                                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-apple-red transition-colors duration-200"
+                                    placeholder="John">
+                            </div>
+                            <div>
+                                <label for="lastName" class="block text-sm font-semibold text-apple-dark mb-2">
+                                    Last Name <span class="text-apple-red">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="lastName" 
+                                    name="lastName" 
+                                    required
+                                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-apple-red transition-colors duration-200"
+                                    placeholder="Doe">
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div>
+                            <label for="email" class="block text-sm font-semibold text-apple-dark mb-2">
+                                Email Address <span class="text-apple-red">*</span>
+                            </label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                required
+                                class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-apple-red transition-colors duration-200"
+                                placeholder="john@example.com">
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div>
+                            <label for="phone" class="block text-sm font-semibold text-apple-dark mb-2">
+                                Phone Number <span class="text-apple-red">*</span>
+                            </label>
+                            <input 
+                                type="tel" 
+                                id="phone" 
+                                name="phone" 
+                                required
+                                class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-apple-red transition-colors duration-200"
+                                placeholder="(123) 456-7890">
+                        </div>
+
+                        <!-- Area of Expertise/Interest -->
+                        <div>
+                            <label for="expertise" class="block text-sm font-semibold text-apple-dark mb-2">
+                                What area of expertise/interest would you like to volunteer? <span class="text-apple-red">*</span>
+                            </label>
+                            <textarea 
+                                id="expertise" 
+                                name="expertise" 
+                                required
+                                rows="5"
+                                class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-apple-red transition-colors duration-200 resize-none"
+                                placeholder="Tell us about your skills, experience, and how you'd like to contribute to our mission..."></textarea>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="pt-4">
+                            <button 
+                                type="submit" 
+                                class="w-full chip-btn-primary py-3 font-semibold text-lg rounded-lg transition-all duration-200 hover:shadow-lg">
+                                Send Message
+                            </button>
+                        </div>
+
+                        <!-- Success Message (Hidden by default) -->
+                        <div id="successMessage" class="hidden bg-green-100 border-2 border-green-500 text-green-700 px-6 py-4 rounded-lg">
+                            <p class="font-semibold">Thank you! Your message has been sent successfully.</p>
+                            <p class="text-sm">We'll get back to you as soon as possible.</p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Additional Info -->
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="bg-apple-dark/50 backdrop-blur-sm rounded-2xl p-6 border border-apple-red/20">
+                        <i data-lucide="mail" class="w-8 h-8 text-apple-red mx-auto mb-3"></i>
+                        <h3 class="text-white font-semibold mb-2">Email</h3>
+                        <p class="text-apple-panel text-sm">contact@chipnaway.org</p>
+                    </div>
+                    <div class="bg-apple-dark/50 backdrop-blur-sm rounded-2xl p-6 border border-apple-red/20">
+                        <i data-lucide="phone" class="w-8 h-8 text-apple-red mx-auto mb-3"></i>
+                        <h3 class="text-white font-semibold mb-2">Phone</h3>
+                        <p class="text-apple-panel text-sm">(555) 123-4567</p>
+                    </div>
+                    <div class="bg-apple-dark/50 backdrop-blur-sm rounded-2xl p-6 border border-apple-red/20">
+                        <i data-lucide="map-pin" class="w-8 h-8 text-apple-red mx-auto mb-3"></i>
+                        <h3 class="text-white font-semibold mb-2">Location</h3>
+                        <p class="text-apple-panel text-sm">Your City, State</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-apple-dark border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 py-8 text-center text-apple-panel">
+            <p>&copy; 2026 Chip'n Away @ Heart Disease. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        if (btn && menu) {
+            btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+        }
+
+        // Form Submission Handler
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const expertise = document.getElementById('expertise').value;
+            
+            // Log form data (replace with actual submission logic)
+            console.log({
+                firstName,
+                lastName,
+                email,
+                phone,
+                expertise
+            });
+            
+            // Show success message
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.remove('hidden');
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successMessage.classList.add('hidden');
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
