@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to our custom Design System -->
+    <link rel="stylesheet" href="stlyesheet.css">
+    <title>Chip'n Away | Leadership Community</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        apple: {
+                            bg: '#d9f99d',      /* Crisp Green Apple background */
+                            panel: '#ecfccb',   /* Slightly lighter green apple for panels */
+                            dark: '#1a2e05',    /* Very dark green for text and nav */
+                            nav: '#2a4a0b',     /* Secondary dark green */
+                            red: '#dc2626',     /* Crisp Apple Red */
+                            redHover: '#b91c1c' /* Darker red for hover states */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Resource for live map -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""
+    >
+    <!-- Link to our custom Design System -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="font-sans antialiased flex flex-col min-h-screen">
+
+    <nav class="sticky top-0 z-50 bg-apple-dark/95 backdrop-blur-md border-b border-gray-800 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24 relative">
+                
+                <div class="flex-1 flex items-center justify-start">
+                    <div class="flex-shrink-0 flex items-center gap-2 lg:gap-3">
+                        <div class="w-[80px] h-[80px] rounded-full bg-apple-panel flex items-center justify-center border-2 border-apple-red overflow-hidden">
+                            <img src="images/chiplogo.png" alt="Chip'n Away Logo" class="w-full h-full object-contain">
+                        </div>
+                        <span class="font-heading font-bold text-xl lg:text-2xl tracking-wider uppercase text-white hidden sm:block">Chip'n Away</span>
+                    </div>
+                    
+                    <!-- LEFT MENU PADDING: Adjust mr-[40px] to change the gap between "About" and the Whistle -->
+                    <div class="hidden md:flex space-x-4 lg:space-x-8 ml-auto mr-[20px] lg:mr-[20px]">
+                        <a href="index.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Home</a>
+                        <a href="chipnaway-community-page.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">community</a>
+                    </div>
+                </div>
+
+                <!-- WHISTLE GRAPHIC SIZE & HANG -->
+                <div class="flex-shrink-0 flex items-center justify-center z-50 px-2 lg:px-4">
+                    <!-- SIZE: Adjust w-[120px] and lg:w-[160px] -->
+                    <!-- HANG DROP: Adjust translate-y-[20px] and lg:translate-y-[30px] -->
+                    <a href="coaches.html" class="group flex items-center justify-center w-[80px] lg:w-100px] transform transition-transform duration-300 hover:scale-105 translate-y-[10px] lg:translate-y-[20px]">
+                        <img src="images/whistle_graphic.png" alt="whistle_graphic" class="w-full h-auto object-contain drop-shadow-2xl">
+                    </a>
+                </div>
+
+                <div class="flex-1 flex items-center justify-end">
+                    <!-- RIGHT MENU PADDING: Adjust ml-[40px] to change the gap between the Whistle and "Contact" -->
+                    <div class="hidden md:flex space-x-4 lg:space-x-8 mr-auto ml-[10px] lg:ml-[20px]">
+                        <a href="contact.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Contact</a>
+                        <a href="wellness.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Wellness</a>
+                    </div>
+
+                    <div class="flex items-center gap-3 lg:gap-4">
+                        <a href="#home" class="chip-btn-primary text-xs lg:text-sm whitespace-nowrap">
+                            Donate
+                        </a>
+                        <a href="volunteer.html" class="chip-btn-primary text-xs lg:text-sm whitespace-nowrap">
+                            Volunteer
+                        </a>
+                        
+                        <button id="mobile-menu-btn" class="md:hidden text-white hover:text-apple-red focus:outline-none">
+                            <i data-lucide="menu" class="w-8 h-8"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-apple-nav border-b border-gray-700">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="index.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Home</a>
+                <a href="chipnaway-community-page.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Community</a>
+                <a href="contact.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Contact</a>
+                <a href="wellness.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Wellness</a>
+                <a href="volunteer.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Volunteer</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- How to Volunteer Section -->
+        <section id="how-to-volunteer" class="w-full min-h-screen chip-hero-bg flex flex-col items-center justify-end relative pb-16 pt-32 px-4">
+            
+            <div class="w-full max-w-2xl text-center px-4">
+
+                <h1 class="chip-title-banner text-xl md:text-2xl lg:text-3xl tracking-tight">
+                    Ways You can Chip In
+                </h1>
+                <p class="mt-4 text-sm md:text-base lg:text-lg mx-auto">Volunteering with Chip ‘N Away at Heart Disease is a meaningful way to make a lasting impact in your local community. We offer a variety of opportunities to get involved, including event support, community engagement, and education about heart disease awareness and prevention.
+                If you’re interested in joining our mission to fight heart disease and help educate others, we invite you to complete the volunteer sign-up form below!</p>
+                
+                <form class="mt-6 space-y-3 text-left"> 
+                    <div>
+                    <label class="block font-medium mb-1" for="fname"> First name: </label>
+                    <input class="w-full border border-gray-400 bg-white p-2 rounded" type="text" id="fname" name="fname">
+                    </div>
+
+                    <div>
+                    <label class="block font-medium mb-1" for="lname"> Last name</label>
+                    <input class="w-full border border-gray-400 bg-white p-2 rounded" type="text" id="'lname" name="lname">
+                    </div>
+
+                    <div>
+                    <label class="block font-medium mb-1" for="age"> Age: </label>
+                    <input class="w-full border border-gray-400 bg-white p-2 rounded" type="text" id="age" name="age">
+                    </div>
+
+                    <div>
+                    <label class="block font-medium mb-1" for="email">Email address: </label>
+                    <input class="w-full border border-gray-400 bg-white p-2 rounded" type="text" id="email" name="email">
+                    </div>
+
+                    <div>
+                    <label class="block font-medium mb-1" for="pnumber"> Phone number: </label>
+                    <input class="w-full border border-gray-400 bg-white p-2 rounded" type="text" id="pnumber" name="pnumber">
+                    </div>
+
+                    <div>
+                    <label class="block font-medium mb-1" for="skills"> What skills do you offer?</label>
+                    <input class="w-full border border-gray-400 bg-white p-2 rounded" type="text" id="skills" name="skills">
+                    </div>
+                    
+                    <input class="w-full bg-green-700 text-white p-2 rounded cursor-pointer hover:bg-green-800 transition" type="submit" value="Submit">
+                </form>
+
+            </div>
+        </section>
+
+        <!-- Why Volunteer Section -->
+        <section id="why-volunteer" class="w-full min-h-[30vh] chip-hero-bg flex flex-col items-center justify-end relative pb-16 pt-32 px-4">
+
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="chip-title-banner text-xl md:text-2xl lg:text-3xl tracking-tight">
+                    Benefits of Volunteering
+                </h1>
+                <p class="mt-4 text-sm md:text-base lg:text-lg mx-auto text-justify">Volunteering with our organization offers a meaningful way to make a direct impact in the
+                     fight against cardiovascular diseases. We organize a variety of outreach programs and campaigns with medical professionals and our associates
+                    aimed at raising awareness about the impact of cardiovascular diseases. These initiatives allow us to make referrals and provide actionable,
+                    education-based strategies that help individuals prevent heart-related health emergencies. Beyond community impact, volunteering also helps
+                    you build valuable skills while gaining experience working alongside healthcare professionals. It is also an opportunity to grow your network
+                    and become more engaged in public health advocacy. Most importantly, your involvement contributes to lasting change—helping save lives through
+                    awareness and prevention. “You contribute to causes you're passionate about, creating a ripple effect of positive change.” ~Cynthia Malone </p>
+            </div>
+        </section>
+
+        <!-- Include Reema's impact statistics card here -->
+
+
+        <!-- Impact & Stories Section -->
+        <section id="impact" class="w-full min-h-[30vh] chip-hero-bg flex flex-col items-center justify-end relative pb-16 pt-32 px-4">
+            
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="chip-title-banner text-xl md:text-2xl lg:text-3xl tracking-tight">
+                    Impact & Stories
+                </h1>
+                <h2 class="mt-4 text-sm md:text-base lg:text-lg mx-auto text-justify">
+                     Cynthia Malone serves as the Executive Director of Chip’n Away @ Heart Disease, a non-profit organization she co-founded with her late husband, Coach Narleski “Chip” Malone.
+                    Cynthia Malone serves as the Executive Director of Chip’n Away @ Heart Disease, a non-profit organization she co-founded with her late husband, Coach Narleski “Chip” Malone.  
+                    Through her unwavering dedication to heart health advocacy, Cynthia has reached over
+                    78,000 individuals via community outreach
+                    and educational events.
+
+                    In 2023-2024 alone, Chip’n Away @ Heart Disease has impacted the lives of 7,460 people, spreading a vital message of hope for heart health.
+
+​                    Cynthia’s engaging speaking style blends humor and encouragement, resonating with audiences and earning her numerous callbacks and positive feedback.  She is grateful for the strength of the collaborative alliance that works with her to achieve the organization’s goals.  She emphasizes the importance of community support in combating heart disease.
+                </h2>
+            </div>
+        </section>
+
+        <!-- Upcoming Events Section -->
+        <section id="events" class="py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+            <div class="clearfix text-gray-800 leading-relaxed text-lg">
+
+                <div class="chip-image-framed float-none md:float-left w-full md:w-[380px] mb-8 md:mb-4 md:mr-10 aspect-[3/4] md:aspect-[2/3]">
+                    <img src="15th Annual CARDIAC Car Show Flyer (1).avif" alt="Community members at a heart health outreach event" class="w-full h-full object-cover object-center">
+                </div>
+
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-apple-dark mb-6 uppercase tracking-wide">Upcoming Events</h2>
+
+                <p class="mb-6">
+                    Come help raise awareness and make a difference at some of our community events!
+                </p>
+            </div>
+
+            <div class="chip-card-solid mt-10 w-full text-left">
+                <h3 class="text-2xl md:text-3xl font-heading font-bold text-apple-dark mb-1">15th Annual Cardiac Car Show</h3>
+                <p class="text-apple-red font-semibold mb-6">Saturday, November 7, 2026</p>
+
+                <dl class="grid gap-y-4 gap-x-8 sm:grid-cols-[minmax(0,11rem)_1fr] text-base">
+
+                    <dt class="font-heading font-bold text-apple-dark uppercase tracking-wide text-sm">Event setup</dt>
+                    <dd>8:30 AM – 9:00 AM</dd>
+
+                    <dt class="font-heading font-bold text-apple-dark uppercase tracking-wide text-sm">Event hours</dt>
+                    <dd>9:00 AM – 3:00 PM</dd>
+
+                    <dt class="font-heading font-bold text-apple-dark uppercase tracking-wide text-sm">Vendor booths</dt>
+                    <dd> $50.00</dd>
+
+                    <dt class="font-heading font-bold text-apple-dark uppercase tracking-wide text-sm">Location</dt>
+                    <dd>
+                        <span class="font-medium">North Houston Sports Complex</span><br>
+                        <span class="text-gray-700">900 North Houston Road, Warner Robins, GA 31093</span>
+                    </dd>
+                </dl>
+            </div>
+
+            <div class="mt-8">
+                <h4 class="text-apple-dark font-bold mb-4 uppercase tracking-wider text-sm">Event Map</h4>
+                <div
+                    id="event-map"
+                    class="w-full rounded-xl overflow-hidden border border-gray-300"
+                    style="height: 320px;"
+                    aria-label="Map showing North Houston Sports Complex location"
+                ></div>
+            </div>
+        </section>
+
+        <!-- Live Map Section -->
+        
+        
+    </main>
+
+    <footer id="contact" class="bg-apple-dark py-12 border-t border-apple-nav mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+                
+                <div>
+                    <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
+                        <div class="w-8 h-8 rounded-full bg-apple-red flex items-center justify-center text-white font-bold text-sm">
+                            C
+                        </div>
+                        <span class="font-heading font-bold text-xl tracking-wider uppercase text-white">Chip'n Away</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Cultivating clarity and belief for the leaders of tomorrow.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="index.html" class="hover:text-apple-red transition-colors">Home</a></li>
+                        <!-- <li><a href="index.html#about" class="hover:text-apple-red transition-colors">About</a></li> -->
+                        <li><a href="chipnaway-community-page.html" class="hover:text-apple-red transition-colors">Community</a></li>
+                        <li><a href="contact.html" class="hover:text-apple-red transition-colors">Contact</a></li>
+                        <li><a href="wellness.html" class="hover:text-apple-red transition-colors">Wellness</a></li>
+                        <li><a href="volunteer.html" class="hover:text-apple-red transition-colors">Volunteer</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm">Contact Us</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li class="flex items-center justify-center md:justify-start gap-3">
+                            <i data-lucide="mail" class="w-4 h-4 text-apple-red"></i>
+                            info@chipnaway.com
+                        </li>
+                        <li class="flex items-center justify-center md:justify-start gap-3">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-apple-red"></i>
+                            Innovation Hub, Suite 100
+                        </li>
+                    </ul>
+                    
+                    <div class="flex items-center justify-center md:justify-start gap-4 mt-6">
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-apple-red transition-colors">
+                            <i data-lucide="facebook" class="w-4 h-4 text-white"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-apple-red transition-colors">
+                            <i data-lucide="twitter" class="w-4 h-4 text-white"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-apple-red transition-colors">
+                            <i data-lucide="linkedin" class="w-4 h-4 text-white"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; 2024 Chip'n Away. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""
+    ></script>
+    <script>
+        lucide.createIcons();
+
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        if (btn && menu) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+        }
+
+        const eventMapEl = document.getElementById('event-map');
+        if (eventMapEl && typeof L !== 'undefined') {
+            const eventMap = L.map('event-map').setView([32.6249, -83.6394], 14);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(eventMap);
+
+            L.marker([32.6249, -83.6394])
+                .addTo(eventMap)
+                .bindPopup('North Houston Sports Complex, 900 North Houston Road, Warner Robins, GA 31093')
+                .openPopup();
+        }
+    </script>
+</body>
+</html>
