@@ -110,15 +110,23 @@
                 </h1>
             </div>
 
-            <div class="text-center z-10 max-w-4xl mx-auto w-full"> 
-                <div class="chip-card-glass mx-auto max-w-3xl text-left">
-                    
-                    <p class="text-2xl md:text-3xl text-apple-dark font-heading font-medium italic leading-relaxed mb-0">
-                        Chip'n Away at Heart Disease collaborates with dedicated partners to bring life saving health and wellness initiatives to our communities, chipping away at heart disease one step at a time.
-                    </p>
+           <div class="text-center z-10 max-w-4xl mx-auto w-full"> 
+        <div class="chip-card-glass mx-auto max-w-3xl text-left">
+        
+            <p class="text-2xl md:text-3xl text-apple-dark font-heading font-medium italic leading-relaxed mb-0">
+            Chip'n Away at Heart Disease collaborates with dedicated partners to bring life saving health and wellness initiatives to our communities, 
+            chipping away at heart disease one step at a time. <br>
+            </p>
 
-                </div>
+         <!-- Wrapper added here to center the button -->
+            <div class="w-full text-center mt-6">
+                <a href="#risk-assessment" class="chip-btn-primary inline-block">
+                    Understand the risk before you get benched.
+                </a>
             </div>
+
+    </div>
+</div>
         </section>
 
         <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
@@ -156,6 +164,106 @@
                     <p class="text-sm text-gray-600">
                         Founder of Skybell Video Doorbell
                     </p>
+                </div>
+            </div>
+        </section>
+        <!-- New Risk Assessment & Education Section -->
+        <section id="risk-assessment" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+                
+                <!-- Left Column (Graphic & Text) -->
+                <div class="flex flex-col w-full sticky top-32">
+                    
+                    <!-- Graphic Placeholder (Based on PDF Mockup) -->
+                    <div class="bg-apple-dark rounded-[2rem] p-8 md:p-12 flex flex-col gap-6 shadow-2xl justify-center items-center aspect-video md:aspect-[4/3]">
+                        <div class="bg-white rounded-full py-4 px-10 w-full max-w-sm text-center shadow-inner">
+                            <span class="text-apple-red font-heading font-bold text-xl md:text-2xl tracking-wide">Health Assessment</span>
+                        </div>
+                        <div class="flex gap-6 justify-center w-full max-w-sm">
+                            <div class="bg-white rounded-[2rem] aspect-square w-1/2 flex items-center justify-center shadow-inner">
+                                <span class="text-apple-red font-heading font-bold text-xl md:text-2xl">Plan</span>
+                            </div>
+                            <div class="bg-white rounded-[2rem] aspect-square w-1/2 flex items-center justify-center shadow-inner">
+                                <span class="text-apple-red font-heading font-bold text-xl md:text-2xl">Act</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Left Column Text -->
+                    <div class="text-apple-dark text-lg leading-relaxed space-y-6 mt-10">
+                        <p>
+                            Heart disease often develops silently, with critical risk factors like hypertension and high cholesterol showing no outward symptoms until a major event occurs. Understanding your personal risk profile through a formal assessment is the most powerful tool you have to prevent irreversible damage to your cardiovascular system.
+                        </p>
+                        <p>
+                            By identifying these red flags early, you and your healthcare provider can create a targeted plan to strengthen your heart and extend your life. Schedule a risk assessment today—taking one hour for a checkup can save you a lifetime of complications and give you the peace of mind you deserve.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Column (3 Separate Accordion Cards) -->
+                <div class="flex flex-col gap-6 md:gap-8 h-full justify-center">
+                    
+                    <!-- Card 1 -->
+                    <div class="bg-apple-dark rounded-[1.5rem] shadow-xl p-3 md:p-4 pb-6 flex flex-col">
+                        <!-- Image Block -->
+                        <div class="w-full h-28 md:h-32 rounded-xl overflow-hidden shadow-inner">
+                            <img src="images/yourhealthyplan.png" alt="Heart Healthy Plan" class="w-full h-full object-cover">
+                        </div>
+                        <!-- Accordion Overlapping Image -->
+                        <div class="accordion-item group -mt-6 relative z-10 w-[95%] mx-auto">
+                            <button class="chip-title-banner w-full flex items-center justify-between relative cursor-pointer hover:-translate-y-1 transition-transform" onclick="toggleAccordion(this)">
+                                <span class="text-apple-red font-bold text-base md:text-lg w-full text-center pr-6">Your Heart Healthy Plan</span>
+                                <i data-lucide="chevron-down" class="absolute right-4 md:right-6 w-5 h-5 md:w-6 md:h-6 text-apple-red transition-transform duration-300 transform group-[.is-open]:rotate-180"></i>
+                            </button>
+                            <div class="accordion-content hidden px-4 pt-6 pb-2 text-gray-300 text-sm leading-relaxed text-center">
+                                <p>Developing a personalized plan with your healthcare provider ensures that you are taking the right steps towards cardiovascular wellness. We provide resources to guide your daily nutrition and activity.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-apple-dark rounded-[1.5rem] shadow-xl p-3 md:p-4 pb-6 flex flex-col">
+                        <!-- Image Block -->
+                        <div class="w-full h-28 md:h-32 rounded-xl overflow-hidden shadow-inner">
+                            <img src="images/protectingtheonesyoulove.png" alt="Protecting Loved Ones" class="w-full h-full object-cover">
+                        </div>
+                        <!-- Accordion Overlapping Image -->
+                        <div class="accordion-item group -mt-6 relative z-10 w-[95%] mx-auto">
+                            <button class="chip-title-banner w-full flex items-center justify-between relative cursor-pointer hover:-translate-y-1 transition-transform" onclick="toggleAccordion(this)">
+                                <span class="text-apple-red font-bold text-base md:text-lg w-full text-center pr-6">Protecting the ones you Love</span>
+                                <i data-lucide="chevron-down" class="absolute right-4 md:right-6 w-5 h-5 md:w-6 md:h-6 text-apple-red transition-transform duration-300 transform group-[.is-open]:rotate-180"></i>
+                            </button>
+                            <div class="accordion-content hidden px-4 pt-6 pb-2 text-gray-300 text-sm leading-relaxed text-center">
+                                <p>Heart disease doesn't just affect you—it impacts your entire family. Learn how to foster a heart-healthy environment at home and recognize the warning signs to protect your loved ones.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-apple-dark rounded-[1.5rem] shadow-xl p-3 md:p-4 pb-6 flex flex-col">
+                        <!-- Image Block -->
+                        <div class="w-full h-28 md:h-32 rounded-xl overflow-hidden shadow-inner">
+                            <img src="images/stayinginformed.png" alt="Staying Informed" class="w-full h-full object-cover">
+                        </div>
+                        <!-- Accordion Overlapping Image -->
+                        <div class="accordion-item group -mt-6 relative z-10 w-[95%] mx-auto">
+                            <button class="chip-title-banner w-full flex items-center justify-between relative cursor-pointer hover:-translate-y-1 transition-transform" onclick="toggleAccordion(this)">
+                                <span class="text-apple-red font-bold text-base md:text-lg w-full text-center pr-6">Staying Informed</span>
+                                <i data-lucide="chevron-down" class="absolute right-4 md:right-6 w-5 h-5 md:w-6 md:h-6 text-apple-red transition-transform duration-300 transform group-[.is-open]:rotate-180"></i>
+                            </button>
+                            <div class="accordion-content hidden px-4 pt-6 pb-2 text-gray-300 text-sm leading-relaxed text-center">
+                                <p>Stay up-to-date with the latest research, upcoming community screening events, and evidence-based strategies by joining our newsletter and attending our quarterly health workshops.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Call to action below accordions -->
+                    <div class="w-full text-center mt-4">
+                        <a href="contact.html" class="chip-btn-primary inline-block text-sm md:text-base shadow-lg">
+                            Make a difference in the fight against heart disease
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -220,7 +328,7 @@
         </div>
     </footer>
 
-    <script>
+     <script>
         // Render standard icons
         lucide.createIcons();
 
@@ -239,6 +347,29 @@
                 menu.classList.add('hidden');
             });
         });
+
+        // Accordion Toggle Logic
+        function toggleAccordion(btn) {
+            const item = btn.closest('.accordion-item');
+            const content = item.querySelector('.accordion-content');
+            
+            // Optional: Close other open accordions when one is clicked
+            document.querySelectorAll('.accordion-item').forEach((otherItem) => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('is-open');
+                    otherItem.querySelector('.accordion-content').classList.add('hidden');
+                }
+            });
+
+            // Toggle the clicked accordion
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                item.classList.add('is-open');
+            } else {
+                content.classList.add('hidden');
+                item.classList.remove('is-open');
+            }
+        }
     </script>
 </body>
 </html>
