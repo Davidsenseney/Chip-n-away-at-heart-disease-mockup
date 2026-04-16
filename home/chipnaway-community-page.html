@@ -12,28 +12,10 @@
   <!-- Added for Nav Bar Matching -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <script>
-      tailwind.config = {
-          theme: {
-              extend: {
-                  colors: {
-                      apple: {
-                          bg: '#d9f99d',      /* Crisp Green Apple background */
-                          panel: '#ecfccb',   /* Slightly lighter green apple for panels */
-                          dark: '#1a2e05',    /* Very dark green for text and nav */
-                          nav: '#2a4a0b',     /* Secondary dark green */
-                          red: '#dc2626',     /* Crisp Apple Red */
-                          redHover: '#b91c1c' /* Darker red for hover states */
-                      }
-                  },
-                  fontFamily: {
-                      sans: ['Inter', 'system-ui', 'sans-serif'],
-                      heading: ['Montserrat', 'system-ui', 'sans-serif'],
-                  }
-              }
-          }
-      }
-  </script>
+
+  <!-- Shared JavaScript reference -->
+  <script src="javaScript.js" defer></script>
+
   <link rel="stylesheet" href="style.css">
   
   <style>
@@ -443,71 +425,8 @@
 </head>
 <body class="font-sans antialiased flex flex-col min-h-screen">
 
-    <!-- REPLACED NAVIGATION FROM INDEX.HTML -->
-    <nav class="sticky top-0 z-50 bg-apple-dark/95 backdrop-blur-md border-b border-gray-800 shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-24 relative">
-                
-                <div class="flex-1 flex items-center justify-start">
-                    <div class="flex-shrink-0 flex items-center gap-2 lg:gap-3">
-                        <div class="w-[80px] h-[80px] rounded-full bg-apple-panel flex items-center justify-center border-2 border-apple-red overflow-hidden">
-                            <img src="images/chiplogo.png" alt="Chip'n Away Logo" class="w-full h-full object-contain">
-                        </div>
-                        <span class="font-heading font-bold text-xl lg:text-2xl tracking-wider uppercase text-white hidden sm:block">Chip'n Away</span>
-                    </div>
-                    
-                    <!-- LEFT MENU PADDING: Adjust mr-[40px] to change the gap between "About" and the Whistle -->
-                    <div class="hidden md:flex space-x-4 lg:space-x-8 ml-auto mr-[20px] lg:mr-[20px]">
-                        <a href="index.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Home</a>
-                        <a href="chipnaway-community-page.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">community</a>
-                    </div>
-                </div>
-
-                <!-- WHISTLE GRAPHIC SIZE & HANG -->
-                <div class="flex-shrink-0 flex items-center justify-center z-50 px-2 lg:px-4">
-                    <!-- SIZE: Adjust w-[120px] and lg:w-[160px] -->
-                    <!-- HANG DROP: Adjust translate-y-[20px] and lg:translate-y-[30px] -->
-                    <!-- NOTE: Fixed typo from lg:w-100px] to lg:w-[100px] here! -->
-                    <a href="coaches.html" class="group flex items-center justify-center w-[80px] lg:w-[100px] transform transition-transform duration-300 hover:scale-105 translate-y-[10px] lg:translate-y-[20px]">
-                        <img src="images/whistle_graphic.png" alt="whistle_graphic" class="w-full h-auto object-contain drop-shadow-2xl">
-                    </a>
-                </div>
-
-                <div class="flex-1 flex items-center justify-end">
-                    <!-- RIGHT MENU PADDING: Adjust ml-[40px] to change the gap between the Whistle and "Contact" -->
-                    <div class="hidden md:flex space-x-4 lg:space-x-8 mr-auto ml-[10px] lg:ml-[20px]">
-                        <a href="contact.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Contact</a>
-                        <a href="wellness.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Nutrition</a>
-                    </div>
-
-                    <div class="flex items-center gap-3 lg:gap-4">
-                      <a href="#home" class="bg-apple-red hover:bg-[#b91c1c] text-white font-bold py-2 px-5 rounded-full text-xs lg:text-sm whitespace-nowrap transition-colors">
-                        Donate
-                      </a>
-                      <a href="volunteer.html" class="bg-apple-red hover:bg-[#b91c1c] text-white font-bold py-2 px-5 rounded-full text-xs lg:text-sm whitespace-nowrap transition-colors">
-                        Volunteer
-                    </a>
-    
-    <button id="mobile-menu-btn" class="md:hidden text-white hover:text-apple-red focus:outline-none">
-        <i data-lucide="menu" class="w-8 h-8"></i>
-    </button>
-</div>
-                </div>
-
-            </div>
-        </div>
-
-        <div id="mobile-menu" class="hidden md:hidden bg-apple-nav border-b border-gray-700">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
-                <a href="index.html#home" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Home</a>
-                <a href="index.html#about" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">About</a>
-                <a href="index.html#contact" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Contact</a>
-                <a href="index.html#contact" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">More</a>
-                <a href="volunteer.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Volunteer</a>
-            </div>
-        </div>
-    </nav>
-    <!-- END NAVIGATION -->
+    <!-- Shared Footer insert -->
+    <div id="shared-header"></div>
 
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
@@ -626,41 +545,8 @@
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-row">
-      <div class="footer-brand">
-        <div class="brand-mark" aria-hidden="true"></div>
-        <span>Chip`n Away @ Heart Disease</span>
-      </div>
-      <div class="footer-links">
-        <a class="btn" href="index.html#home">Home</a>
-        <a class="btn" href="index.html#about">About</a>
-        <a class="btn" href="index.html#contact">Contact</a>
-        <a class="btn" href="#">Community</a>
-      </div>
-    </div>
-  </footer>
+  <!-- Shared Footer insert -->
+  <div id="shared-footer"></div>
 
-  <!-- Added Script for Mobile Nav and Icons -->
-  <script>
-      // Render standard icons
-      lucide.createIcons();
-
-      // Mobile menu toggle logic
-      const btn = document.getElementById('mobile-menu-btn');
-      const menu = document.getElementById('mobile-menu');
-
-      btn.addEventListener('click', () => {
-          menu.classList.toggle('hidden');
-      });
-
-      // Close mobile menu when a link is clicked
-      const mobileLinks = menu.querySelectorAll('a');
-      mobileLinks.forEach(link => {
-          link.addEventListener('click', () => {
-              menu.classList.add('hidden');
-          });
-      });
-  </script>
 </body>
 </html>
