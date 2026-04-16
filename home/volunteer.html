@@ -7,29 +7,10 @@
     <title>Chip'n Away | Leadership Community</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Shared JavaScript reference -->
+    <script src="javaScript.js" defer></script>
     
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        apple: {
-                            bg: '#d9f99d',      /* Crisp Green Apple background */
-                            panel: '#ecfccb',   /* Slightly lighter green apple for panels */
-                            dark: '#1a2e05',    /* Very dark green for text and nav */
-                            nav: '#2a4a0b',     /* Secondary dark green */
-                            red: '#dc2626',     /* Crisp Apple Red */
-                            redHover: '#b91c1c' /* Darker red for hover states */
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
     <!-- Resource for live map -->
     <link
         rel="stylesheet"
@@ -37,8 +18,10 @@
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
         crossorigin=""
     >
+
     <!-- Link to our custom Design System -->
     <link rel="stylesheet" href="style.css">
+
 
     <!-- This block seems to be breaking the chip-hero-bg image
     <!- Restored Background & Base CSS ->
@@ -64,65 +47,8 @@
 </head>
 <body class="font-sans antialiased flex flex-col min-h-screen">
 
-    <nav class="sticky top-0 z-50 bg-apple-dark/95 backdrop-blur-md border-b border-gray-800 shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-24 relative">
-                
-                <div class="flex-1 flex items-center justify-start">
-                    <div class="flex-shrink-0 flex items-center gap-2 lg:gap-3">
-                        <div class="w-[80px] h-[80px] rounded-full bg-apple-panel flex items-center justify-center border-2 border-apple-red overflow-hidden">
-                            <img src="images/chiplogo.png" alt="Chip'n Away Logo" class="w-full h-full object-contain">
-                        </div>
-                        <span class="font-heading font-bold text-xl lg:text-2xl tracking-wider uppercase text-white hidden sm:block">Chip'n Away</span>
-                    </div>
-                    
-                    <div class="hidden md:flex space-x-4 lg:space-x-8 ml-auto mr-[20px]">
-                        <a href="index.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Home</a>
-                        <a href="chipnaway-community-page.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Community</a>
-                    </div>
-                </div>
-
-                <div class="flex-shrink-0 flex items-center justify-center z-50 px-2 lg:px-4">
-                    <a href="coaches.html" class="group flex items-center justify-center w-[80px] lg:w-[100px] transform transition-transform duration-300 hover:scale-105 translate-y-[10px] lg:translate-y-[20px]">
-                        <img src="images/whistle_graphic.png" alt="whistle_graphic" class="w-full h-auto object-contain drop-shadow-2xl">
-                    </a>
-                </div>
-
-                <div class="flex-1 flex items-center justify-end">
-
-                    <div class="hidden md:flex space-x-4 lg:space-x-8 mr-auto ml-[10px] lg:ml-[20px]">
-                        <a href="contact.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Contact</a>
-                        <a href="wellness.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Wellness</a>
-                    </div>
-
-                    <div class="flex items-center gap-3 lg:gap-4">
-                        <a href="#home" class="chip-btn-primary text-xs lg:text-sm whitespace-nowrap">
-                            Donate
-                        </a>
-                        <a href="volunteer.html" class="chip-btn-primary text-xs lg:text-sm whitespace-nowrap">
-                            Volunteer
-                        </a>
-                        
-                        <button id="mobile-menu-btn" class="md:hidden text-white hover:text-apple-red focus:outline-none">
-                            <i data-lucide="menu" class="w-8 h-8"></i>
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div id="mobile-menu" class="hidden md:hidden bg-apple-nav border-b border-gray-700">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
-                <a href="index.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Home</a>
-                <a href="chipnaway-community-page.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Community</a>
-                <a href="contact.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Contact</a>
-                <a href="wellness.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Wellness</a>
-                <a href="volunteer.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Volunteer</a>
-                <a href="coaches.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">In Memory of Chip</a>
-            </div>
-        </div>
-    </nav>
+    <!-- Shared Footer insert -->
+    <div id="shared-header"></div>
 
     <main>
         <!-- How to Volunteer Section -->
@@ -336,130 +262,13 @@
         
     </main>
 
-    <footer id="contact" class="bg-apple-dark py-12 border-t border-apple-nav mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
-                
-                <div>
-                    <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
-                        <div class="w-8 h-8 rounded-full bg-apple-red flex items-center justify-center text-white font-bold text-sm">
-                            C
-                        </div>
-                        <span class="font-heading font-bold text-xl tracking-wider uppercase text-white">Chip'n Away</span>
-                    </div>
-                    <p class="text-gray-400 text-sm">
-                        Cultivating clarity and belief for the leaders of tomorrow.
-                    </p>
-                </div>
-
-                <div>
-                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm">Quick Links</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="index.html" class="hover:text-apple-red transition-colors">Home</a></li>
-                        <!-- <li><a href="index.html#about" class="hover:text-apple-red transition-colors">About</a></li> -->
-                        <li><a href="chipnaway-community-page.html" class="hover:text-apple-red transition-colors">Community</a></li>
-                        <li><a href="contact.html" class="hover:text-apple-red transition-colors">Contact</a></li>
-                        <li><a href="wellness.html" class="hover:text-apple-red transition-colors">Wellness</a></li>
-                        <li><a href="volunteer.html" class="hover:text-apple-red transition-colors">Volunteer</a></li>
-                        <li><a href="coaches.html" class="hover:text-apple-red transition-colors">In Memory of Chip</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm">Contact Us</h4>
-                    <ul class="space-y-3 text-gray-400 text-sm">
-                        <li class="flex items-center justify-center md:justify-start gap-3">
-                            <i data-lucide="mail" class="w-4 h-4 text-apple-red"></i>
-                            info@chipnaway.com
-                        </li>
-                        <li class="flex items-center justify-center md:justify-start gap-3">
-                            <i data-lucide="map-pin" class="w-4 h-4 text-apple-red"></i>
-                            Innovation Hub, Suite 100
-                        </li>
-                    </ul>
-                    
-                    <div class="flex items-center justify-center md:justify-start gap-4 mt-6">
-                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-apple-red transition-colors">
-                            <i data-lucide="facebook" class="w-4 h-4 text-white"></i>
-                        </a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-apple-red transition-colors">
-                            <i data-lucide="twitter" class="w-4 h-4 text-white"></i>
-                        </a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-apple-red transition-colors">
-                            <i data-lucide="linkedin" class="w-4 h-4 text-white"></i>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-            
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm flex flex-col md:flex-row justify-between items-center">
-                <p>&copy; 2024 Chip'n Away. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Shared Footer insert -->
+    <div id="shared-footer"></div>
 
     <script
         src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
         crossorigin=""
     ></script>
-    <script>
-
-        // Render Icons
-        lucide.createIcons();
-
-        // Mobile Menu Toggle
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-
-        if (btn && menu) {
-            btn.addEventListener('click', () => {
-                menu.classList.toggle('hidden');
-            });
-        }
-
-        // Carousel Script
-        const carouselStates = {
-            'carousel-benefits': 0,
-            'carousel-impact': 0
-        };
-
-        function moveSlide(carouselId, direction) {
-            const carousel = document.getElementById(carouselId);
-            const totalSlides = carousel.children.length;
-            
-            // Update the index
-            carouselStates[carouselId] += direction;
-            
-            // Loop back around if needed
-            if (carouselStates[carouselId] >= totalSlides) {
-                carouselStates[carouselId] = 0;
-            } else if (carouselStates[carouselId] < 0) {
-                carouselStates[carouselId] = totalSlides - 1;
-            }
-            
-            // Calculate and apply the transform percentage (-100% per slide)
-            const slideOffset = -(carouselStates[carouselId] * 100);
-            carousel.style.transform = `translateX(${slideOffset}%)`;
-        }
-
-        // Live Map Script
-        const eventMapEl = document.getElementById('event-map');
-        if (eventMapEl && typeof L !== 'undefined') {
-            const eventMap = L.map('event-map').setView([32.6249, -83.6394], 14);
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(eventMap);
-
-            L.marker([32.6249, -83.6394])
-                .addTo(eventMap)
-                .bindPopup('North Houston Sports Complex, 900 North Houston Road, Warner Robins, GA 31093')
-                .openPopup();
-        }
-
-    </script>
 </body>
 </html>
