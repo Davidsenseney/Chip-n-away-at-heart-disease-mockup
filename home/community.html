@@ -1,0 +1,235 @@
+<!-- Hello! Robert here! This is the only page where the universal merging has some issues with the header, assumedly due to unique styling methods. -->
+<!-- Please feel free to adjust as you may see fit! -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chip'n Away @ Heart Disease | Community</title>
+
+  <!-- Added for Nav Bar Matching -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Shared JavaScript reference -->
+  <script src="javaScript.js" defer></script>
+
+  <link rel="stylesheet" href="stlyesheet.css">
+</head>
+
+<body class="font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- Shared Footer insert -->
+    <div id="shared-header"></div>
+
+  <main id="top" class="community-page">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-content">
+        <h1 id="hero-title">Together, we’re stronger in the fight against heart disease.</h1>
+        <p class="lead">Our community creates space for support, education, and connection, so every family feels empowered to live heart-healthy lives.</p>
+        <div class="hero-actions">
+          <a href="#action-title" class="btn btn-secondary">Explore Community</a>
+          <a href="#get-involved" class="btn btn-primary">Get Involved</a>
+        </div>
+      </div>
+    </section>
+
+     <section id="community" class="section-panel">
+      <div class="container intro-copy">
+        <h2 class="section-title">Building Connections</h2>
+        <p class="section-subtitle">We keep our community involved through meaningful events, practical outreach, and simple ways to contribute. Whether someone is ready to volunteer in person or help online, there is a place to step in and make a real difference.</p>
+        <div class="section-accent" aria-hidden="true"></div>
+
+        <div class="intro-grid">
+          <article class="intro-card">
+            <h3>All hands on deck</h3>
+            <p>From supplies and setup to outreach and support, our events depend on people showing up in ways that fit their time and strengths.</p>
+          </article>
+          <article class="intro-card">
+            <h3>Simple ways to help</h3>
+            <p>Volunteers can assist with swag bags, event prep, and sharing heart-health information already prepared by our team.</p>
+          </article>
+          <article class="intro-card">
+            <h3>Start where you are</h3>
+            <p>Taking the first step matters most. Once someone gets involved, confidence grows, momentum builds, and the mission feels personal.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section slideshow-section" aria-labelledby="action-title">
+      <div class="container">
+        <h2 id="action-title" class="section-title">Community in Action</h2>
+        <p class="section-subtitle">
+          From support groups to public events, our programs create meaningful opportunities for connection, education, and encouragement.
+        </p>
+        <div class="carousel-shell">
+          <button class="carousel-btn" aria-label="Previous community photo" onclick="moveCommunitySlide(-1)">&#8592;</button>
+          <div class="carousel-window">
+            <div class="carousel-track" id="community-carousel-track">
+              <article class="photo-card">
+                <div
+                  class="photo"
+                  data-caption="Teams Against Heart Disease"
+                  style="background-image:url('images/Event1.jpg');">
+                </div>
+              </article>
+              <article class="photo-card">
+                <div
+                  class="photo"
+                  data-caption="Building connections through shared experiences"
+                  style="background-image:url('images/Event%202.jpg');">
+                </div>
+              </article>
+              <article class="photo-card">
+                <div
+                  class="photo"
+                  data-caption="Community outreach and engagement"
+                  style="background-image:url('images/Event3.jpg');">
+                </div>
+              </article>
+              <article class="photo-card">
+                <div
+                  class="photo"
+                  data-caption="Add your fourth community photo here"
+                  style="background-image:url('images/Event4.jpg');">
+                </div>
+              </article>
+              <article class="photo-card">
+                <div
+                  class="photo"
+                  data-caption="Add your fifth community photo here"
+                  style="background-image:url('images/Event5.jpg');">
+                </div>
+              </article>
+              <article class="photo-card">
+                <div
+                  class="photo"
+                  data-caption="Add your sixth community photo here"
+                  style="background-image:url('images/Event6.jpg');">
+                </div>
+              </article>
+            </div>
+          </div>
+          <button class="carousel-btn" aria-label="Next community photo" onclick="moveCommunitySlide(1)">&#8594;</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="programs" class="section programs" aria-labelledby="programs-title">
+      <div class="container">
+        <h2 id="programs-title" class="section-title">Our Programs</h2>
+        <p class="section-subtitle">From volunteer opportunities to education and upcoming events, our programs are designed to strengthen connection and support heart-healthy living.</p>
+
+        <div class="program-grid">
+          <article class="program-card">
+            <h3>Volunteer Support</h3>
+            <p>Questions about helping out, partnering, or supporting a campaign? Reach out and we will help you find the best fit.</p>
+            <a href="contact.html" class="mini-link">Contact our team →</a>
+          </article>
+          <article class="program-card">
+            <h3>Community Events</h3>
+            <p>Heart-health outreach and special events that connect people.</p>
+            <a href="volunteer.html#upcoming-events" class="mini-link">See upcoming events →</a>
+          </article>
+          <article class="program-card">
+            <h3>Education & Prevention</h3>
+            <p>Programs focused on nutrition, movement, and practical everyday habits that help reduce risk and support long-term heart health.</p>
+            <a href="wellness.html" class="mini-link">Learn more →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="impact" class="section impact" aria-labelledby="impact-title">
+      <div class="container impact-bg">
+        <div class="impact-copy">
+          <h2 id="impact-title" class="section-title">Our Impact</h2>
+          <p>Our work is rooted in real people and measurable progress. We hope to continue to create meaningful change for families affected by heart disease.</p>
+        </div>
+        <div class="impact-grid">
+          <article class="impact-stat">
+            <strong>78000+</strong>
+            <span>Lives reached through programs and awareness efforts</span>
+          </article>
+          <article class="impact-stat">
+            <strong>4</strong>
+            <span>Signature annual programs serving the community</span>
+          </article>
+          <article class="impact-stat">
+            <strong>100%</strong>
+            <span>Mission-driven focus on education, prevention, and connection</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="get-involved" class="section" aria-labelledby="involved-title">
+      <div class="container intro-copy">
+        <h2 id="involved-title" class="section-title">Ready to Get Involved?</h2>
+        <p class="section-subtitle">Whether you want to volunteer, partner, or participate in a program, there is always a place for you in this community. Let’s keep chip'n away together.</p>
+        <div class="hero-actions" style="margin-top:1.4rem;">
+          <a href="volunteer.html" class="btn btn-primary">Volunteer</a>
+          <a href="donate.html" class="btn btn-secondary">Donate</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Shared Footer insert -->
+  <div id="shared-footer"></div>
+
+  <script>
+    let communitySlideIndex = 0;
+
+    function getVisibleCommunityCards() {
+      if (window.innerWidth <= 760) return 1;
+      if (window.innerWidth <= 980) return 2;
+      return 3;
+    }
+
+    function updateCommunityCarousel() {
+      const track = document.getElementById("community-carousel-track");
+      if (!track) return;
+      const visibleCards = getVisibleCommunityCards();
+      const offset = (100 / visibleCards) * communitySlideIndex;
+      track.style.transform = `translateX(-${offset}%)`;
+    }
+
+    function moveCommunitySlide(direction) {
+      const track = document.getElementById("community-carousel-track");
+      if (!track) return;
+
+      const slides = track.querySelectorAll(".photo-card");
+      const totalSlides = slides.length;
+      const visibleCards = getVisibleCommunityCards();
+      const maxIndex = Math.max(0, totalSlides - visibleCards);
+
+      communitySlideIndex += direction;
+
+      if (communitySlideIndex > maxIndex) {
+        communitySlideIndex = 0;
+      } else if (communitySlideIndex < 0) {
+        communitySlideIndex = maxIndex;
+      }
+
+      updateCommunityCarousel();
+    }
+
+    window.addEventListener("resize", () => {
+      const track = document.getElementById("community-carousel-track");
+      if (!track) return;
+      const slides = track.querySelectorAll(".photo-card");
+      const maxIndex = Math.max(0, slides.length - getVisibleCommunityCards());
+      if (communitySlideIndex > maxIndex) {
+        communitySlideIndex = maxIndex;
+      }
+      updateCommunityCarousel();
+    });
+
+    window.addEventListener("load", updateCommunityCarousel);
+  </script>
+
+</body>
+</html>

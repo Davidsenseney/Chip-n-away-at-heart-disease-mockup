@@ -49,7 +49,7 @@ const sharedHeaderTemplate = `
                     
                     <div class="hidden md:flex space-x-4 lg:space-x-8 ml-auto mr-[20px]">
                         <a href="index.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Home</a>
-                        <a href="chipnaway-community-page.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Community</a>
+                        <a href="community.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Community</a>
                     </div>
                 </div>
 
