@@ -7,30 +7,6 @@
  */
 
 // ==========================================================================
-// 0. RUNTIME DIAGNOSTICS (non-intrusive)
-// ==========================================================================
-(() => {
-    const setBadge = (text) => {
-        try {
-            const el = document.getElementById('js-alive-badge');
-            if (el) el.textContent = text;
-        } catch {}
-    };
-
-    window.addEventListener('error', (e) => {
-        const msg = e?.message || 'Script error';
-        setBadge(`JS Error: ${msg}`);
-        try { document.documentElement.dataset.js = 'on'; } catch {}
-    });
-
-    window.addEventListener('unhandledrejection', (e) => {
-        const msg = (e?.reason && (e.reason.message || String(e.reason))) || 'Promise rejected';
-        setBadge(`JS Error: ${msg}`);
-        try { document.documentElement.dataset.js = 'on'; } catch {}
-    });
-})();
-
-// ==========================================================================
 // 1. CONFIGURATION
 // ==========================================================================
 window.tailwind = window.tailwind || {};
@@ -1059,20 +1035,11 @@ const App = {
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Mark JS as running (helps detect if script fails to load)
-    try { document.documentElement.dataset.js = 'on'; } catch {}
-    try {
-        const el = document.getElementById('js-alive-badge');
-        if (el) el.textContent = 'JS Online';
-    } catch {}
-
     const safe = (fn) => {
         try { fn(); }
         catch (err) {
-            try {
-                const el = document.getElementById('js-alive-badge');
-                if (el) el.textContent = `JS Error: ${err?.message || String(err)}`;
-            } catch {}
+            // Swallow errors so one module doesn't break the page.
+            // (Debugging can be done via browser console when needed.)
         }
     };
 

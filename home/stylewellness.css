@@ -259,28 +259,6 @@ html {
     z-index: 5;
 }
 
-/* Optional debug badge (only visible when JS sets data-js="on") */
-html[data-js="on"] #js-alive-badge {
-    display: block;
-}
-#js-alive-badge {
-    display: none;
-    position: fixed;
-    bottom: 14px;
-    right: 14px;
-    z-index: 9999;
-    padding: 8px 10px;
-    border-radius: 9999px;
-    background: rgba(255,255,255,0.85);
-    border: 1px solid rgba(26,46,5,0.18);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-    font-family: var(--font-primary);
-    font-size: 11px;
-    color: var(--color-apple-dark);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
 /* Playbook micro-interactions */
 .chip-btn-busy {
     opacity: 0.9;
