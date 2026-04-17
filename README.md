@@ -1,27 +1,18 @@
-# Chip’n Away at Heart Disease — HCI Mockup (2026)
+# Wellness — Whistle‑Stop Wellness (Individual Contribution)
 
-Interactive web mockups for Dr. Spangler’s HCI 2026 team project.
+This README documents the **Wellness** portion of the mockup: **Whistle‑Stop Wellness** and the interactive features added to `home/wellness.html`.
 
-## What’s in this repo
-- **Static site pages** built with HTML/CSS + lightweight JavaScript.
-- **Shared header/footer injection** via `home/javaScript.js`.
-- **Wellness page (“Whistle‑Stop Wellness”)** with interactive micro‑interventions and local persistence.
-
-## Quick start (run locally)
+## Run the Wellness page locally
 From the `home/` folder:
 
 ```bash
 python3 -m http.server 5173
 ```
 
-Then open `http://localhost:5173/index.html`.
+Open `http://localhost:5173/wellness.html`.
 
-## Key pages
-- **Home**: `home/index.html`
-- **Wellness**: `home/wellness.html`
-
-## Wellness: Whistle‑Stop Wellness features
-The Wellness page is designed to feel like a small product experience (not just content):
+## Feature overview
+Whistle‑Stop Wellness is designed to feel like a small product experience (not just static content):
 
 - **Playcards (MOVE / FUEL / CALM)**: choose a 2‑minute “timeout” and get steps + “Why it matters”.
 - **2‑minute timer**: start/pause/reset with a progress bar.
@@ -32,7 +23,7 @@ The Wellness page is designed to feel like a small product experience (not just 
 - **Weekly Chipboard**: weekly goal + progress ring + reflection note + shareable weekly summary.
 - **Celebration**: tasteful animation when the weekly goal is hit (once per week per goal).
 
-### Persistence (localStorage)
+## Persistence (localStorage)
 This mockup intentionally “remembers” small interactions on the same device:
 - Weekly chip count: `chipnaway_wellness_week`
 - Playbook: `chipnaway_playbook_v1`
@@ -40,12 +31,7 @@ This mockup intentionally “remembers” small interactions on the same device:
 
 To reset the experience, clear site data for `localhost` in your browser.
 
-## Code map (where to change things)
-- **Wellness UI**: `home/wellness.html`
-- **Wellness styles**: `home/stylewellness.css`
-- **Interactivity / shared templates**: `home/javaScript.js`
-
-## Conventions
-- Keep pages **static and dependency‑light** (no build step required).
-- Prefer **small, modular JS functions** with defensive checks (features self‑exit on pages where elements don’t exist).
-- Don’t commit OS files (see `.gitignore` for `.DS_Store`).
+## Files touched (Wellness)
+- **UI / layout**: `home/wellness.html`
+- **Styles**: `home/stylewellness.css`
+- **Interactivity**: `home/javaScript.js`
