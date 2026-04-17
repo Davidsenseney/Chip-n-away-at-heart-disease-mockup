@@ -57,10 +57,40 @@
             <div class="w-full max-w-2xl text-center px-4">
 
                 <h1 class="chip-title-banner text-xl md:text-2xl lg:text-3xl tracking-tight">
-                    Ways You can Chip In
+                    Join the Heart Health Initiative
                 </h1>
-                <p class="chip-card-glass mt-4">Volunteering with Chip ‘N Away at Heart Disease is a meaningful way to make a lasting impact in your local community. We offer a variety of opportunities to get involved, including event support, community engagement, and education about heart disease awareness and prevention.
-                If you’re interested in joining our mission to fight heart disease and help educate others, we invite you to complete the volunteer sign-up form below!</p>
+                <p class="chip-card-glass mt-4">
+                    <style>
+                        a {
+                          color: #1a73e8;
+                          text-decoration: none;
+                          position: relative;
+                          font-weight: 500;
+                        }
+                        
+                        a::after {
+                          content: "";
+                          position: absolute;
+                          left: 0;
+                          bottom: -3px;
+                          width: 100%;
+                          height: 1px;
+                          background-color: #1a73e8;
+                        
+                          transform: scaleX(0);
+                          transform-origin: left;
+                          transition: transform 0.25s ease;
+                        }
+                        a:hover::after {
+                          transform: scaleX(1);
+                        }
+                        </style>
+                    Volunteering with Chip ‘N Away at Heart Disease is a meaningful way to support efforts focused on the early detection, risk reduction, and prevention of cardiovascular disease in your community. Volunteers contribute through event support,
+                     community outreach, and health education, helping raise awareness of key risk factors such as hypertension, high cholesterol, and lifestyle-related contributors. By sharing reliable, evidence-based information, you can help individuals make informed health decisions,
+                      adopt healthier habits, and recognize the importance of early intervention. If you’re interested in making a lasting impact on community heart health, we invite you to complete the volunteer sign-up form below.
+
+                    Stay connected with Chip ‘N Away at Heart Disease on <a href="https://www.facebook.com/ChipNAwayatHeartDisease/" target="_blank"> Facebook</a> and <a href="https://www.instagram.com/chipawayheartdisease?igsh=MWkwdWp3dnlkM2Mxaw==" target="_blank">Instagram</a> for updates, events, and community health resources.</p>
+
                 
                 <form class="mt-6 space-y-3 text-left chip-card-solid"> 
                     <div>
@@ -75,7 +105,7 @@
 
                     <div>
                     <label class="block font-heading font-bold text-apple-dark mb-1" for="email">Email address: </label>
-                    <input class="w-full border border-gray-400 bg-white p-2 rounded" type="text" id="email" name="email">
+                    <input class="w-full border border-gray-400 bg-white p-2 rounded" type="email" id="email" name="email">
                     </div>
 
                     <div>
