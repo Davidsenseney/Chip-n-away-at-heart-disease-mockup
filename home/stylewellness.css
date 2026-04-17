@@ -167,7 +167,7 @@ html {
 ---------------------------------------------------------------------------- */
 
 .wellnessbanner{
-    min-height: 750px;
+    min-height: 900px;
     height: auto;
     width: 100%;
     background-image: url(images/wellnessbannerimage.jpg);
@@ -249,10 +249,11 @@ html {
     position: relative;
     margin-bottom: -225px;
     z-index:20;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
 }
 .column-container:hover{
     transform: translateY(-10px);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4); /* 0 - Horizontal offset, 30px - vertical offset, 60px -blur radius, rgba - black color at 0.4 transparencey. */
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6); /* 0 - Horizontal offset, 30px - vertical offset, 60px -blur radius, rgba - black color at 0.4 transparencey. */
 }
 /* overrides the h3 that was already set above for some reason, and p */
 .column-container h3 {
@@ -263,7 +264,7 @@ html {
 }
 
 .column-container p {
-     color:inherit;
+    color:inherit;
     font-size: 1.5rem;
     overflow-wrap: anywhere;
     word-wrap: break-word;
@@ -291,7 +292,7 @@ html {
     margin-top: auto;
     margin-bottom: 20px;
 
-    background-color: var(--color-apple-dark);
+    background-color: var(--color-apple-red-hover);
     padding: 10px 25px;
     border-radius: 50px;
     font-weight: bold;
@@ -302,7 +303,7 @@ html {
 }
     /* animation for the button to look interactive instead of just still */
 .column-button:hover{
-    background-color: #0c0202;
+    background-color: var(--color-apple-red-hover);
     transform: scale(1.05);
 
 
@@ -365,7 +366,6 @@ html {
     align-items: center;
     justify-content: flex-start;
     box-sizing: border-box;
-    
 }
 
 
@@ -382,7 +382,7 @@ html {
     align-content: row;
     gap: 3rem;            
     width: auto;        
-    background-color:#596c37;
+    background-color:#84a051;
     border-radius: 20px;
     margin-bottom: 3rem;
 
@@ -395,18 +395,18 @@ html {
 
 
 .sub-container-text {
-    width: 400px;
+    width: 500px;
     height: auto;
     padding: 10px 10px 10px 10px;
-    background-color:#ffffff;
+    background-color:#84a051;
     border-radius: 25px;
     color: rgb(0, 0, 0);
     margin-top: 5rem;
     margin-bottom: 15px;
     font-weight: 500;
     font-size: 1.2rem;
-    box-shadow: 0 40px 12px rgba(0, 0, 0, 0.08);
     text-align: center;
+    margin-top: 10px;
 }
 
 
@@ -416,6 +416,7 @@ html {
     border-radius: 15px;
     overflow: hidden;
     z-index: 5;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -424,7 +425,7 @@ html {
     height: 100%;
     object-fit: cover;
     display: block;
-
+    
 }
 
 
@@ -480,7 +481,6 @@ html {
     border-radius: 20px;
     background-color:#ffffff;
     margin-top: 2rem;
-    margin-bottom: 2rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
