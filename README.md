@@ -1,4 +1,4 @@
-# Wellness — Whistle‑Stop Wellness (Individual Contribution)
+# Wellness — Whistle‑Stop Wellness (Individual Contribution: Reema Bhaskar)
 
 This README documents the **Wellness** portion of the mockup: **Whistle‑Stop Wellness** and the interactive features added to `home/wellness.html`.
 
