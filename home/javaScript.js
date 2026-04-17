@@ -35,7 +35,7 @@ window.tailwind.config = {
 // 2. SHARED TEMPLATES
 // ==========================================================================
 const sharedHeaderTemplate = `
-    <nav class="sticky top-0 z-50 bg-apple-dark/95 backdrop-blur-md border-b border-gray-800 shadow-lg">
+   <nav class="fixed top-0 left-0 w-full z-[9999] bg-apple-dark/95 backdrop-blur-md border-b border-gray-800 shadow-lg" style="position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; z-index: 9999 !important;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-24 relative">
                 <div class="flex-1 flex items-center justify-start">
