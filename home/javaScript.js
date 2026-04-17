@@ -38,15 +38,13 @@ const sharedHeaderTemplate = `
     <nav class="sticky top-0 z-50 bg-apple-dark/95 backdrop-blur-md border-b border-gray-800 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-24 relative">
-                
                 <div class="flex-1 flex items-center justify-start">
-                    <div class="flex-shrink-0 flex items-center gap-2 lg:gap-3">
-                        <div class="w-[80px] h-[80px] rounded-full bg-apple-panel flex items-center justify-center border-2 border-apple-red overflow-hidden">
-                            <img src="images/chiplogo.png" alt="Chip'n Away Logo" class="w-full h-full object-contain">
+                    <a href="index.html" class="group flex-shrink-0 flex items-center gap-2 lg:gap-3 transition-colors duration-200">
+                        <div class="w-[80px] h-[80px] rounded-full bg-apple-panel flex items-center justify-center border-2 border-apple-red overflow-hidden">                        
+                            <img src="images/chiplogo.png" alt="Chip'n Away Logo" class="w-full h-full object-contain p-1">
                         </div>
-                        <span class="font-heading font-bold text-xl lg:text-2xl tracking-wider uppercase text-white hidden sm:block">Chip'n Away</span>
-                    </div>
-                    
+                        <span class="font-heading font-bold text-xl lg:text-2xl tracking-wider uppercase text-white group-hover:text-apple-red transition-colors duration-200 hidden sm:block">Chip'n Away</span>
+                    </a>
                     <div class="hidden md:flex space-x-4 lg:space-x-8 ml-auto mr-[20px]">
                         <a href="index.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Home</a>
                         <a href="community.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Community</a>
@@ -108,7 +106,7 @@ const sharedFooterTemplate = `
                 <div>
                     <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
                         <div class="w-8 h-8 rounded-full bg-apple-red flex items-center justify-center text-white font-bold text-sm">
-                            C
+                              <i data-lucide="heart" class="w-4 h-4"></i>
                         </div>
                         <span class="font-heading font-bold text-xl tracking-wider uppercase text-white">Chip'n Away</span>
                     </div>
@@ -135,30 +133,36 @@ const sharedFooterTemplate = `
                     <ul class="space-y-3 text-gray-400 text-sm">
                         <li class="flex items-center justify-center md:justify-start gap-3">
                             <i data-lucide="mail" class="w-4 h-4 text-apple-red"></i>
-                            info@chipnaway.com
+                            chipnaway113@gmail.com
                         </li>
                         <li class="flex items-center justify-center md:justify-start gap-3">
                             <i data-lucide="map-pin" class="w-4 h-4 text-apple-red"></i>
                             Innovation Hub, Suite 100
                         </li>
                     </ul>
-                    
+
                     <div class="flex items-center justify-center md:justify-start gap-4 mt-6">
-                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-apple-red transition-colors">
-                            <i data-lucide="facebook" class="w-4 h-4 text-white"></i>
+                        <a href="https://www.facebook.com/ChipNAwayatHeartDisease/" target="_blank" rel="noopener noreferrer"  class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-apple-red transition-colors">
+                            <svg class="w-4 h-4 text-white fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                            </svg>
                         </a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-apple-red transition-colors">
-                            <i data-lucide="twitter" class="w-4 h-4 text-white"></i>
+                        <a href="https://x.com/ChipnAwayHD?fbclid=IwY2xjawRO2ztleHRuA2FlbQIxMABicmlkETFobFJXanlCc0VpdTQxbmd5c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHhJleTmxkDrkXhQofHWa45A8pzhLHqfu34eEdkj6Pkwk1JxCeKAvLW0glmyr_aem_xmCT4UZjCR5OaUjMZY9uZA" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-apple-red transition-colors">
+                            <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>                       
                         </a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-apple-red transition-colors">
-                            <i data-lucide="linkedin" class="w-4 h-4 text-white"></i>
+                        <a href="#"  target="_blank" rel="noopener noreferrer"  class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-apple-red transition-colors">
+                            <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+                            </svg>
                         </a>
                     </div>
                 </div>
 
             </div>
             
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm flex flex-col md:flex-row justify-between items-center">
+            <div class="border-t border-white-800 mt-12 pt-8 text-center text-gray-500 text-sm flex flex-col md:flex-row justify-between items-center">
                 <p>&copy; 2024 Chip'n Away. All rights reserved.</p>
             </div>
         </div>
@@ -223,6 +227,7 @@ const App = {
         const footerMount = document.getElementById("shared-footer");
         if (footerMount) footerMount.innerHTML = sharedFooterTemplate;
 
+        
         if (window.lucide) {
             lucide.createIcons();
         }
