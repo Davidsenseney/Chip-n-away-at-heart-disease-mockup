@@ -119,7 +119,7 @@ const sharedFooterTemplate = `
                     <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm">Quick Links</h4>
                     <ul class="space-y-2 text-gray-400 text-sm">
                         <li><a href="index.html" class="hover:text-apple-red transition-colors">Home</a></li>
-                        <li><a href="chipnaway-community-page.html" class="hover:text-apple-red transition-colors">Community</a></li>
+                        <li><a href="community.html" class="hover:text-apple-red transition-colors">Community</a></li>
                         <li><a href="blog.html" class="hover:text-apple-red transition-colors">Blog</a></li>
                         <li><a href="wellness.html" class="hover:text-apple-red transition-colors">Wellness</a></li>
                         <li><a href="volunteer.html" class="hover:text-apple-red transition-colors">Volunteer</a></li>
