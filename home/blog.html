@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chip'n Away | Blog</title>
+
+  <link rel="stylesheet" href="stlyesheet.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="javaScript.js" defer></script>
+</head>
+
+<body class="font-sans antialiased flex flex-col min-h-screen">
+
+  <div id="shared-header"></div>
+
+  <main class="blog-page">
+
+    <section class="blog-hero">
+      <div class="blog-container">
+        <div class="blog-hero-box">
+          <h1>News & Updates</h1>
+
+          <p class="blog-lead">
+            Stay connected with the latest stories, events, and insights from our community.
+          </p>
+
+          <div class="blog-actions">
+            <a href="#posts" class="blog-btn blog-btn-secondary">Explore Articles</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="blog-section">
+      <div class="blog-container">
+        <h2 class="blog-section-title">Featured Story</h2>
+
+        <article class="featured-post">
+          <img src="images/blog1.png" alt="Featured blog story">
+
+          <div class="featured-copy">
+            <h3>Honoring the Professionals Behind Coach Malone’s Heart Journey</h3>
+
+            <p>
+              A life-saving heart transplant becomes a story of resilience,
+              innovation, and unwavering care.
+            </p>
+
+            <a href="#" class="blog-btn blog-btn-primary">Read More</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="posts" class="blog-section blog-posts-wrap">
+      <div class="blog-container">
+
+        <div class="blog-grid">
+
+          <article class="blog-card">
+            <img src="images/blog2.png" alt="Blog image">
+            <h3>A New Season of Showing Up</h3>
+            <p>
+              As life shifts into a new season of caregiving, this reflection highlights
+              a renewed commitment to heart-health awareness and community impact.
+            </p>
+            <span>Jan 1, 2026 • Cynthia Malone</span>
+          </article>
+
+          <article class="blog-card">
+            <img src="images/blog3.png" alt="Blog image">
+            <h3>The Ripple Legacy</h3>
+            <p>A celebration of the CARDIAC Car Show and the lasting impact.</p>
+            <span>Dec 10, 2025 • Cynthia Malone</span>
+          </article>
+
+          <article class="blog-card">
+            <img src="images/blog4.png" alt="Blog image">
+            <h3>Ah Man - I'm Not THAT Old</h3>
+            <p>Simple habits that can reduce heart disease risk.</p>
+            <span>Apr 16, 2026 • Cynthia Malone</span>
+          </article>
+
+          <!-- Hidden Posts -->
+          <article class="blog-card extra-post hidden-post">
+            <img src="images/blog5.jpg" alt="Blog image">
+            <h3>Blog 5</h3>
+            <p>Description.</p>
+            <span>Date • Team</span>
+          </article>
+
+          <article class="blog-card extra-post hidden-post">
+            <img src="images/blog6.jpg" alt="Blog image">
+            <h3>Blog 6</h3>
+            <p>Description.</p>
+            <span>Date • Team</span>
+          </article>
+
+          <article class="blog-card extra-post hidden-post">
+            <img src="images/blog7.jpg" alt="Blog image">
+            <h3>Blog 7</h3>
+            <p>Description.</p>
+            <span>Date • Team</span>
+          </article>
+
+          <article class="blog-card extra-post hidden-post">
+            <img src="images/blog8.jpg" alt="Blog image">
+            <h3>Blog 8</h3>
+            <p>Description.</p>
+            <span>Date • Team</span>
+          </article>
+
+          <article class="blog-card extra-post hidden-post">
+            <img src="images/blog9.jpg" alt="Blog image">
+            <h3>Blog 9</h3>
+            <p>Description.</p>
+            <span>Date • Team</span>
+          </article>
+
+          <article class="blog-card extra-post hidden-post">
+            <img src="images/blog9.jpg" alt="Blog image">
+            <h3>Blog 10</h3>
+            <p>Description.</p>
+            <span>Date • Team</span>
+          </article>
+
+        </div>
+
+        <div class="blog-more-wrap">
+          <button id="toggle-posts" class="blog-btn blog-btn-secondary" type="button">
+            Show More Posts
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="blog-section blog-cta">
+      <div class="blog-container">
+
+        <h2 class="blog-section-title">Be Part of the Story</h2>
+
+        <p>Join our events, volunteer, or support the mission.</p>
+
+        <div class="blog-actions">
+          <a href="volunteer.html" class="blog-btn blog-btn-primary">Volunteer</a>
+          <a href="donate.html" class="blog-btn blog-btn-secondary">Donate</a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <div id="shared-footer"></div>
+
+  <script>
+    const togglePostsBtn = document.getElementById("toggle-posts");
+    const hiddenPosts = document.querySelectorAll(".extra-post");
+
+    if (togglePostsBtn) {
+      togglePostsBtn.addEventListener("click", () => {
+        const isHidden =
+          hiddenPosts[0]?.style.display === "" ||
+          hiddenPosts[0]?.style.display === "none";
+
+        hiddenPosts.forEach(post => {
+          post.style.display = isHidden ? "block" : "none";
+        });
+
+        togglePostsBtn.textContent = isHidden
+          ? "Show Fewer Posts"
+          : "Show More Posts";
+      });
+    }
+  </script>
+
+</body>
+</html>
