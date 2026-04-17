@@ -87,7 +87,7 @@ const sharedHeaderTemplate = `
         <div id="mobile-menu" class="hidden md:hidden bg-apple-nav border-b border-gray-700">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
                 <a href="index.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Home</a>
-                <a href="chipnaway-community-page.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Community</a>
+                <a href="community.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Community</a>
                 <a href="blog.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Blog</a>
                 <a href="contact.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Contact</a>
                 <a href="wellness.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Wellness</a>
