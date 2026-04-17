@@ -61,7 +61,7 @@ const sharedHeaderTemplate = `
 
                 <div class="flex-1 flex items-center justify-end">
                     <div class="hidden md:flex space-x-4 lg:space-x-8 mr-auto ml-[10px] lg:ml-[20px]">
-                        <a href="contact.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Contact</a>
+                        <a href="blog.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Blog</a>
                         <a href="wellness.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm mr-4">Wellness</a>
                     </div>
 
@@ -90,6 +90,7 @@ const sharedHeaderTemplate = `
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
                 <a href="index.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Home</a>
                 <a href="chipnaway-community-page.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Community</a>
+                <a href="blog.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Blog</a>
                 <a href="contact.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Contact</a>
                 <a href="wellness.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Wellness</a>
                 <a href="volunteer.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Volunteer</a>
@@ -121,9 +122,10 @@ const sharedFooterTemplate = `
                     <ul class="space-y-2 text-gray-400 text-sm">
                         <li><a href="index.html" class="hover:text-apple-red transition-colors">Home</a></li>
                         <li><a href="chipnaway-community-page.html" class="hover:text-apple-red transition-colors">Community</a></li>
-                        <li><a href="contact.html" class="hover:text-apple-red transition-colors">Contact</a></li>
+                        <li><a href="blog.html" class="hover:text-apple-red transition-colors">Blog</a></li>
                         <li><a href="wellness.html" class="hover:text-apple-red transition-colors">Wellness</a></li>
                         <li><a href="volunteer.html" class="hover:text-apple-red transition-colors">Volunteer</a></li>
+                        <li><a href="contact.html" class="hover:text-apple-red transition-colors">Contact</a></li>
                         <li><a href="coaches.html" class="hover:text-apple-red transition-colors">In Memory of Chip</a></li>
                     </ul>
                 </div>
