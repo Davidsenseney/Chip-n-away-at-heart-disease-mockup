@@ -450,7 +450,7 @@ html {
 }
 /* Main Content Sections - Shared Base Styles */
 
-.maincontent, 
+.tent, 
 .maincontent2 {
     display:flex;
     flex-direction: row;
@@ -464,7 +464,7 @@ html {
     max-width: 100%;
     min-width: 0;
     box-sizing: border-box;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 /* Main content parts that are specific to just them, its like this because i want to use a Z-pattern though the webpage */
 .maincontent {
