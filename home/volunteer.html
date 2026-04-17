@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stlyesheet.css">
+    <title>Chip'n Away | Leadership Community</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Shared JavaScript reference -->
+    <script src="javaScript.js" defer></script>
+    
+    <!-- Resource for live map -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""
+    >
+
+    <!-- Link to our custom Design System -->
+    <link rel="stylesheet" href="style.css">
+
+
+    <!-- This block seems to be breaking the chip-hero-bg image
+    <!- Restored Background & Base CSS ->
+    <style>
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #d9f99d; /* Green Apple */
+            color: #1a2e05; /* High-contrast dark green */
+        }
+        /* Custom hero background fallback */
+        .chip-hero-bg {
+            background-image: url('bannerimage.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+    -->
+
+</head>
+<body class="font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- Shared Footer insert -->
+    <div id="shared-header"></div>
+
+    <main>
+        <!-- How to Volunteer Section -->
+        <section id="how-to-volunteer" class="w-full min-h-screen chip-hero-bg flex flex-col items-center justify-end relative pb-16 pt-32 px-4">
+            
+            <div class="w-full max-w-2xl text-center px-4">
+
+                <h1 class="chip-title-banner text-xl md:text-2xl lg:text-3xl tracking-tight">
+                    Join the Heart Health Initiative
+                </h1>
+                <p class="chip-card-glass mt-4">
+                    <style>
+                        blue-link {
+                          color: #1a73e8;
+                          text-decoration: none;
+                          position: relative;
+                          font-weight: 500;
+                        }
+                        
+                        blue-link::after {
+                          content: "";
+                          position: absolute;
+                          left: 0;
+                          bottom: -3px;
+                          width: 100%;
+                          height: 1px;
+                          background-color: #1a73e8;
+                        
+                          transform: scaleX(0);
+                          transform-origin: left;
+                          transition: transform 0.25s ease;
+                        }
+                        blue-link:hover::after {
+                          transform: scaleX(1);
+                        }
+                        </style>
+                    Volunteering with Chip ‘N Away at Heart Disease is a meaningful way to support efforts focused on the early detection, risk reduction, and prevention of cardiovascular disease in your community. Volunteers contribute through event support,
+                     community outreach, and health education, helping raise awareness of key risk factors such as hypertension, high cholesterol, and lifestyle-related contributors. By sharing reliable, evidence-based information, you can help individuals make informed health decisions,
+                      adopt healthier habits, and recognize the importance of early intervention.
+                      <br><br>
+                      If you’re interested in making a lasting impact on community heart health, we invite you to complete the volunteer sign-up form below.
+
+                    Stay connected with Chip ‘N Away at Heart Disease on <blue-link href="https://www.facebook.com/ChipNAwayatHeartDisease/" target="_blank"> Facebook</blue-link> and <blue-link href="https://www.instagram.com/chipawayheartdisease" target="_blank">Instagram</blue-link> for updates, events, and community health resources.</p>
+
+                
+                <form class="mt-6 space-y-3 text-left chip-card-solid"> 
+                    <div>
+                    <label class="block font-heading font-bold text-apple-dark mb-1" for="fname"> First name: </label>
+                    <input class="w-full border border-gray-400 bg-white p-2 rounded" type="text" id="fname" name="fname">
+                    </div>
+
+                    <div>
+                    <label class="block font-heading font-bold text-apple-dark mb-1" for="lname"> Last name</label>
+                    <input class="w-full border border-gray-400 bg-white p-2 rounded" type="text" id="lname" name="lname">
+                    </div>
+
+                    <div>
+                    <label class="block font-heading font-bold text-apple-dark mb-1" for="email">Email address: </label>
+                    <input class="w-full border border-gray-400 bg-white p-2 rounded" type="email" id="email" name="email">
+                    </div>
+
+                    <div>
+                    <label class="block font-heading font-bold text-apple-dark mb-1" for="pnumber"> Phone number: </label>
+                    <input class="w-full border border-gray-400 bg-white p-2 rounded" type="text" id="pnumber" name="pnumber">
+                    </div>
+
+                    <input class="w-full chip-btn-primary mt-4 cursor-pointer text-center" type="submit" value="Submit">
+                </form>
+
+            </div>
+        </section>
+
+        <!-- Why Volunteer Section (Text Left, Carousel Right) -->
+        <section id="why-volunteer" class="w-full relative py-20 px-4">
+            <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+                
+                <!-- Text Container (Left) -->
+                <div class="w-full lg:w-1/2 text-left">
+                    <h1 class="chip-title-banner text-xl md:text-2xl lg:text-3xl tracking-tight mb-8">
+                        Benefits of Volunteering
+                    </h1>
+                    <p class="text-sm md:text-base lg:text-lg text-gray-800 leading-relaxed">
+                        Volunteering with our organization offers a meaningful way to make a direct impact in the fight against cardiovascular diseases. We organize a variety of outreach programs and campaigns with medical professionals and our associates aimed at raising awareness about the impact of cardiovascular diseases. These initiatives allow us to make referrals and provide actionable, education-based strategies that help individuals prevent heart-related health emergencies. 
+                        <br><br>
+                        Beyond community impact, volunteering also helps you build valuable skills while gaining experience working alongside healthcare professionals. It is also an opportunity to grow your network and become more engaged in public health advocacy. Most importantly, your involvement contributes to lasting change—helping save lives through awareness and prevention.
+                    </p>
+                </div>
+
+                <!-- Benefits Carousel (Right) -->
+                <div class="relative w-full lg:w-1/2 overflow-hidden chip-image-framed group h-[400px] md:h-[500px]">
+                    <div id="carousel-benefits" class="flex transition-transform duration-500 ease-out h-full w-full">
+                        
+                        <!-- Slide 1 -->
+                        <div class="min-w-full h-full relative">
+                            <img src="images/volunteer-benefit1.jpg" alt="Volunteers at event" class="w-full h-full object-cover">
+                            <div class="absolute bottom-6 left-0 max-w-[90%] pr-4">
+                                <div class="chip-card-glass border-l-8">
+                                    <i data-lucide="quote" class="w-6 h-6 md:w-8 md:h-8 text-apple-red mb-2"></i>
+                                    <p class="text-base md:text-lg font-heading font-medium italic text-apple-dark">
+                                        "You contribute to causes you're passionate about, creating a ripple effect of positive change."
+                                    </p>
+                                    <p class="font-bold text-apple-red mt-2 text-sm md:text-base">- Cynthia Malone</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="min-w-full h-full relative">
+                            <img src="images/volunteer-benefit2.jpg" alt="Networking with professionals" class="w-full h-full object-cover">
+                            <div class="absolute bottom-6 left-0 max-w-[90%] pr-4">
+                                <div class="chip-card-glass border-l-8">
+                                    <i data-lucide="network" class="w-6 h-6 md:w-8 md:h-8 text-apple-red mb-2"></i>
+                                    <p class="text-base md:text-lg font-heading font-medium text-apple-dark">
+                                        "Build your network and work alongside top healthcare professionals in your community."
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Controls -->
+                    <button onclick="moveSlide('carousel-benefits', -1)" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-apple-dark p-2 md:p-3 rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100 z-10 focus:outline-none">
+                        <i data-lucide="chevron-left" class="w-5 h-5 md:w-6 md:h-6"></i>
+                    </button>
+                    <button onclick="moveSlide('carousel-benefits', 1)" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-apple-dark p-2 md:p-3 rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100 z-10 focus:outline-none">
+                        <i data-lucide="chevron-right" class="w-5 h-5 md:w-6 md:h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Include Reema's impact statistics card here -->
+
+
+        <!-- Impact & Stories Section (Carousel Left, Text Right) -->
+        <section id="impact" class="w-full relative py-20 px-4 bg-white">
+            <div class="max-w-7xl mx-auto flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-16">
+                
+                <!-- Text Container (Right) -->
+                <div class="w-full lg:w-1/2 text-left">
+                    <h1 class="chip-title-banner text-xl md:text-2xl lg:text-3xl tracking-tight mb-8">
+                        Impact & Stories
+                    </h1>
+                    <p class="text-sm md:text-base lg:text-lg text-gray-800 leading-relaxed">
+                        Cynthia Malone serves as the Executive Director of Chip’n Away @ Heart Disease, a non-profit organization she co-founded with her late husband, Coach Narleski “Chip” Malone. Through her unwavering dedication to heart health advocacy, Cynthia has reached over 78,000 individuals via community outreach and educational events.
+                        <br><br>
+                        In 2023-2024 alone, Chip’n Away @ Heart Disease has impacted the lives of 7,460 people, spreading a vital message of hope for heart health. Cynthia’s engaging speaking style blends humor and encouragement, resonating with audiences and earning her numerous callbacks and positive feedback. She is grateful for the strength of the collaborative alliance that works with her to achieve the organization’s goals. She emphasizes the importance of community support in combating heart disease.
+                    </p>
+                </div>
+
+                <!-- Impact Carousel (Left) -->
+                <div class="relative w-full lg:w-1/2 overflow-hidden chip-image-framed group h-[400px] md:h-[500px]">
+                    <div id="carousel-impact" class="flex transition-transform duration-500 ease-out h-full w-full">
+                        
+                        <!-- Slide 1 -->
+                        <div class="min-w-full h-full relative">
+                            <img src="images/impact-volunteer.avif" alt="Volunteers walking" class="w-full h-full object-cover">
+                            <div class="absolute bottom-6 left-0 max-w-[90%] pr-4">
+                                <div class="chip-card-glass border-l-8">
+                                    <i data-lucide="heart-handshake" class="w-6 h-6 md:w-8 md:h-8 text-apple-red mb-2"></i>
+                                    <p class="text-base md:text-lg font-heading font-medium text-apple-dark">
+                                        Over 78,000 lives touched through actionable education and community support.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="min-w-full h-full relative">
+                            <img src="images/impact-volunteer2.jpg" alt="Community Support" class="w-full h-full object-cover">
+                            <div class="absolute bottom-6 left-0 max-w-[90%] pr-4">
+                                <div class="chip-card-glass border-l-8">
+                                    <i data-lucide="users" class="w-6 h-6 md:w-8 md:h-8 text-apple-red mb-2"></i>
+                                    <p class="text-base md:text-lg font-heading font-medium text-apple-dark">
+                                        "The strength of our collaborative alliance is what allows us to achieve our goals."
+                                    </p>
+                                    <p class="font-bold text-apple-red mt-2 text-sm md:text-base">- Cynthia Malone</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Controls -->
+                    <button onclick="moveSlide('carousel-impact', -1)" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-apple-dark p-2 md:p-3 rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100 z-10 focus:outline-none">
+                        <i data-lucide="chevron-left" class="w-5 h-5 md:w-6 md:h-6"></i>
+                    </button>
+                    <button onclick="moveSlide('carousel-impact', 1)" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-apple-dark p-2 md:p-3 rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100 z-10 focus:outline-none">
+                        <i data-lucide="chevron-right" class="w-5 h-5 md:w-6 md:h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Events Section -->
+        <section id="events" class="py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+            <div class="clearfix text-gray-800 leading-relaxed text-lg">
+
+                <div class="chip-image-framed float-none md:float-left w-full md:w-[380px] mb-8 md:mb-4 md:mr-10 aspect-[3/4] md:aspect-[2/3]">
+                    <img src="images/15th Annual CARDIAC Car Show Flyer (1).avif" alt="Community members at a heart health outreach event" class="w-full h-full object-cover object-center">
+                </div>
+
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-apple-dark mb-6 uppercase tracking-wide">Upcoming Events</h2>
+
+                <p class="mb-6">
+                    Come help raise awareness and make a difference at some of our community events!
+                </p>
+            </div>
+
+            <div class="chip-card-solid mt-10 w-full text-left">
+                <h3 class="text-2xl md:text-3xl font-heading font-bold text-apple-dark mb-1">15th Annual Cardiac Car Show</h3>
+                <p class="text-apple-red font-semibold mb-6">Saturday, November 7, 2026</p>
+
+                <dl class="grid gap-y-4 gap-x-8 sm:grid-cols-[minmax(0,11rem)_1fr] text-base">
+
+                    <dt class="font-heading font-bold text-apple-dark uppercase tracking-wide text-sm">Event setup</dt>
+                    <dd>8:30 AM – 9:00 AM</dd>
+
+                    <dt class="font-heading font-bold text-apple-dark uppercase tracking-wide text-sm">Event hours</dt>
+                    <dd>9:00 AM – 3:00 PM</dd>
+
+                    <dt class="font-heading font-bold text-apple-dark uppercase tracking-wide text-sm">Vendor booths</dt>
+                    <dd> $50.00</dd>
+
+                    <dt class="font-heading font-bold text-apple-dark uppercase tracking-wide text-sm">Location</dt>
+                    <dd>
+                        <span class="font-medium">North Houston Sports Complex</span><br>
+                        <span class="text-gray-700">900 North Houston Road, Warner Robins, GA 31093</span>
+                    </dd>
+                </dl>
+            </div>
+
+            <!-- Live Map -->
+            <div class="mt-8">
+                <h4 class="text-apple-dark font-bold mb-4 uppercase tracking-wider text-sm">Event Map</h4>
+                <div
+                    id="event-map"
+                    class="w-full rounded-xl overflow-hidden border border-gray-300"
+                    style="height: 320px;"
+                    aria-label="Map showing North Houston Sports Complex location"
+                ></div>
+            </div>
+        </section>        
+        
+    </main>
+
+    <!-- Shared Footer insert -->
+    <div id="shared-footer"></div>
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""
+    ></script>
+</body>
+</html>

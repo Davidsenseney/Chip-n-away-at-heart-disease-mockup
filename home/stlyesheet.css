@@ -1,0 +1,889 @@
+/* ==========================================================================
+   CHIP'N AWAY @ HEART DISEASE - DESIGN SYSTEM
+   ========================================================================== 
+   This stylesheet contains the official colors, fonts, and component 
+   styles (cards, buttons) to keep all pages visually consistent.
+   ========================================================================== */
+
+/* =========================================
+   1. GLOBAL VARIABLES (COLORS & FONTS)
+   ========================================= */
+:root {
+    /* Brand Colors */
+    --color-apple-bg: #d9f99d;       /* Main Page Background (Crisp Green Apple) */
+    --color-apple-panel: #ecfccb;    /* Slightly lighter green for cards/panels */
+    --color-apple-dark: #1a2e05;     /* Very dark green for text and nav */
+    --color-apple-nav: #2a4a0b;      /* Secondary dark green for navigation */
+    --color-apple-red: #dc2626;      /* Primary Accent (Crisp Apple Red) */
+    --color-apple-red-hover: #b91c1c;/* Darker red for button hover states */
+
+    /* Typography */
+    --font-primary: 'Inter', system-ui, sans-serif;        /* Body Text */
+    --font-heading: 'Montserrat', system-ui, sans-serif;   /* Titles and Headers */
+}
+
+/* =========================================
+   2. BASE HTML STYLES
+   ========================================= */
+body {
+    background-color: var(--color-apple-bg);
+    color: var(--color-apple-dark);
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-apple-dark);
+}
+
+/* Smooth scrolling for page anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* =========================================
+   3. BACKGROUNDS & CONTAINERS
+   ========================================= */
+
+/* Use this for the main hero section with the background image */
+.chip-hero-bg {
+    background-image: url('images/bannerimage.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    width: 100%;
+}
+
+/* Standard page container to keep content centered */
+.chip-container {
+    max-width: 64rem; /* 1024px max width */
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* =========================================
+   4. CARDS & PANELS
+   ========================================= */
+
+/* A. The "Glass" Hero Card (Used for the top quote over the image) */
+.chip-card-glass {
+    background-color: rgba(236, 252, 203, 0.5); /* Semi-transparent apple-panel */
+    backdrop-filter: blur(12px);                /* The frosted glass effect */
+    border-left: 4px solid var(--color-apple-red); /* Thick red accent line */
+    padding: 1.5rem 2rem;
+    border-radius: 0 1rem 1rem 0;               /* Rounded only on the right */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease;
+}
+.chip-card-glass:hover {
+    transform: scale(1.02); /* Slight grow effect on hover */
+}
+
+/* B. The "Solid" Content Card (Used for the bottom quote in the About section) */
+.chip-card-solid {
+    background-color: #ffffff;
+    border: 1px solid var(--color-apple-panel);
+    color: var(--color-apple-dark);
+    padding: 2rem 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    text-align: center;
+}
+
+/* C. The Title Banner (Used for the "Before the Whistle Blows" heading) */
+.chip-title-banner {
+    display: inline-block;
+    background-color: rgba(236, 252, 203, 0.9);
+    backdrop-filter: blur(12px);
+    padding: 0.75rem 1.5rem;
+    border-radius: 1rem;
+    border-bottom: 4px solid var(--color-apple-red);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    font-family: var(--font-heading);
+    font-weight: bold;
+}
+
+/* =========================================
+   5. BUTTONS
+   ========================================= */
+
+/* Primary Solid Red Button (Like the Donate button) */
+.chip-btn-primary {
+    background-color: var(--color-apple-red);
+    color: #ffffff;
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px; /* Pill shape */
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-block;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-apple-red);
+}
+.chip-btn-primary:hover {
+    background-color: var(--color-apple-red-hover);
+    border-color: var(--color-apple-red-hover);
+}
+
+/* Secondary Outline Button (Like the Join Community nav button) */
+.chip-btn-outline {
+    background-color: transparent;
+    color: #ffffff; /* Assumes it sits on dark nav. Change to apple-red if on light bg */
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-apple-red);
+}
+.chip-btn-outline:hover {
+    background-color: var(--color-apple-red);
+    color: #ffffff;
+}
+
+/* =========================================
+   6. IMAGES & MEDIA
+   ========================================= */
+
+/* Standard image border used in the about section */
+.chip-image-framed {
+    border-radius: 1rem;
+    border: 1px solid #9ca3af;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+.chip-image-framed img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* =========================================
+   7. COMMUNITY PAGE (SCOPED)
+   ========================================= */
+
+.community-page {
+    --color-surface: #ecfccb;
+    --color-sage: #d9f99d;
+    --color-program: #2a4a0b;
+    --color-footer: #24420a;
+    --shadow-soft: 0 20px 40px rgba(17, 24, 39, 0.12);
+    --shadow-card: 0 14px 30px rgba(17, 24, 39, 0.12);
+    --radius-lg: 28px;
+    --radius-xl: 40px;
+    --maxw: 1180px;
+    background: var(--color-surface);
+}
+
+.community-page,
+.community-page * {
+    box-sizing: border-box;
+}
+
+.community-page {
+    color: var(--color-apple-dark);
+    line-height: 1.65;
+}
+
+.community-page img {
+    max-width: 100%;
+    display: block;
+}
+
+.community-page a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.community-page button {
+    font: inherit;
+}
+
+.community-page .container {
+    width: min(var(--maxw), calc(100% - 2rem));
+    margin: 0 auto;
+}
+
+.community-page .hero {
+    position: relative;
+    min-height: 720px;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(rgba(247, 252, 239, 0.25), rgba(247, 252, 239, 0.28)),
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.55), transparent 35%),
+        linear-gradient(120deg, rgba(120, 160, 103, 0.75), rgba(74, 124, 70, 0.56)),
+        url("https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+    overflow: hidden;
+}
+
+.community-page .hero::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 150px;
+    background: var(--color-apple-bg);
+    clip-path: ellipse(58% 100% at 50% 100%);
+}
+
+.community-page .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 6rem 0 14rem;
+}
+
+.community-page .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(236, 252, 203, 0.86);
+    color: var(--color-apple-dark);
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    border: 1px solid rgba(26,46,5,.1);
+    font-weight: 700;
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 1.25rem;
+}
+
+.community-page .hero h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(2.6rem, 5vw, 4.8rem);
+    line-height: 1.02;
+    margin: 0;
+    letter-spacing: -0.04em;
+}
+
+.community-page .hero p.lead {
+    max-width: 760px;
+    margin: 1.1rem auto 0;
+    font-size: clamp(1.1rem, 2vw, 1.45rem);
+    font-weight: 500;
+    background: rgba(247, 252, 239, 0.76);
+    display: inline-block;
+    padding: 0.75rem 1.1rem;
+    border-radius: 18px;
+    box-shadow: var(--shadow-soft);
+}
+
+.community-page .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.75rem;
+}
+
+.community-page .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+    padding: 0.9rem 1.35rem;
+    border-radius: 999px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.community-page .btn:hover,
+.community-page .btn:focus-visible {
+    transform: translateY(-2px);
+    outline: none;
+}
+
+.community-page .btn-primary {
+    background: var(--color-apple-red);
+    color: white;
+    border-color: var(--color-apple-red);
+}
+
+.community-page .btn-primary:hover,
+.community-page .btn-primary:focus-visible {
+    background: var(--color-apple-red-hover);
+    border-color: var(--color-apple-red-hover);
+}
+
+.community-page .btn-secondary {
+    background: rgba(255,255,255,0.96);
+    color: var(--color-apple-dark);
+    border-color: rgba(26,46,5,.08);
+}
+
+.community-page .btn-secondary:hover,
+.community-page .btn-secondary:focus-visible {
+    background: #ffffff;
+}
+
+.community-page .section {
+    padding: 5rem 0;
+}
+
+.community-page .section-panel {
+    background: var(--color-apple-bg);
+    padding: 4.5rem 0 5rem;
+    position: relative;
+    margin-top: 0;
+    z-index: 2;
+    border-bottom: 3px solid rgba(220, 38, 38, 0.14);
+}
+
+.community-page .section-panel .intro-copy {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.community-page .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.08;
+    margin: 0 0 0.85rem;
+    letter-spacing: -0.03em;
+    text-align: center;
+}
+
+.community-page .section-subtitle {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.08rem;
+}
+
+.community-page .section-accent {
+    width: 86px;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--color-apple-red);
+    margin: 1.2rem auto 0;
+    opacity: 0.85;
+}
+
+.community-page .slideshow-section {
+    background: var(--color-apple-panel);
+    border-top: 2px solid rgba(220, 38, 38, 0.18);
+    border-bottom: 2px solid rgba(220, 38, 38, 0.18);
+}
+
+.community-page .carousel-shell {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.community-page .carousel-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    box-shadow: var(--shadow-card);
+    font-size: 1.65rem;
+    color: var(--color-apple-dark);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+}
+
+.community-page .carousel-window {
+    overflow: hidden;
+    width: 100%;
+}
+
+.community-page .carousel-track {
+    display: flex;
+    gap: 0;
+    transition: transform 0.4s ease-in-out;
+    width: 100%;
+}
+
+.community-page .photo-card {
+    min-width: calc((100% - 2rem) / 3);
+    background: white;
+    border-radius: 24px;
+    padding: 0.8rem;
+    box-shadow: var(--shadow-card);
+    border: 1px solid rgba(26,46,5,.08);
+    box-sizing: border-box;
+}
+
+.community-page .photo {
+    min-height: 300px;
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.community-page .photo::after {
+    content: attr(data-caption);
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 0.8rem 0.95rem;
+    background: linear-gradient(180deg, transparent, rgba(0,0,0,.7));
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.community-page .programs {
+    background: var(--color-program);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.community-page .programs::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 140px;
+    background: var(--color-surface);
+    clip-path: ellipse(58% 100% at 50% 100%);
+}
+
+.community-page .programs .section-title,
+.community-page .programs .section-subtitle {
+    color: white;
+}
+
+.community-page .program-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 2rem;
+    padding-bottom: 6rem;
+}
+
+.community-page .program-card {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 24px;
+    padding: 1.4rem;
+    backdrop-filter: blur(4px);
+    min-height: 220px;
+}
+
+.community-page .program-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    margin-top: 0;
+    margin-bottom: .65rem;
+    color: white;
+}
+
+.community-page .program-card p {
+    margin: 0 0 1rem;
+}
+
+.community-page .program-card .mini-link {
+    color: white;
+    font-weight: 700;
+    opacity: 0.92;
+}
+
+.community-page .impact {
+    position: relative;
+    padding-top: 2rem;
+    overflow: hidden;
+}
+
+.community-page .impact-bg {
+    border-radius: 40px;
+      background:
+        linear-gradient(rgba(247, 252, 239, 0.2), rgba(247, 252, 239, 0.3)),
+        linear-gradient(135deg, rgba(42,74,11,.45), rgba(42,74,11,.12)),
+        url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+    padding: 4rem 1.5rem;
+    box-shadow: var(--shadow-soft);
+}
+
+.community-page .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.community-page .impact-stat {
+    background: rgba(255,255,255,0.86);
+    border-radius: 24px;
+    padding: 1.4rem;
+    text-align: center;
+    box-shadow: var(--shadow-card);
+}
+
+.community-page .impact-stat strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    line-height: 1;
+    margin-bottom: .45rem;
+}
+
+.community-page .impact-copy {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+    background: rgba(255,255,255,0.82);
+    border-radius: 24px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-card);
+}
+
+.community-page .hero-support {
+    max-width: 860px;
+    margin: 1.25rem auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.9rem;
+}
+
+.community-page .hero-pill {
+    background: rgba(236, 252, 203, 0.9);
+    color: var(--color-apple-dark);
+    border: 1px solid rgba(26,46,5,.08);
+    border-radius: 18px;
+    padding: 0.95rem 1rem;
+    font-weight: 700;
+    box-shadow: var(--shadow-soft);
+}
+
+.community-page .intro-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 2.25rem;
+}
+
+.community-page .intro-card {
+    background: rgba(255,255,255,1);
+    border: 1px solid rgba(26,46,5,.1);
+    border-radius: 24px;
+    padding: 1.6rem 1.5rem;
+    text-align: left;
+    box-shadow: var(--shadow-card);
+    min-height: 220px;
+}
+
+/*.community-page .intro-card h3 {
+    margin: 0 0 0.7rem;
+    font-family: var(--font-heading);
+    font-size: 1.45rem;
+    line-height: 1.2;
+    color: var(--color-apple-dark);
+} */
+.community-page .intro-card h3 {
+  margin: 0 0 0.9rem;
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  line-height: 1.2;
+  color: var(--color-apple-dark);
+  font-weight: 800;
+  position: relative;
+}
+
+.community-page .intro-card h3::after {
+  content: "";
+  display: block;
+  width: 230px;
+  height: 3px;
+  background: var(--color-apple-red);
+  margin-top: 0.4rem;
+  border-radius: 2px;
+}
+
+.community-page .intro-card p {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.75;
+}
+
+@media (max-width: 980px) {
+    .community-page .hero-support,
+    .community-page .intro-grid,
+    .community-page .program-grid,
+    .community-page .impact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .community-page .carousel-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .community-page .carousel-btn {
+        display: none;
+    }
+
+    .community-page .photo-card {
+        min-width: calc((100% - 1rem) / 2);
+    }
+
+    .community-page .photo {
+        min-height: 280px;
+    }
+}
+
+@media (max-width: 760px) {
+    .community-page .hero {
+        min-height: 560px;
+    }
+
+    .community-page .hero-content {
+        padding: 3.8rem 0 8.5rem;
+    }
+
+    .community-page .section,
+    .community-page .section-panel {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+
+    .community-page .photo-card {
+        min-width: 100%;
+    }
+}
+
+/* =========================================
+   BLOG PAGE
+   ========================================= */
+
+.blog-page {
+  background: var(--color-apple-panel);
+  color: var(--color-apple-dark);
+}
+
+.blog-container {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.blog-hero {
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background:
+    linear-gradient(rgba(247, 252, 239, 0.25), rgba(247, 252, 239, 0.28)),
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.55), transparent 5%),
+    linear-gradient(120deg, rgba(120, 160, 103, 0.75), rgba(74, 124, 70, 0.56)),
+    url("images/blog-hero.png") center/cover no-repeat;
+  padding: 5rem 0 4rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.blog-hero .blog-container {
+  position: relative;
+  z-index: 1;
+}
+
+.blog-hero-box {
+  max-width: 760px;
+  margin: 0 auto;
+  background-color: rgba(236, 252, 203, 0.5);
+  backdrop-filter: blur(12px);
+  padding: 2rem 2.25rem;
+  border-radius: 28px;
+  box-shadow: 0 20px 40px rgba(17, 24, 39, 0.12);
+  border: 2px solid var(--color-apple-red);
+}
+
+.blog-hero-box h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.6rem, 5vw, 4.4rem);
+  line-height: 1.05;
+  margin: 0 0 1rem;
+}
+
+.blog-lead {
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+
+.blog-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.75rem;
+}
+
+.blog-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px;
+  padding: 0.9rem 1.3rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition: all 0.25s ease;
+}
+
+.blog-btn:hover {
+  transform: translateY(-2px);
+}
+
+.blog-btn-primary {
+  background: var(--color-apple-red);
+  color: white;
+  border-color: var(--color-apple-red);
+}
+
+.blog-btn-primary:hover {
+  background: var(--color-apple-red-hover);
+  border-color: var(--color-apple-red-hover);
+}
+
+.blog-btn-secondary {
+  background: white;
+  color: var(--color-apple-dark);
+  border-color: rgba(26, 46, 5, 0.08);
+}
+
+.blog-section {
+  padding: 4rem 0;
+}
+
+.blog-section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  text-align: center;
+  margin: 0 0 2rem;
+}
+
+.featured-post {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 1.5rem;
+  background: white;
+  border-radius: 28px;
+  padding: 1.5rem;
+  box-shadow: 0 14px 30px rgba(17, 24, 39, 0.12);
+  border: 1px solid rgba(26, 46, 5, 0.08);
+}
+
+.featured-post img {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.featured-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.featured-copy h3 {
+  font-family: var(--font-heading);
+  font-size: 1.9rem;
+  margin: 0 0 1rem;
+}
+
+.featured-copy p {
+  margin: 0 0 1.2rem;
+  font-size: 1.05rem;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.blog-card {
+  background: white;
+  border-radius: 24px;
+  padding: 1rem;
+  box-shadow: 0 14px 30px rgba(17, 24, 39, 0.12);
+  border: 1px solid rgba(26, 46, 5, 0.08);
+}
+
+.blog-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 18px;
+  margin-bottom: 1rem;
+}
+
+.blog-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  margin: 0 0 0.65rem;
+}
+
+.blog-card p {
+  margin: 0 0 0.85rem;
+}
+
+.blog-card span {
+  display: block;
+  font-size: 0.92rem;
+  opacity: 0.8;
+}
+
+.blog-cta {
+  text-align: center;
+  background: var(--color-apple-bg);
+  border-top: 2px solid rgba(220, 38, 38, 0.16);
+  padding: 4.5rem 0 5rem;
+  margin-top: 2rem;
+}
+
+.blog-cta .blog-container {
+  max-width: 820px;
+}
+
+.blog-cta::before {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--color-apple-red);
+  margin: 0 auto 1.5rem;
+  border-radius: 999px;
+}
+
+.hidden-post {
+  display: none;
+}
+
+.blog-more-wrap {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+@media (max-width: 980px) {
+  .featured-post,
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .blog-hero {
+    min-height: 480px;
+    padding: 4rem 0 3rem;
+  }
+}

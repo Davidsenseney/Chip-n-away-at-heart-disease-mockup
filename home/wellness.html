@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to our custom Design System -->
+    <link rel="stylesheet" href="stylewellness.css">
+    <!-- Swiperjs css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
+    <title>Chip'n Away | Leadership Community</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Shared JavaScript reference -->
+    <script src="javaScript.js" defer></script>
+
+    <link rel="stylesheet" href="stylewellness.css">
+</head>
+
+<body class="font-sans antialiased flex flex-col min-h-screen w-full min-w-0">
+
+    <!-- Shared Footer insert -->
+    <div id="shared-header"></div>
+
+<!--  my section banners and nutrition-->
+    <section class="w-full min-w-0">
+        <div class="wellnessbanner">
+            <div class ="column-container">
+                <img src="images/columnone.jpg" class ="column-banner">
+                <div class="columncontent"> 
+                    <h3>Nutrition</h3>
+                    <p> Kickstart your health journey with healthy eating!</p>
+                </div>
+                <a href="#Nutrition" class="column-button"> Learn More</a>
+            </div>
+
+        <div class = "column-container">
+                <img src="images/columntwo.jpg" class ="column-banner">
+                <div class="columncontent"> 
+                    <h3>Fitness</h3>
+                    <p> Participate in fun exercises to help keep your heart healthy!</p>
+                </div>
+                <a href="#Fitness" class="column-button"> Learn More</a>
+            </div>
+        <div class = "column-container">
+                <img src="images/columnthree.jpg" class ="column-banner">
+                <div class="columncontent"> 
+                    <h3>Prevention</h3>
+                    <p> Learn about ways you can help prevent heart disease in yourself and others </p>
+                </div>
+                <a href="#Prevention" class="column-button"> Learn More</a>
+            </div>
+        </div>
+    </section>
+
+<!-- also my section this is the nutrition section -->
+    <section class="maincontent">
+        <div class="container-text" style="height: auto; margin-right: 10rem">
+            <div class="text-box" style="height: auto; width:auto"> 
+                <h1 id="Nutrition" class="scroll-mt-28" style="font-weight: bolder;"> Eat Well, Live Longer</h1>
+                <p style="font-size: 1.1rem; font-weight: 350; margin-bottom: 10px;"> Nutrition isn't just about eating food to fuel you through the day, its also one way to prevent heart disease. Everything you eat 
+                    directly affects all aspects of your health, which is exactly why having a balanced healthy diet is important for not only preventing health diseases 
+                    but also building a foundation to live a long active life.</p>
+                <h1 style="font-size: 1.5rem; font-weight: bolder;"> Understanding Nutrition</h1>
+                <p style="font-size: 1.1rem; font-weight: 350;">
+                    Through participating healthy eating habits and choosing healthier alternatives in daily life, you can make a lasting change 
+                    that can help you stay healthy and prevent diseases. Government organizations such as the "Centers For Disease Control And Prevention", Nation Insitutes on Health" and 
+                    "The U.S Department of Agriculture" provide valuable research-backed information into healthy eating and nutrition.</p>
+
+
+
+
+                <div class="sub-container swiper" style="margin-bottom: 0px"> <!-- wrapper for the columns for food-->
+                    <ul class="card-list swiper-wrapper">
+                        <li class="card-item swiper-slide">
+                            <a href="https://medlineplus.gov/recipes/tofu-scramble/" target="_blank" rel="noreferrer" class="card-link">
+                                <img src="images/card1.jpg" alt="Tofu Scramble" class="card-image">
+                                <h2 class="badge"> Tofu Scramble (1 Cup)</h2>
+                                <h2 class ="card-title"> Carbs: 10g</h2>
+                                <h2 class ="card-title"> Protein: 11g</h2>
+                                <h2 class ="card-title"> Fats: 7g</h2>
+                                <h2 class ="card-title"> Total: 140 Calories </h2>
+                            </a>
+                        </li>
+                        <li class="card-item swiper-slide">
+                            <a href="https://medlineplus.gov/recipes/zesty-tomato-soup/" target="_blank" rel="noreferrer" class="card-link">
+                                <img src="images/card2.jpg" alt="TomatoSoup" class="card-image">
+                                <h2 class="badge"> Tomato Soup (1 Cup)</h2>
+                                <h2 class ="card-title"> Carbs: 16g</h2>
+                                <h2 class ="card-title"> Protein: 5g</h2>
+                                <h2 class ="card-title"> Fats: 0g</h2>
+                                <h2 class ="card-title"> Total: 94 Calories </h2>
+                            </a>
+                        </li>
+                        <li class="card-item swiper-slide">
+                            <a href="https://medlineplus.gov/recipes/baked-tofu/" target="_blank" rel="noreferrer" class="card-link">
+                                <img src="images/card3.jpg" alt="BakedTofu" class="card-image">
+                                <h2 class="badge"> Baked Tofu (~92g)</h2>
+                                <h2 class ="card-title"> Carbs: 5g</h2>
+                                <h2 class ="card-title"> Protein: 7g</h2>
+                                <h2 class ="card-title"> Fats: 6g</h2>
+                                <h2 class ="card-title"> Total: 100 Calories </h2>
+                            </a>
+                        </li>
+                        <li class="card-item swiper-slide">
+                            <a href="https://medlineplus.gov/recipes/almond-rice-pudding/" target="_blank" rel="noreferrer" class="card-link">
+                                <img src="images/card4.jpg" alt="AlmondRicePudding" class="card-image">
+                                <h2 class="badge"> Almond Rice Pudding (1/2 Cup)</h2>
+                                <h2 class ="card-title"> Carbs: 37g</h2>
+                                <h2 class ="card-title"> Protein: 3g</h2>
+                                <h2 class ="card-title"> Fats: 1.5g</h2>
+                                <h2 class ="card-title"> Total: 180 Calories </h2>
+                            </a>
+                        </li>
+                        <li class="card-item swiper-slide">
+                            <a href="https://medlineplus.gov/recipes/fabulous-fig-bars/" target="_blank" rel="noreferrer" class="card-link">
+                                <img src="images/card5.jpg" alt="FigBars" class="card-image">
+                                <h2 class="badge"> Fig Bars (1 bar)</h2>
+                                <h2 class ="card-title"> Carbs: 34g</h2>
+                                <h2 class ="card-title"> Protein: 3g</h2>
+                                <h2 class ="card-title"> Fats: 5g</h2>
+                                <h2 class ="card-title"> Total: 180 Calories </h2>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container-images" style="background-color: transparent; border: none;">
+            
+            <div class="websitecolumns" style="width: 100%">
+                <div class="websitecolumnsimages">
+                <a href="https://www.cdc.gov/nutrition/php/about/index.html" target="_blank" rel="noreferrer">
+                        <img src="images/websitecolumn1.jpg" alt="CDC Nutrition Facts">
+                    </a>
+                </div>
+                <h1> The CDC: Centers for Disease Control and Prevention
+                    provides information on nutrition and why its important across every life stage.
+                </h1>
+            </div> 
+        
+            <div class="websitecolumns" style="width: 100%">
+                <div class="websitecolumnsimages">
+                <a href="https://www.niddk.nih.gov/health-information/diet-nutrition" target="_blank" rel="noreferrer">
+                        <img src="images/websitecolumn2.jpg" alt="CDC Nutrition Facts">
+                    </a>
+                </div>
+                <h1> 
+                    The National Institutes of Health provides a center for many different health topic and tools to help you pay attention to 
+                    what you eat and how you can manage eating habits to improve your health.
+                </h1>
+            </div> 
+
+
+
+            <div class="websitecolumns" style="width: 100%">
+                <div class="websitecolumnsimages">
+                <a href="https://www.nutrition.gov/" target="_blank" rel="noreferrer">
+                        <img src="images/websitecolumn3.jpg" alt="CDC Nutrition Facts">
+                    </a>
+                </div>
+                <h1>
+                    The U.S department of Agriculture provides facts about healthy foods and guidance on reducing heart disease through healthy eating. 
+                </h1>
+            </div> 
+        </div> 
+    </section>
+    
+
+
+
+<!-- Reemas section (fitness section)-->
+        <div id="Fitness" class="scroll-mt-28"></div>
+        <section id="wellness" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-apple-panel text-apple-dark border border-apple-dark/15">
+                            <i data-lucide="timer" class="w-4 h-4 text-apple-red"></i>
+                            <span class="text-xs font-semibold uppercase tracking-widest">Whistle‑Stop Wellness</span>
+                        </div>
+                        <h2 class="mt-4 text-3xl md:text-4xl font-heading font-bold text-apple-dark uppercase tracking-wide">
+                            Pick your 2‑minute chip
+                        </h2>
+                        <p class="mt-3 text-gray-700 text-lg max-w-2xl">
+                            A quick “timeout” you can do today - choose a play, get the steps, then bank a chip. Educational only (not medical advice).
+                        </p>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-3 sm:items-center">
+                        <button id="wellness-shuffle" type="button"
+                                class="chip-btn-primary inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg text-sm uppercase tracking-wider">
+                            <i data-lucide="shuffle" class="w-4 h-4"></i>
+                            Whistle Shuffle
+                        </button>
+                        <div class="rounded-xl bg-white/70 backdrop-blur border border-gray-200 px-4 py-3 shadow-sm">
+                            <p class="text-xs uppercase tracking-widest text-gray-600 mb-1">This week</p>
+                            <div class="flex items-baseline gap-2">
+                                <span id="wellness-streak" class="text-2xl font-heading font-bold text-apple-dark">0</span>
+                                <span class="text-sm text-gray-600">chips banked</span>
+                            </div>
+                            <p id="wellness-week" class="mt-1 text-[11px] uppercase tracking-widest text-gray-500">Week</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <!-- Playcards -->
+                    <div class="lg:col-span-7">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4" role="list" aria-label="Wellness playcards">
+                            <button type="button"
+                                    class="wellness-card group text-left rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-all p-5 focus:outline-none focus:ring-4 focus:ring-apple-red/20"
+                                    data-wellness="move"
+                                    aria-controls="wellness-result"
+                                    aria-pressed="false">
+                                <div class="flex items-start justify-between gap-4">
+                                    <div class="w-10 h-10 rounded-xl bg-apple-panel flex items-center justify-center border border-apple-dark/10">
+                                        <i data-lucide="footprints" class="w-5 h-5 text-apple-red"></i>
+                                    </div>
+                                    <span class="text-[11px] font-semibold uppercase tracking-widest text-gray-500">MOVE</span>
+                                </div>
+                                <h3 class="mt-4 font-heading font-bold text-xl text-apple-dark">2‑Minute Walk + Breath</h3>
+                                <p class="mt-2 text-gray-600 text-sm leading-relaxed">
+                                    Reset your body in place - tiny movement, then a calm inhale/exhale to bring your heart rate down.
+                                </p>
+                                <div class="mt-4 inline-flex items-center gap-2 text-apple-red font-semibold text-sm">
+                                    Choose play <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                </div>
+                            </button>
+
+                            <button type="button"
+                                    class="wellness-card group text-left rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-all p-5 focus:outline-none focus:ring-4 focus:ring-apple-red/20"
+                                    data-wellness="fuel"
+                                    aria-controls="wellness-result"
+                                    aria-pressed="false">
+                                <div class="flex items-start justify-between gap-4">
+                                    <div class="w-10 h-10 rounded-xl bg-apple-panel flex items-center justify-center border border-apple-dark/10">
+                                        <i data-lucide="apple" class="w-5 h-5 text-apple-red"></i>
+                                    </div>
+                                    <span class="text-[11px] font-semibold uppercase tracking-widest text-gray-500">FUEL</span>
+                                </div>
+                                <h3 class="mt-4 font-heading font-bold text-xl text-apple-dark">Plate Check: Add 1 Color</h3>
+                                <p class="mt-2 text-gray-600 text-sm leading-relaxed">
+                                    One small add-on that improves balance - no tracking, no rules, just a better next bite.
+                                </p>
+                                <div class="mt-4 inline-flex items-center gap-2 text-apple-red font-semibold text-sm">
+                                    Choose play <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                </div>
+                            </button>
+
+                            <button type="button"
+                                    class="wellness-card group text-left rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-all p-5 focus:outline-none focus:ring-4 focus:ring-apple-red/20"
+                                    data-wellness="calm"
+                                    aria-controls="wellness-result"
+                                    aria-pressed="false">
+                                <div class="flex items-start justify-between gap-4">
+                                    <div class="w-10 h-10 rounded-xl bg-apple-panel flex items-center justify-center border border-apple-dark/10">
+                                        <i data-lucide="wind" class="w-5 h-5 text-apple-red"></i>
+                                    </div>
+                                    <span class="text-[11px] font-semibold uppercase tracking-widest text-gray-500">CALM</span>
+                                </div>
+                                <h3 class="mt-4 font-heading font-bold text-xl text-apple-dark">60‑Second Box Breathing</h3>
+                                <p class="mt-2 text-gray-600 text-sm leading-relaxed">
+                                    A fast nervous-system reset: inhale, hold, exhale, hold - four counts each.
+                                </p>
+                                <div class="mt-4 inline-flex items-center gap-2 text-apple-red font-semibold text-sm">
+                                    Choose play <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                </div>
+                            </button>
+                        </div>
+
+                        <div class="mt-6 rounded-2xl bg-apple-panel border border-apple-dark/10 p-5">
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                                <div class="flex items-start gap-3">
+                                    <i data-lucide="shield-alert" class="w-5 h-5 text-apple-red mt-0.5"></i>
+                                    <p class="text-sm text-apple-dark/90 leading-relaxed">
+                                        If you have chest pain, shortness of breath, or feel unwell, seek medical care. This feature is for general wellness education only.
+                                    </p>
+                                </div>
+                                <a href="#contact" class="text-sm font-semibold text-apple-red hover:underline whitespace-nowrap">
+                                    Need support? Contact us
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- New: Interactive Playbook Builder (fills left-column space) -->
+                        <div id="playbook-builder" class="mt-6 rounded-2xl border border-gray-200 bg-white shadow-sm p-6" tabindex="0">
+                            <div class="flex items-start justify-between gap-4">
+                                <div>
+                                    <p class="text-xs uppercase tracking-widest text-gray-500">Plan it</p>
+                                    <h3 class="mt-1 text-2xl font-heading font-bold text-apple-dark">Build your micro‑playbook</h3>
+                                    <p class="mt-2 text-sm text-gray-700 max-w-xl">
+                                        Pick what you need today. We’ll generate a tiny plan, auto‑select a chip, and save your playbook so it sticks.
+                                    </p>
+                                </div>
+                                <div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-apple-panel border border-apple-dark/10">
+                                    <i data-lucide="wand-2" class="w-4 h-4 text-apple-red"></i>
+                                    <span class="text-xs font-semibold uppercase tracking-widest text-apple-dark">Interactive</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-5 grid grid-cols-1 md:grid-cols-12 gap-4">
+                                <div class="md:col-span-7 min-w-0">
+                                    <p class="text-xs uppercase tracking-widest text-gray-500 mb-2">Today’s focus</p>
+                                    <div class="flex flex-wrap gap-2" role="group" aria-label="Playbook focus">
+                                        <button type="button" class="playbook-focus px-3 py-2 rounded-full bg-apple-panel border border-apple-dark/10 text-apple-dark text-xs font-semibold uppercase tracking-wider hover:bg-white transition-colors"
+                                                data-focus="move" aria-pressed="true">
+                                            <i data-lucide="footprints" class="w-4 h-4 text-apple-red"></i>
+                                            Move
+                                        </button>
+                                        <button type="button" class="playbook-focus px-3 py-2 rounded-full bg-gray-50 border border-gray-200 text-gray-800 text-xs font-semibold uppercase tracking-wider hover:bg-white transition-colors"
+                                                data-focus="fuel" aria-pressed="false">
+                                            <i data-lucide="apple" class="w-4 h-4 text-apple-red"></i>
+                                            Fuel
+                                        </button>
+                                        <button type="button" class="playbook-focus px-3 py-2 rounded-full bg-gray-50 border border-gray-200 text-gray-800 text-xs font-semibold uppercase tracking-wider hover:bg-white transition-colors"
+                                                data-focus="calm" aria-pressed="false">
+                                            <i data-lucide="wind" class="w-4 h-4 text-apple-red"></i>
+                                            Calm
+                                        </button>
+                                    </div>
+
+                                    <div class="mt-4 rounded-xl bg-gray-50 border border-gray-200 p-4">
+                                        <div class="flex items-center justify-between gap-4">
+                                            <p class="text-xs uppercase tracking-widest text-gray-500">Minutes available</p>
+                                            <p class="text-sm font-semibold text-apple-dark tabular-nums"><span id="playbook-minutes">5</span> min</p>
+                                        </div>
+                                        <input id="playbook-slider" type="range" min="2" max="15" value="5" step="1"
+                                               class="mt-3 w-full accent-[#dc2626]" aria-label="Minutes available">
+                                        <div class="mt-3 flex items-start gap-3">
+                                            <input id="playbook-lowimpact" type="checkbox" class="mt-1 h-4 w-4 accent-[#dc2626]">
+                                            <label for="playbook-lowimpact" class="text-sm text-gray-700">
+                                                Low‑impact options (seated / gentle)
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="md:col-span-5 min-w-0">
+                                    <div class="rounded-xl bg-apple-panel border border-apple-dark/10 p-4 h-full overflow-hidden">
+                                        <div class="flex flex-wrap items-center justify-between gap-3">
+                                            <p class="text-xs uppercase tracking-widest text-apple-dark/70">Your playbook</p>
+                                            <div class="flex flex-wrap items-center justify-end gap-2 min-w-0">
+                                                <span id="playbook-savedat" class="hidden text-[11px] uppercase tracking-widest text-apple-dark/60 whitespace-nowrap">Saved —</span>
+                                                <span id="playbook-status" class="playbook-status text-xs font-semibold uppercase tracking-widest text-apple-dark/80 whitespace-nowrap">Ready</span>
+                                            </div>
+                                        </div>
+                                        <ol id="playbook-steps" class="mt-3 space-y-2 text-sm text-apple-dark/90 leading-relaxed">
+                                            <li class="text-apple-dark/80">Choose a focus, adjust minutes, then generate.</li>
+                                        </ol>
+                                        <div class="mt-4 grid grid-cols-2 gap-2">
+                                            <button id="playbook-generate" type="button"
+                                                    class="w-full inline-flex items-center justify-center gap-2 px-3 py-3 rounded-xl bg-apple-red text-white font-semibold uppercase tracking-wider text-xs hover:bg-apple-redHover transition-colors">
+                                                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                                                Generate
+                                            </button>
+                                            <button id="playbook-save" type="button"
+                                                    class="w-full inline-flex items-center justify-center gap-2 px-3 py-3 rounded-xl border border-gray-200 bg-white text-gray-800 font-semibold uppercase tracking-wider text-xs hover:bg-gray-50 transition-colors">
+                                                <i data-lucide="bookmark" class="w-4 h-4"></i>
+                                                Save
+                                            </button>
+                                        </div>
+                                        <div id="playbook-toast" class="hidden mt-3 rounded-xl bg-apple-panel border border-apple-red/20 px-4 py-3 text-xs text-apple-dark"
+                                             role="status" aria-live="polite">
+                                            Saved.
+                                        </div>
+                                        <p class="mt-3 text-xs text-apple-dark/70">
+                                            Saving stores it on this device (so it still shows up when you come back).
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Result + Resources -->
+                    <div class="lg:col-span-5">
+                        <div id="wellness-result" class="rounded-2xl border border-gray-200 bg-white shadow-sm p-6"
+                             role="region" aria-live="polite" aria-label="Selected wellness play">
+                            <div class="flex items-center justify-between gap-4">
+                                <div>
+                                    <p class="text-xs uppercase tracking-widest text-gray-500">Your play</p>
+                                    <h3 id="wellness-title" class="mt-1 text-2xl font-heading font-bold text-apple-dark">Choose a chip to start</h3>
+                                </div>
+                                <div id="wellness-badge" class="hidden px-3 py-1 rounded-full bg-apple-panel text-apple-dark border border-apple-dark/15 text-xs font-semibold uppercase tracking-widest">
+                                    Ready
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <ol id="wellness-steps" class="space-y-2 text-gray-700 leading-relaxed">
+                                    <li class="text-gray-600">Select MOVE, FUEL, or CALM to get a 2‑minute “timeout” you can do today.</li>
+                                </ol>
+                            </div>
+
+                            <div class="mt-5 rounded-xl bg-gray-50 border border-gray-200 p-4">
+                                <p class="text-xs uppercase tracking-widest text-gray-500 mb-1">Why it matters</p>
+                                <p id="wellness-why" class="text-sm text-gray-700">
+                                    Small, repeatable actions add up - consistency beats intensity.
+                                </p>
+                            </div>
+
+                            <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <button id="wellness-bank" type="button" disabled
+                                        class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-apple-red text-white font-semibold uppercase tracking-wider text-xs disabled:opacity-40 disabled:cursor-not-allowed hover:bg-apple-redHover transition-colors">
+                                    <i data-lucide="bookmark-plus" class="w-4 h-4"></i>
+                                    Bank this chip
+                                </button>
+                                <button id="wellness-copy" type="button" disabled
+                                        class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-800 font-semibold uppercase tracking-wider text-xs disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors">
+                                    <i data-lucide="copy" class="w-4 h-4"></i>
+                                    Copy steps
+                                </button>
+                            </div>
+
+                            <div class="mt-4 rounded-xl bg-apple-panel border border-apple-dark/10 p-4">
+                                <div class="flex items-center justify-between gap-4">
+                                    <div>
+                                        <p class="text-xs uppercase tracking-widest text-gray-500">2‑minute timer</p>
+                                        <p id="wellness-timer" class="mt-1 text-2xl font-heading font-bold text-apple-dark tabular-nums">02:00</p>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <button id="wellness-timer-toggle" type="button" disabled
+                                                class="px-4 py-2 rounded-lg bg-white border border-gray-200 text-apple-dark text-xs font-semibold uppercase tracking-wider disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50">
+                                            Start
+                                        </button>
+                                        <button id="wellness-timer-reset" type="button" disabled
+                                                class="px-4 py-2 rounded-lg bg-white border border-gray-200 text-apple-dark text-xs font-semibold uppercase tracking-wider disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50">
+                                            Reset
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mt-3 h-2 w-full rounded-full bg-white/70 border border-apple-dark/10 overflow-hidden">
+                                    <div id="wellness-timer-bar" class="h-full w-0 bg-apple-red transition-[width] duration-300"></div>
+                                </div>
+                                <p class="mt-2 text-xs text-apple-dark/80">
+                                    Tip: hit Start, follow the steps, then bank the chip.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
+                            <div class="flex items-center justify-between gap-4">
+                                <h4 class="text-lg font-heading font-bold text-apple-dark uppercase tracking-wide">Resources</h4>
+                                <p class="text-xs uppercase tracking-widest text-gray-500">Quick + credible</p>
+                            </div>
+
+                            <div class="mt-4 space-y-3">
+                                <details class="group rounded-xl border border-gray-200 bg-gray-50 px-4 py-3">
+                                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+                                        <span class="font-semibold text-gray-800">Quick Wins (5 minutes)</span>
+                                        <i data-lucide="chevron-down" class="w-4 h-4 text-gray-500 group-open:rotate-180 transition-transform"></i>
+                                    </summary>
+                                    <ul class="mt-3 space-y-2 text-sm text-gray-700">
+                                        <li><a class="text-apple-red hover:underline" href="https://www.heart.org/en/healthy-living/fitness/walking" target="_blank" rel="noreferrer">Walking basics (AHA)</a></li>
+                                        <li><a class="text-apple-red hover:underline" href="https://www.cdc.gov/physicalactivity/basics/index.htm" target="_blank" rel="noreferrer">Physical activity basics (CDC)</a></li>
+                                        <li><a class="text-apple-red hover:underline" href="https://www.heart.org/en/healthy-living/healthy-eating/eat-smart/nutrition-basics" target="_blank" rel="noreferrer">Nutrition basics (AHA)</a></li>
+                                    </ul>
+                                </details>
+
+                                <details class="group rounded-xl border border-gray-200 bg-gray-50 px-4 py-3">
+                                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+                                        <span class="font-semibold text-gray-800">Know Your Numbers</span>
+                                        <i data-lucide="chevron-down" class="w-4 h-4 text-gray-500 group-open:rotate-180 transition-transform"></i>
+                                    </summary>
+                                    <ul class="mt-3 space-y-2 text-sm text-gray-700">
+                                        <li><a class="text-apple-red hover:underline" href="https://www.heart.org/en/health-topics/high-blood-pressure" target="_blank" rel="noreferrer">Blood pressure overview (AHA)</a></li>
+                                        <li><a class="text-apple-red hover:underline" href="https://www.cdc.gov/cholesterol/index.htm" target="_blank" rel="noreferrer">Cholesterol overview (CDC)</a></li>
+                                        <li><a class="text-apple-red hover:underline" href="https://www.heart.org/en/health-topics/consumer-healthcare/what-to-ask-your-doctor" target="_blank" rel="noreferrer">Questions to ask your clinician (AHA)</a></li>
+                                    </ul>
+                                </details>
+
+                                <details class="group rounded-xl border border-gray-200 bg-gray-50 px-4 py-3">
+                                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+                                        <span class="font-semibold text-gray-800">Community + Programs</span>
+                                        <i data-lucide="chevron-down" class="w-4 h-4 text-gray-500 group-open:rotate-180 transition-transform"></i>
+                                    </summary>
+                                    <ul class="mt-3 space-y-2 text-sm text-gray-700">
+                                        <li><a class="text-apple-red hover:underline" href="#contact">Contact / partner with us</a></li>
+                                        <li><a class="text-apple-red hover:underline" href="coaches.html">In memory of Coach Chip</a></li>
+                                    </ul>
+                                </details>
+                            </div>
+
+                            <div class="mt-5 pt-5 border-t border-gray-200">
+                                <div class="flex items-center justify-between gap-4 mb-3">
+                                    <p class="text-xs uppercase tracking-widest text-gray-500">Quick actions</p>
+                                    <p class="text-xs uppercase tracking-widest text-gray-400">2 minutes</p>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-gray-50 border border-gray-200 text-gray-800 text-xs font-semibold uppercase tracking-wider hover:bg-white transition-colors"
+                                       href="https://www.cdc.gov/bloodpressure/index.htm" target="_blank" rel="noreferrer">
+                                        <i data-lucide="activity" class="w-4 h-4 text-apple-red"></i>
+                                        Know numbers
+                                    </a>
+                                    <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-gray-50 border border-gray-200 text-gray-800 text-xs font-semibold uppercase tracking-wider hover:bg-white transition-colors"
+                                       href="https://www.care.piedmont.org/providers?clinicians=include&departments=recommendedSearchOnly&search=primary+care&location=Warner+Robins%2C+GA%2C+USA" target="_blank" rel="noreferrer">
+                                        <i data-lucide="stethoscope" class="w-4 h-4 text-apple-red"></i>
+                                        Find care
+                                    </a>
+                                    <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-apple-panel border border-apple-dark/10 text-apple-dark text-xs font-semibold uppercase tracking-wider hover:bg-white transition-colors"
+                                       href="#contact">
+                                        <i data-lucide="handshake" class="w-4 h-4 text-apple-red"></i>
+                                        Partner
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Interactive Section: Weekly Chipboard -->
+        <section id="chipboard" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="rounded-[2rem] border border-apple-dark/10 bg-white/75 backdrop-blur shadow-xl overflow-hidden">
+                    <div class="p-8 md:p-10 bg-apple-panel/60">
+                        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+                            <div>
+                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/70 border border-apple-dark/10 text-apple-dark">
+                                    <i data-lucide="sparkles" class="w-4 h-4 text-apple-red"></i>
+                                    <span class="text-xs font-semibold uppercase tracking-widest">Weekly Chipboard</span>
+                                </div>
+                                <h2 class="mt-4 text-3xl md:text-4xl font-heading font-bold text-apple-dark uppercase tracking-wide">
+                                    Make your chips visible
+                                </h2>
+                                <p class="mt-3 text-gray-700 text-lg max-w-2xl">
+                                    Turn Whistle‑Stop Wellness into a repeatable routine: pick a weekly goal, watch your progress, and save a quick reflection.
+                                </p>
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row gap-3 sm:items-center">
+                                <button id="chipboard-share" type="button"
+                                        class="chip-btn-primary inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg text-sm uppercase tracking-wider">
+                                    <i data-lucide="share-2" class="w-4 h-4"></i>
+                                    Share my week
+                                </button>
+                                <div class="rounded-xl bg-white/70 backdrop-blur border border-gray-200 px-4 py-3 shadow-sm">
+                                    <p class="text-xs uppercase tracking-widest text-gray-600 mb-1">Current week</p>
+                                    <p id="chipboard-week" class="text-sm font-semibold text-apple-dark">—</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-8 md:p-10">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                            <!-- Progress + Goal -->
+                            <div class="lg:col-span-5">
+                                <div class="rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
+                                    <div class="flex items-center justify-between gap-4">
+                                    <h3 class="text-lg font-heading font-bold text-apple-dark uppercase tracking-wide">Progress</h3>
+                                    <div class="flex items-center gap-2">
+                                        <span id="chipboard-goalhit" class="hidden px-3 py-1 rounded-full bg-apple-red text-white text-xs font-semibold uppercase tracking-widest">
+                                            Goal hit!
+                                        </span>
+                                        <span id="chipboard-level" class="px-3 py-1 rounded-full bg-apple-panel text-apple-dark border border-apple-dark/10 text-xs font-semibold uppercase tracking-widest">
+                                            Rookie
+                                        </span>
+                                    </div>
+                                    </div>
+
+                                    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+                                        <div class="flex items-center justify-center">
+                                            <div class="relative w-40 h-40">
+                                                <svg class="w-40 h-40 -rotate-90" viewBox="0 0 120 120" aria-hidden="true">
+                                                    <circle cx="60" cy="60" r="48" fill="none" stroke="rgba(26,46,5,0.12)" stroke-width="12"></circle>
+                                                    <circle id="chipboard-ring" class="chipboard-ring" cx="60" cy="60" r="48" fill="none" stroke="#dc2626" stroke-linecap="round" stroke-width="12"
+                                                            stroke-dasharray="301.6" stroke-dashoffset="301.6"></circle>
+                                                </svg>
+                                                <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                                                    <p class="text-xs uppercase tracking-widest text-gray-500">Chips</p>
+                                                    <div class="flex items-baseline gap-2">
+                                                        <span id="chipboard-count" class="text-4xl font-heading font-bold text-apple-dark tabular-nums">0</span>
+                                                        <span class="text-sm text-gray-600">/</span>
+                                                        <span id="chipboard-goal" class="text-xl font-heading font-bold text-gray-700 tabular-nums">5</span>
+                                                    </div>
+                                                    <p id="chipboard-sub" class="mt-1 text-xs text-gray-600">Bank a chip to move up</p>
+                                                </div>
+                                                <div id="chipboard-confetti" class="chipboard-confetti hidden" aria-hidden="true">
+                                                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <p class="text-xs uppercase tracking-widest text-gray-500 mb-2">Set weekly goal</p>
+                                            <div class="flex flex-wrap gap-2" role="group" aria-label="Weekly goal">
+                                                <button type="button" class="chipboard-goal-btn px-3 py-2 rounded-full bg-gray-50 border border-gray-200 text-gray-800 text-xs font-semibold uppercase tracking-wider hover:bg-white transition-colors" data-goal="3">3 chips</button>
+                                                <button type="button" class="chipboard-goal-btn px-3 py-2 rounded-full bg-gray-50 border border-gray-200 text-gray-800 text-xs font-semibold uppercase tracking-wider hover:bg-white transition-colors" data-goal="5">5 chips</button>
+                                                <button type="button" class="chipboard-goal-btn px-3 py-2 rounded-full bg-gray-50 border border-gray-200 text-gray-800 text-xs font-semibold uppercase tracking-wider hover:bg-white transition-colors" data-goal="7">7 chips</button>
+                                            </div>
+
+                                            <div class="mt-4 rounded-xl bg-apple-panel border border-apple-dark/10 p-4">
+                                                <div class="flex items-start gap-3">
+                                                    <i data-lucide="lightbulb" class="w-5 h-5 text-apple-red mt-0.5"></i>
+                                                    <p class="text-sm text-apple-dark/90 leading-relaxed">
+                                                        Pro tip: a goal of <span class="font-semibold">3 chips</span> is a strong start — consistency beats intensity.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Reflection + Micro checklist -->
+                            <div class="lg:col-span-7">
+                                <div class="rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
+                                    <div class="flex items-center justify-between gap-4">
+                                        <h3 class="text-lg font-heading font-bold text-apple-dark uppercase tracking-wide">Your 30‑second reflection</h3>
+                                        <p class="text-xs uppercase tracking-widest text-gray-500">Saved</p>
+                                    </div>
+
+                                    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <label class="rounded-xl bg-gray-50 border border-gray-200 p-4 cursor-pointer hover:bg-white transition-colors flex items-start gap-3">
+                                            <input id="chipboard-check-1" type="checkbox" class="mt-1 h-4 w-4 accent-[#dc2626]">
+                                            <span class="text-sm text-gray-800"><span class="font-semibold">I did a chip</span> (MOVE / FUEL / CALM)</span>
+                                        </label>
+                                        <label class="rounded-xl bg-gray-50 border border-gray-200 p-4 cursor-pointer hover:bg-white transition-colors flex items-start gap-3">
+                                            <input id="chipboard-check-2" type="checkbox" class="mt-1 h-4 w-4 accent-[#dc2626]">
+                                            <span class="text-sm text-gray-800"><span class="font-semibold">I noted one win</span> (what felt easier?)</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="mt-4">
+                                        <textarea id="chipboard-note" rows="5"
+                                                  class="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-gray-800 focus:outline-none focus:ring-4 focus:ring-apple-red/20"
+                                                  placeholder="Example: “I chose CALM before a meeting. My shoulders dropped and I felt more focused.”"></textarea>
+                                        <div class="mt-2 flex items-center justify-between gap-4">
+                                            <p id="chipboard-countdown" class="text-xs text-gray-500">0 / 180</p>
+                                            <div class="flex items-center gap-2">
+                                                <button id="chipboard-clear" type="button"
+                                                        class="px-4 py-2 rounded-lg bg-white border border-gray-200 text-apple-dark text-xs font-semibold uppercase tracking-wider hover:bg-gray-50">
+                                                    Clear
+                                                </button>
+                                                <button id="chipboard-save" type="button"
+                                                        class="px-4 py-2 rounded-lg bg-apple-red text-white text-xs font-semibold uppercase tracking-wider hover:bg-apple-redHover transition-colors">
+                                                    Save note
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="chipboard-toast" class="hidden mt-4 rounded-xl bg-apple-panel border border-apple-dark/10 p-4">
+                                        <div class="flex items-start gap-3">
+                                            <i data-lucide="check-circle-2" class="w-5 h-5 text-apple-red mt-0.5"></i>
+                                            <p class="text-sm text-apple-dark/90 leading-relaxed">
+                                                Saved. Keep stacking small wins — that’s how habits stick.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<!-- Mackenzies section prevention section -->
+<section class="maincontent" style="align-items: stretch;">
+    <div class="container-text" style="width: auto; max-width: none; height: auto; justify-content: stretch; max-height: 1000px; align-self:center;">
+        <div class="text-box" style="height:100%; width: auto; max-width: none; max-height: 1000px;">
+            <h1 id="Prevention" class="scroll-mt-28" style="font-weight: 500;">Monitor And Prevent Heart Disease</h1>
+            <p style="margin-bottom: 10px; margin-top: 1px;"> <i> Knowing your numbers is crucial for preventing heart disease. </i> Regular check-ups and monitoring of blood pressure, cholesterol, 
+                and other health indicators can help identify potential risks early on. Genetic factors can also play a role in heart disease risk - 
+                an often unnoticed role until later on in life - so being honest with your doctor about known family health history is incredibly
+                important. Getting tested in order to discover any potential <i> unknown </i> family health history is also recommended. </p>
+            <h1 style="font-weight: 500; font-size: 1.5rem; margin-bottom:px"> Reduce Risk Factors </h1>
+            <p style="margin-bottom: 10px; margin-top: 1px;"> Avoiding risk factors such as smoking and excessive alcohol consumption can also reduce the risk of heart disease. While these factors 
+                are well-known, it is still just as important to avoid these habits as it is to eat a healthy diet and exercise regularly. However,
+                it's important to remember that heart disease <i>can</i> affect anyone, regardless of their lifestyle choices. </p>
+            <h1 style="font-weight: 500; font-size: 1.5rem; margin-bottom:px"> Recognize Warning Signs </h1>
+            <p style="margin-bottom: 10px; margin-top: 1px;"> In addition, knowing the signs and symptoms of heart disease can help you seek medical attention when needed. Certain warning signs, 
+                like <b>shortness of breath, chest pain, weakness, dizziness, nausea, and rapid heartbeat</b> should not be ignored. <i>If you 
+                experience any of these symptoms, it's important to seek medical attention immediately.</i></p>
+            <h1 style="font-weight: 500; font-size: 1.5rem; margin-bottom:px"> Stay Proactive </h1>
+            <p style="margin-bottom: 10px; margin-top: 1px;"> Utilizing the resources and information available can help you make informed decisions about your heart health. Eating well, regularly
+                exercising, and avoiding risk factors are all important steps in preventing heart disease, but it's also important to stay informed and 
+                proactive about your health.
+            </p>
+            <p> <b>If you have any concerns about your heart health, consult with your doctor.</b></p>
+        </div>
+    </div>
+
+    <div class="container-images" style="height: auto; min-height: 500px; justify-content: stretch; max-height: 900px; align-self:center;">
+        <div class="page-image">
+            <img src="images/prevention-1.jpg" alt="Fitness">
+        </div>
+
+        <div class="sub-container-text"> 
+            <h1 style="font-weight: 600; font-size: 1.5rem;">Expert Resources</h1>
+            <h2 style="font-weight: 500; font-size: 1.2rem;"> For more information on heart disease prevention, check out these websites!</h2>
+            <p style="font-weight: 00; font-size: 1.1rem;"> For detailed information on heart disease prevention, click on the icons below to visit these trusted websites </p>
+        </div>
+            <div class="sub-container" style="padding: 0px 20px 0px 20px; width: 100%;">
+                <div class="websitecolumns"> 
+                    <div class="websitecolumnsimages" style="box-shadow: none; background-color: transparent !important;">
+                        <a href="https://igit.me/American-Heart-Assoc" target="_blank">
+                            <img src="Images/aha.jpg" alt="American Heart Association">
+                        </a> 
+                    </div>
+                </div>
+            <div class="websitecolumns"> 
+                <div class="websitecolumnsimages" style="box-shadow: none; background-color: transparent !important;">
+                    <a href="https://igit.me/Johns-Hopkins-Med" target="_blank">
+                        <img src="Images/jhm.jpg" alt="Johns Hopkins Medicine">
+                    </a> 
+                </div>
+            </div>
+
+            <div class="websitecolumns"> 
+                <div class="websitecolumnsimages" style="box-shadow: none; background-color: transparent !important;">
+                    <a href="https://igit.me/CVS-Health" target="_blank">
+                        <img src="Images/cvs.jpg" alt="CVS Health">
+                    </a> 
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Shared Footer insert -->
+    <div id="shared-footer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+    
+</body>
+</html>
