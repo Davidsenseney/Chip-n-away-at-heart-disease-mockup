@@ -53,16 +53,15 @@
                 </div>
             </div>
         </section>
-
+        
         <!-- NUTRITION SECTION -->
-        <section id="Nutrition" class="w-full py-16 lg:py-24" style="background-color: rgb(179, 210, 121);">
+        <section id="Nutrition" class="w-full py-16 lg:py-24 flex" style="background-color: rgb(179, 210, 121);">
             <!-- Added a centralized container so it aligns perfectly with the Navigation Bar -->
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-stretch justify-between gap-10 lg:gap-16">
-                
+            <div class=" max-w-fit mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-stretch justify-between gap-10 lg:gap-16 ">
                 <!-- Left Column (Text & Swiper) -->
-                <div class="w-full lg:w-1/2 flex flex-col">
+                <div class="w-full flex flex-col">
                     <!-- Overrode the hardcoded heights so the box stretches beautifully -->
-                    <div class="text-box shadow-xl border border-apple-dark/5" style="height: 100%; max-height: none; width: 100%; max-width: none;"> 
+                    <div class="text-box shadow-xl border border-apple-dark/5" style="height: 100%; max-height: 58rem; width: 45rem; max-width: none;"> 
                         <h1 class="scroll-mt-28" style="font-weight: bolder;">Eat Well, Live Longer</h1>
                         <p style="font-size: 1.1rem; font-weight: 350; margin-bottom: 10px;">
                             Nutrition isn't just about eating food to fuel you through the day, its also one way to prevent heart disease. Everything you eat 
@@ -76,7 +75,7 @@
                             "The U.S Department of Agriculture" provide valuable research-backed information into healthy eating and nutrition.
                         </p>
 
-                        <div class="sub-container swiper" style="margin-top: 2rem; margin-bottom: 0px; width: 100%;"> 
+                        <div class="sub-container swiper" style="margin-top: auto; margin-bottom: 0px; width: 100%;"> 
                             <ul class="card-list swiper-wrapper">
                                 <li class="card-item swiper-slide">
                                     <a href="https://medlineplus.gov/recipes/tofu-scramble/" target="_blank" rel="noreferrer" class="card-link">
@@ -137,8 +136,8 @@
                 </div>
 
                 <!-- Right Column (Resource Cards) -->
-                <div class="w-full lg:w-1/2 flex flex-col justify-center gap-6">
-                    <div class="websitecolumns shadow-xl border border-apple-dark/5" style="width: 100%; margin-top: 0;">
+                <div class="max-w-xl flex flex-col justify-center gap-6 ">
+                    <div class="websitecolumns shadow-xl border border-apple-dark/5 flex-1" style="width: 100%; margin-top: 0; ">
                         <div class="websitecolumnsimages">
                             <a href="https://www.cdc.gov/nutrition/php/about/index.html" target="_blank" rel="noreferrer">
                                 <img src="images/websitecolumn1.jpg" alt="CDC Nutrition Facts">
@@ -146,8 +145,8 @@
                         </div>
                         <h1>The CDC: Centers for Disease Control and Prevention provides information on nutrition and why its important across every life stage.</h1>
                     </div> 
-                
-                    <div class="websitecolumns shadow-xl border border-apple-dark/5" style="width: 100%; margin-top: 0;">
+            
+                    <div class="websitecolumns shadow-xl border border-apple-dark/5 flex-1" style="width: 100%; margin-top: 0;">
                         <div class="websitecolumnsimages">
                             <a href="https://www.niddk.nih.gov/health-information/diet-nutrition" target="_blank" rel="noreferrer">
                                 <img src="images/websitecolumn2.jpg" alt="NIH Nutrition Facts">
@@ -156,7 +155,7 @@
                         <h1>The National Institutes of Health provides a center for many different health topic and tools to help you pay attention to what you eat and how you can manage eating habits to improve your health.</h1>
                     </div> 
 
-                    <div class="websitecolumns shadow-xl border border-apple-dark/5" style="width: 100%; margin-top: 0;">
+                    <div class="websitecolumns shadow-xl border border-apple-dark/5 flex-1" style="width: 100%; margin-top: 0;">
                         <div class="websitecolumnsimages">
                             <a href="https://www.nutrition.gov/" target="_blank" rel="noreferrer">
                                 <img src="images/websitecolumn3.jpg" alt="USDA Nutrition Facts">
@@ -484,7 +483,7 @@
         </section>
 
         <!-- CHIPBOARD SECTION -->
-        <section id="chipboard" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <section id="chipboard" class="py-20 px-4 sm:px-6 lg:px-8 bg-apple-panel/30">
             <div class="max-w-6xl mx-auto">
                 <div class="rounded-[2rem] border border-apple-dark/10 bg-white/75 backdrop-blur shadow-xl overflow-hidden">
                     <div class="p-8 md:p-10 bg-apple-panel/60">
@@ -625,11 +624,11 @@
 
          <!-- PREVENTION SECTION -->
         <section id="Prevention" class="w-full py-16 lg:py-24" style="background-color: rgb(179, 210, 121);">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-16">
+            <div class="w-fit mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-16">
                 
                 <!-- Left Column (Text) -->
-                <div class="w-full lg:w-1/2 flex flex-col">
-                    <div class="text-box shadow-xl border border-apple-dark/5" style="height: 100%; max-height: none; width: 100%; max-width: none;">
+                <div class="flex-[2.5] flex flex-col">
+                    <div class="text-box shadow-xl border border-apple-dark/5" style=" max-height: none; width: 100%; max-width: none;  ">
                         <h1 class="scroll-mt-28" style="font-weight: 500;">Monitor And Prevent Heart Disease</h1>
                         <p style="margin-bottom: 10px; margin-top: 1px;">
                             <i>Knowing your numbers is crucial for preventing heart disease.</i> Regular check-ups and monitoring of blood pressure, cholesterol, 
@@ -663,7 +662,7 @@
                 </div>
 
                 <!-- Right Column (Unified Images and Resources Card) -->
-                <div class="w-full lg:w-1/2 flex flex-col justify-start">
+                <div class="flex-[30rem] flex flex-col justify-start">
                     <div class="w-full rounded-2xl shadow-xl overflow-hidden flex flex-col">
                         
                         <!-- Top Image -->
