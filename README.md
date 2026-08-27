@@ -1,8 +1,15 @@
-# Wellness — Whistle‑Stop Wellness (Individual Contribution: Reema Bhaskar)
+# Wellness Page Revision
 
-This README documents the **Wellness** portion of the mockup: **Whistle‑Stop Wellness** and the interactive features added to `home/wellness.html`.
+Fork of [Chip-n-away-at-heart-disease-mockup](https://github.com/Davidsenseney/Chip-n-away-at-heart-disease-mockup) focused on **revising the Wellness page** to match the overall site design and fix dozens of small UI/UX issues.
 
-## Run the Wellness page locally
+## What this fork does
+
+- Aligns `home/wellness.html` with the rest of the Chip-n-Away mockup
+- Cleans up layout, styling, and interaction polish on the Wellness page
+- Preserves and refines **Whistle‑Stop Wellness** — the interactive wellness experience (playcards, timer, chipboard, playbook builder, and more)
+
+## Run locally
+
 From the `home/` folder:
 
 ```bash
@@ -11,27 +18,17 @@ python3 -m http.server 5173
 
 Open `http://localhost:5173/wellness.html`.
 
-## Feature overview
-Whistle‑Stop Wellness is designed to feel like a small product experience (not just static content):
+## Key files
 
-- **Playcards (MOVE / FUEL / CALM)**: choose a 2‑minute “timeout” and get steps + “Why it matters”.
-- **2‑minute timer**: start/pause/reset with a progress bar.
-- **Bank a chip**: increments a weekly counter stored in `localStorage`.
-- **Copy steps**: copies the current play to clipboard (fallbacks to prompt if clipboard isn’t available).
-- **Resources**: expandable, credible links + quick action pills.
-- **Micro‑Playbook Builder**: generates a tiny plan from a focus + minutes slider, auto‑selects a chip, and can be saved locally.
-- **Weekly Chipboard**: weekly goal + progress ring + reflection note + shareable weekly summary.
-- **Celebration**: tasteful animation when the weekly goal is hit (once per week per goal).
+- `home/wellness.html` — page structure and content
+- `home/stylewellness.css` — Wellness-specific styles
+- `home/javaScript.js` — interactivity (timer, chips, playbook, chipboard, etc.)
 
-## Persistence (localStorage)
-This mockup intentionally “remembers” small interactions on the same device:
-- Weekly chip count: `chipnaway_wellness_week`
-- Playbook: `chipnaway_playbook_v1`
-- Chipboard goal/note/checklist: `chipnaway_chipboard_*`
+## Wellness features (Whistle‑Stop Wellness)
 
-To reset the experience, clear site data for `localhost` in your browser.
+- **Playcards (MOVE / FUEL / CALM)**: 2‑minute timeouts with steps and “Why it matters”
+- **Timer**: start/pause/reset with progress bar
+- **Bank a chip**: weekly counter via `localStorage`
+- **Micro‑Playbook Builder** and **Weekly Chipboard**: plan, track, and reflect on weekly goals
 
-## Files touched (Wellness)
-- **UI / layout**: `home/wellness.html`
-- **Styles**: `home/stylewellness.css`
-- **Interactivity**: `home/javaScript.js`
+To reset stored data, clear site data for `localhost` in your browser.
