@@ -919,10 +919,21 @@ html {
    9. wellness styles
    ========================================= */
 .wellnessbanner{
-    min-height: 900px;
+    /* Home hero (.chip-hero-bg) is sized by Tailwind's min-h-[85vh] in index.html.
+       Matching that viewport-relative approach here, sized up to a full-bleed hero. */
+    min-height: 80vh;
     height: auto;
     width: 100%;
-    background-image: url(images/wellnessbannerimage.jpg);
+    /* 3840x2560 hero photo; WebP served first, JPEG fallback for older browsers */
+    background-image: -webkit-image-set(
+        url(images/wellnessbannerimage-4k.webp) type("image/webp"),
+        url(images/wellnessbannerimage-4k.jpg)  type("image/jpeg")
+    );
+    background-image: image-set(
+        url(images/wellnessbannerimage-4k.webp) type("image/webp"),
+        url(images/wellnessbannerimage-4k.jpg)  type("image/jpeg")
+    );
+    background-color: #c3d0cb; /* holds the layout tone until the photo paints */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;    
@@ -931,13 +942,29 @@ html {
     justify-content: center;
 
     padding-bottom: 0;
-    gap: 2rem 5rem;
+    gap: 2rem 2.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
     overflow: visible;
     position: relative;
     z-index: 0;
     margin-bottom: 30rem;
     pointer-events: none; /* prevents banner layer intercepting clicks below */
 }
+/* Curved bottom edge, lifted straight from .community-page .hero::after:
+   a strip of the page green clipped to an ellipse, so the green arcs up
+   through the photo in the middle and the corners stay photo.          */
+.wellnessbanner::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: clamp(70px, 9vw, 170px);
+    background: var(--color-apple-bg);
+    clip-path: ellipse(58% 100% at 50% 100%);
+    z-index: 1;              /* under the cards, which sit at z-index 20 */
+    pointer-events: none;
+}
+
 .wellnessbanner .column-container,
 .wellnessbanner .column-container * {
     pointer-events: auto; /* keep banner cards clickable */
@@ -1044,33 +1071,41 @@ html {
     display: flex;
     justify-content: center;
     align-content: flex-start;
-    padding: 20px;
+    padding: 0 20px;
     flex-direction: column;
 }
 
 
 .column-container {
-    flex: 1 1 280px;
-    min-width: min(280px, 100%);
+    flex: 1 1 320px;
+    min-width: min(300px, 100%);
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
 
-    min-height:450px;
+    min-height: 480px;
 
 
-    background-color: var(--color-apple-nav);
+    /* Frosted glass: blurs the hero photo showing through the card.        */
+    /* Same technique as .chip-card-glass, tinted with the brand dark green */
+    /* so the existing white card text stays readable.                      */
+    background-color: rgba(26, 46, 5, 0.72);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.22);
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     text-align: center;
+    padding-top: 2rem;
     overflow: hidden;
     color: white;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
 
     position: relative;
-    margin-bottom: -225px;
+    margin-bottom: -220px;
     z-index:20;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
 }
@@ -1080,15 +1115,23 @@ html {
 }
 /* overrides the h3 that was already set above for some reason, and p */
 .column-container h3 {
-    padding: 20px 20px;
+    padding: 0;
+    margin: 0 0 0.4rem;
     color:inherit;
     font-weight: bolder ;
     font-size: 2rem;
 }
 
 .column-container p {
-    color:inherit;
-    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.82);
+    margin: 0;
+    /* All three blurbs are written to a similar length so they wrap to two */
+    /* lines; reserving those two keeps the Learn More buttons aligned.     */
+    min-height: calc(1.55em * 2);
+    text-wrap: balance;
+    font-size: 1.05rem;
+    font-weight: 400;
+    line-height: 1.55;
     overflow-wrap: anywhere;
     word-wrap: break-word;
     hyphens: auto;
@@ -1098,7 +1141,21 @@ html {
     box-sizing: border-box;
 
 }
-/* Banner image for the columns */
+/* Card photo: sits below the heading, copy and button, and grows to fill
+   whatever height is left in the card. The card's own overflow:hidden +
+   border-radius clips the bottom corners, so no radius is needed here.  */
+.column-photo {
+    width: 100%;
+    flex: 1 1 auto;      /* eats the leftover space under the button */
+    min-height: 170px;
+    margin-top: 1.5rem;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* .column-banner (the card thumbnails) was removed from wellness.html.
+   Rule kept, commented, in case the cards get images again.
 .column-banner {
     width: 100%;
     height: 150px;
@@ -1106,14 +1163,13 @@ html {
     object-position: center;
     display: block;
     flex-shrink: 0;
-
-}
+} */
 
 /* the buttons that will jump you through the page */
 .column-button {
 
-    margin-top: auto;
-    margin-bottom: 20px;
+    margin-top: 0.9rem;
+    margin-bottom: 0;
 
     background-color: var(--color-apple-red-hover);
     padding: 10px 25px;
@@ -1467,6 +1523,14 @@ html {
     background-color: #d9f99d;
 }
 
+
+/* Between the mobile breakpoint and ~1100px the cards get narrow enough that
+   two of the paragraphs take a 4th line, so reserve one more there. */
+@media (min-width: 1025px) and (max-width: 1100px) {
+    .column-container p {
+        min-height: calc(1.55em * 3);
+    }
+}
 
 /* this makes the columns not stack on mobile screens, it used to have all of the columns stacked because of the negative margin that made the columns overlap the banner image */ 
 
