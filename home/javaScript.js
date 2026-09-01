@@ -286,25 +286,47 @@ const App = {
 
     /** Initializes the Swiper Slider */
     initSwiper: function() {
-        if (typeof Swiper === 'undefined' || !document.querySelector('.sub-container.swiper')) return;
-        
-        new Swiper('.sub-container.swiper', {
+        if (typeof Swiper === 'undefined') return;
+
+        // Initialise EVERY slider on the page, not just the first one. Passing a
+        // selector string to Swiper only ever picks up the first match, and the
+        // pagination/navigation selectors below have to be scoped to each
+        // container or every slider would drive the first slider's arrows.
+        document.querySelectorAll('.sub-container.swiper').forEach(function (el) {
+            // .swiper-feature sliders show one large panel at a time; the recipe
+            // cards stay 1/2/3-up by breakpoint.
+            var isFeature = el.classList.contains('swiper-feature');
+
+            // The arrows and dots now live in a .swiper-controls bar AFTER the
+            // slider box, so they never overlap a slide. Look for that bar as a
+            // following sibling and fall back to inside the box if it is absent.
+            var controls = el.nextElementSibling;
+            while (controls && !controls.classList.contains('swiper-controls')) {
+                controls = controls.nextElementSibling;
+            }
+            var scope = controls || el;
+
+            new Swiper(el, {
             loop: true,
             spaceBetween: 20,
             pagination: {
-                el: '.swiper-pagination',
+                el: scope.querySelector('.swiper-pagination'),
                 clickable: true,
-                dynamicBullets: true,
+                // off: dynamic bullets shrink and hide dots, which looks broken
+                // in a fixed control bar with only a few slides.
+                dynamicBullets: false,
             },
             navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
+                nextEl: scope.querySelector('.swiper-button-next'),
+                prevEl: scope.querySelector('.swiper-button-prev'),
             },
-            breakpoints: {
+            slidesPerView: 1,
+            breakpoints: isFeature ? {} : {
                 0: { slidesPerView: 1 },
                 768: { slidesPerView: 2 },
                 1024: { slidesPerView: 3 },
             }
+            });
         });
     },
 
