@@ -64,9 +64,9 @@ const sharedHeaderTemplate = `
                     </div>
 
                     <div class="flex items-center gap-3 lg:gap-4 ml-3 lg:ml-6">
-                        <a href="#home" class="chip-btn-primary px-3 py-1.5 text-xs lg:text-sm whitespace-nowrap">
+                        <button type="button" data-donate-open class="chip-btn-primary px-3 py-1.5 text-xs lg:text-sm whitespace-nowrap">
                             Donate
-                        </a>
+                        </button>
                         <a href="volunteer.html" class="chip-btn-primary px-3 py-1.5 text-xs lg:text-sm whitespace-nowrap">
                             Volunteer
                         </a>
@@ -87,6 +87,7 @@ const sharedHeaderTemplate = `
         <div id="mobile-menu" class="hidden md:hidden bg-apple-nav border-b border-gray-700">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
                 <a href="index.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Home</a>
+                <button type="button" data-donate-open class="block w-full px-3 py-2 text-base font-medium text-white hover:text-apple-red bg-transparent border-0 cursor-pointer">Donate</button>
                 <a href="community.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Community</a>
                 <a href="blog.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Blog</a>
                 <a href="contact.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Contact</a>
@@ -169,6 +170,75 @@ const sharedFooterTemplate = `
     </footer>
 `;
 
+const donationModalTemplate = `
+    <div class="chip-modal-overlay" id="donation-modal" hidden>
+        <div class="chip-modal" role="dialog" aria-modal="true" aria-labelledby="donation-modal-title" aria-describedby="donation-modal-intro">
+
+            <button type="button" class="chip-modal-close" id="donation-close" aria-label="Close donation form">&times;</button>
+
+            <div class="chip-modal-avatar">
+                <img src="images/cynthiamaloneheadshot.avif" alt="cynthia malone headshot">
+            </div>
+
+            <h2 class="chip-modal-title" id="donation-modal-title">Chip In Today</h2>
+            <p class="chip-modal-intro" id="donation-modal-intro">
+                Your gift funds free screenings, heart-healthy education, and community outreach.
+            </p>
+
+            <form class="chip-modal-form" id="donation-form" novalidate>
+
+                <div class="chip-field">
+                    <label for="donation-amount">Donation Amount (USD)</label>
+                    <input type="text" id="donation-amount" name="donation-amount" inputmode="decimal"
+                           placeholder="50.00" aria-describedby="donation-amount-error">
+                    <p class="chip-field-error" id="donation-amount-error"></p>
+                </div>
+
+                <div class="chip-field">
+                    <label for="cardholder-name">Cardholder Name</label>
+                    <input type="text" id="cardholder-name" name="cardholder-name" autocomplete="cc-name"
+                           placeholder="Jordan Malone" aria-describedby="cardholder-name-error">
+                    <p class="chip-field-error" id="cardholder-name-error"></p>
+                </div>
+
+                <div class="chip-field">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" name="card-number" inputmode="numeric" autocomplete="cc-number"
+                           placeholder="4242 4242 4242 4242" maxlength="23" aria-describedby="card-number-error">
+                    <p class="chip-field-error" id="card-number-error"></p>
+                </div>
+
+                <div class="chip-field-row">
+                    <div class="chip-field">
+                        <label for="card-expiry">Expiration Date (MM/YY)</label>
+                        <input type="text" id="card-expiry" name="card-expiry" inputmode="numeric" autocomplete="cc-exp"
+                               placeholder="12/30" maxlength="5" aria-describedby="card-expiry-error">
+                        <p class="chip-field-error" id="card-expiry-error"></p>
+                    </div>
+                    <div class="chip-field">
+                        <label for="card-cvv">CVV</label>
+                        <input type="text" id="card-cvv" name="card-cvv" inputmode="numeric" autocomplete="cc-csc"
+                               placeholder="123" maxlength="4" aria-describedby="card-cvv-error">
+                        <p class="chip-field-error" id="card-cvv-error"></p>
+                    </div>
+                </div>
+
+                <button type="submit" class="chip-btn-primary chip-modal-submit" id="donation-submit">
+                    Confirm Donation
+                </button>
+            </form>
+
+            <div class="chip-modal-divider"><span>or</span></div>
+
+            <button type="button" class="chip-btn-paypal" id="donation-paypal">
+                Donate with <strong>Pay</strong><em>Pal</em>
+            </button>
+
+            <p class="chip-modal-status" id="donation-status" role="status" aria-live="polite"></p>
+        </div>
+    </div>
+`;
+
 // ==========================================================================
 // 3. GLOBAL UTILITIES (Exposed for HTML inline onclick handlers)
 // ==========================================================================
@@ -227,7 +297,14 @@ const App = {
         const footerMount = document.getElementById("shared-footer");
         if (footerMount) footerMount.innerHTML = sharedFooterTemplate;
 
-        
+        // The donation modal lives directly on <body> so it stacks above the fixed nav.
+        if (!document.getElementById('donation-modal')) {
+            const modalMount = document.createElement('div');
+            modalMount.id = 'donation-modal-mount';
+            modalMount.innerHTML = donationModalTemplate;
+            document.body.appendChild(modalMount);
+        }
+
         if (window.lucide) {
             lucide.createIcons();
         }
@@ -246,6 +323,222 @@ const App = {
                 link.addEventListener('click', () => menu.classList.add('hidden'));
             });
         }
+    },
+
+    /** Fires a full-screen confetti burst. Front-end celebration only. */
+    launchConfetti: function(pieceCount = 90) {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        document.getElementById('chip-confetti-layer')?.remove();
+
+        const colors = ['#dc2626', '#b91c1c', '#d9f99d', '#a3e635', '#ecfccb', '#ffffff', '#2a4a0b'];
+        const layer = document.createElement('div');
+        layer.id = 'chip-confetti-layer';
+        layer.className = 'chip-confetti-layer';
+        layer.setAttribute('aria-hidden', 'true');
+
+        let longest = 0;
+
+        for (let i = 0; i < pieceCount; i++) {
+            const piece = document.createElement('span');
+            piece.className = 'chip-confetti-piece';
+
+            const duration = 2 + Math.random() * 1.8;
+            const delay = Math.random() * 0.9;
+            longest = Math.max(longest, duration + delay);
+
+            piece.style.setProperty('--chip-confetti-x', `${Math.random() * 100}%`);
+            piece.style.setProperty('--chip-confetti-size', `${6 + Math.random() * 8}px`);
+            piece.style.setProperty('--chip-confetti-color', colors[i % colors.length]);
+            piece.style.setProperty('--chip-confetti-duration', `${duration}s`);
+            piece.style.setProperty('--chip-confetti-delay', `${delay}s`);
+            piece.style.setProperty('--chip-confetti-drift', `${Math.round((Math.random() - 0.5) * 320)}px`);
+            piece.style.setProperty('--chip-confetti-spin', `${Math.round(360 + Math.random() * 1080)}deg`);
+
+            layer.appendChild(piece);
+        }
+
+        document.body.appendChild(layer);
+        window.setTimeout(() => layer.remove(), (longest + 0.5) * 1000);
+    },
+
+    /** Initializes the demo Donation Modal (credit card + PayPal, no real processing) */
+    initDonationModal: function() {
+        const overlay = document.getElementById('donation-modal');
+        if (!overlay) return;
+
+        const dialog = overlay.querySelector('.chip-modal');
+        const form = document.getElementById('donation-form');
+        const closeBtn = document.getElementById('donation-close');
+        const paypalBtn = document.getElementById('donation-paypal');
+        const statusEl = document.getElementById('donation-status');
+        const amountEl = document.getElementById('donation-amount');
+        const nameEl = document.getElementById('cardholder-name');
+        const numberEl = document.getElementById('card-number');
+        const expiryEl = document.getElementById('card-expiry');
+        const cvvEl = document.getElementById('card-cvv');
+
+        const FOCUSABLE = 'button, input, [href], select, textarea, [tabindex]:not([tabindex="-1"])';
+        let lastTrigger = null;
+        let closeTimer = null;
+
+        const setError = (input, message) => {
+            const errorEl = document.getElementById(`${input.id}-error`);
+            if (errorEl) errorEl.textContent = message || '';
+            input.classList.toggle('has-error', Boolean(message));
+            input.setAttribute('aria-invalid', message ? 'true' : 'false');
+        };
+
+        const clearErrors = () => {
+            [amountEl, nameEl, numberEl, expiryEl, cvvEl].forEach(input => setError(input, ''));
+        };
+
+        const digitsOnly = (value) => value.replace(/\D/g, '');
+
+        const openModal = (trigger) => {
+            window.clearTimeout(closeTimer);
+            lastTrigger = trigger || null;
+            statusEl.textContent = '';
+            overlay.hidden = false;
+            document.body.classList.add('chip-modal-open');
+            document.getElementById('mobile-menu')?.classList.add('hidden');
+            amountEl.focus();
+        };
+
+        const closeModal = () => {
+            window.clearTimeout(closeTimer);
+            overlay.hidden = true;
+            document.body.classList.remove('chip-modal-open');
+            lastTrigger?.focus();
+        };
+
+        // Any Donate control anywhere on the site opens the modal instead of navigating.
+        document.addEventListener('click', (e) => {
+            const trigger = e.target.closest('[data-donate-open], a[href="donate.html"]');
+            if (!trigger) return;
+            e.preventDefault();
+            openModal(trigger);
+        });
+
+        closeBtn.addEventListener('click', closeModal);
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (overlay.hidden) return;
+
+            if (e.key === 'Escape') {
+                closeModal();
+                return;
+            }
+
+            if (e.key !== 'Tab') return;
+
+            // Keep keyboard focus inside the dialog while it is open.
+            const focusable = Array.from(dialog.querySelectorAll(FOCUSABLE))
+                .filter(el => !el.disabled && el.offsetParent !== null);
+            if (!focusable.length) return;
+
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        });
+
+        numberEl.addEventListener('input', () => {
+            const groups = digitsOnly(numberEl.value).slice(0, 19).match(/.{1,4}/g);
+            numberEl.value = groups ? groups.join(' ') : '';
+        });
+
+        expiryEl.addEventListener('input', () => {
+            const digits = digitsOnly(expiryEl.value).slice(0, 4);
+            expiryEl.value = digits.length > 2 ? `${digits.slice(0, 2)}/${digits.slice(2)}` : digits;
+        });
+
+        cvvEl.addEventListener('input', () => {
+            cvvEl.value = digitsOnly(cvvEl.value).slice(0, 4);
+        });
+
+        amountEl.addEventListener('input', () => {
+            amountEl.value = amountEl.value.replace(/[^\d.]/g, '');
+        });
+
+        const validate = () => {
+            clearErrors();
+            let firstInvalid = null;
+
+            const fail = (input, message) => {
+                setError(input, message);
+                firstInvalid = firstInvalid || input;
+            };
+
+            const amount = parseFloat(amountEl.value);
+            if (!amountEl.value.trim() || Number.isNaN(amount) || amount <= 0) {
+                fail(amountEl, 'Enter a donation amount greater than zero.');
+            }
+
+            if (nameEl.value.trim().length < 2) {
+                fail(nameEl, 'Enter the name printed on the card.');
+            }
+
+            const cardDigits = digitsOnly(numberEl.value);
+            if (cardDigits.length < 13 || cardDigits.length > 19) {
+                fail(numberEl, 'Card number must be 13 to 19 digits.');
+            }
+
+            const expiryMatch = expiryEl.value.match(/^(\d{2})\/(\d{2})$/);
+            if (!expiryMatch) {
+                fail(expiryEl, 'Use the MM/YY format.');
+            } else {
+                const month = Number(expiryMatch[1]);
+                const year = 2000 + Number(expiryMatch[2]);
+                const now = new Date();
+                const endOfMonth = new Date(year, month, 0);
+                if (month < 1 || month > 12) {
+                    fail(expiryEl, 'Month must be between 01 and 12.');
+                } else if (endOfMonth < now) {
+                    fail(expiryEl, 'That card has expired.');
+                }
+            }
+
+            if (cvvEl.value.length < 3) {
+                fail(cvvEl, 'CVV must be 3 or 4 digits.');
+            }
+
+            if (firstInvalid) {
+                statusEl.textContent = '';
+                firstInvalid.focus();
+                return false;
+            }
+            return true;
+        };
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Demo only: never submit or navigate.
+            if (!validate()) return;
+
+            const amount = parseFloat(amountEl.value).toFixed(2);
+            statusEl.textContent = `Thank you! Your demo donation of $${amount} was recorded.`;
+            App.launchConfetti();
+            form.reset();
+            clearErrors();
+            closeTimer = window.setTimeout(closeModal, 2800);
+        });
+
+        paypalBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // Demo only: no redirect to PayPal.
+            clearErrors();
+            statusEl.textContent = 'PayPal demo - the external redirect is disabled in this mockup.';
+            App.launchConfetti();
+        });
     },
 
     /** Initializes the Contact Form logic */
@@ -1048,6 +1341,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Step 2: Initialize features that rely on the injected templates
     safe(() => App.initMobileMenu());
+    safe(() => App.initDonationModal());
     safe(() => App.initWellnessApp());
     safe(() => App.initChipboard());
 
