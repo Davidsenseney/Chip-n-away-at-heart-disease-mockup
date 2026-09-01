@@ -52,10 +52,38 @@ html {
 .chip-hero-bg {
     background-image: url('images/bannerimage.png');
     background-size: cover;
-    background-position: center;
+    background-position: center left;
     background-repeat: no-repeat;
     position: relative;
     width: 100%;
+}
+
+/* Home hero: image fills the section; card is positioned at bottom-right */
+#home.chip-hero-bg {
+    min-height: 90vh;
+}
+
+.chip-hero-card {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: calc(100% - 2rem);
+    max-width: 32rem;
+}
+
+@media (min-width: 768px) {
+    .chip-hero-card {
+        bottom: 3rem;
+        max-width: 44rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .chip-hero-card {
+        max-width: 52rem;
+    }
 }
 
 /* Standard page container to keep content centered */
@@ -81,6 +109,23 @@ html {
 }
 .chip-card-glass:hover {
     transform: scale(1.02); /* Slight grow effect on hover */
+}
+
+/* Right-aligned variant: red accent on the right edge */
+.chip-card-glass--right {
+    border-left: none;
+    border-right: 4px solid var(--color-apple-red);
+    border-radius: 1rem 0 0 1rem;
+}
+
+/* Hero variant: centered banner that lets the background image show through */
+.chip-hero-card .chip-card-glass {
+    background-color: rgba(236, 252, 203, 0.35);
+    border-left: none;
+    border-right: none;
+    border-bottom: 4px solid var(--color-apple-red);
+    border-radius: 1rem;
+    padding: 1.25rem 2rem;
 }
 
 /* B. The "Solid" Content Card (Used for the bottom quote in the About section) */
