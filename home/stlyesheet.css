@@ -52,10 +52,41 @@ html {
 .chip-hero-bg {
     background-image: url('images/bannerimage.png');
     background-size: cover;
-    background-position: center;
+    background-position: center left;
     background-repeat: no-repeat;
     position: relative;
     width: 100%;
+}
+
+/* Home hero: title on top, narrow card column on the right */
+.chip-hero-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 72rem;
+    margin: 0 auto;
+}
+
+.chip-hero-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem 2rem;
+    margin-top: 2rem;
+    align-items: start;
+}
+
+@media (min-width: 768px) {
+    .chip-hero-layout {
+        grid-template-columns: 1fr minmax(0, 20rem);
+        margin-top: 2.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .chip-hero-layout {
+        grid-template-columns: 1fr minmax(0, 22rem);
+        margin-top: 3rem;
+    }
 }
 
 /* Standard page container to keep content centered */
@@ -71,16 +102,23 @@ html {
 
 /* A. The "Glass" Hero Card (Used for the top quote over the image) */
 .chip-card-glass {
-    background-color: rgba(236, 252, 203, 0.5); /* Semi-transparent apple-panel */
-    backdrop-filter: blur(12px);                /* The frosted glass effect */
-    border-left: 4px solid var(--color-apple-red); /* Thick red accent line */
+    background-color: rgba(236, 252, 203, 0.5); 
+    backdrop-filter: blur(12px);                
+    border-left: 4px solid var(--color-apple-red); 
     padding: 1.5rem 2rem;
-    border-radius: 0 1rem 1rem 0;               /* Rounded only on the right */
+    border-radius: 0 1rem 1rem 0;               
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     transition: transform 0.3s ease;
 }
 .chip-card-glass:hover {
     transform: scale(1.02); /* Slight grow effect on hover */
+}
+
+/* Right-aligned variant: red accent on the right edge */
+.chip-card-glass--right {
+    border-left: none;
+    border-right: 4px solid var(--color-apple-red);
+    border-radius: 1rem 0 0 1rem;
 }
 
 /* B. The "Solid" Content Card (Used for the bottom quote in the About section) */
