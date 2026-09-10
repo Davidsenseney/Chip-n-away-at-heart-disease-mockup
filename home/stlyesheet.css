@@ -1611,8 +1611,8 @@ body.chip-modal-open {
 .chip-modal-avatar img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    padding: 0.25rem;
+    object-fit: cover;
+    padding: 0;
     display: block;
 }
 

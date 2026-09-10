@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../index.ts"],"sourcesContent":["import * as redirects from '@wix/auto_sdk_redirects_redirects';\n\nexport { redirects };\n"],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,gBAA2B;","names":[]}
