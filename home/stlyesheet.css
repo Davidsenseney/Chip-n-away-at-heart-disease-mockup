@@ -957,25 +957,55 @@ html {
    9. wellness styles
    ========================================= */
 .wellnessbanner{
-    min-height: 900px;
+    /* Home hero (.chip-hero-bg) is sized by Tailwind's min-h-[85vh] in index.html.
+       Matching that viewport-relative approach here, sized up to a full-bleed hero. */
+    min-height: 80vh;
     height: auto;
     width: 100%;
-    background-image: url(images/wellnessbannerimage.jpg);
+    /* 3840x2560 hero photo; WebP served first, JPEG fallback for older browsers */
+    background-image: -webkit-image-set(
+        url(images/wellnessbannerimage-4k.webp) type("image/webp"),
+        url(images/wellnessbannerimage-4k.jpg)  type("image/jpeg")
+    );
+    background-image: image-set(
+        url(images/wellnessbannerimage-4k.webp) type("image/webp"),
+        url(images/wellnessbannerimage-4k.jpg)  type("image/jpeg")
+    );
+    background-color: #c3d0cb; /* holds the layout tone until the photo paints */
     background-size: cover;
-    background-position: center;
+    /* 75% biases the visible window down the photo: less sky at the top,
+       more trees and meadow at the bottom. 50% = centred, 100% = flush
+       with the bottom of the photo.                                    */
+    background-position: center 75%;
     background-repeat: no-repeat;    
     display: flex;
     align-items: flex-end;
     justify-content: center;
 
     padding-bottom: 0;
-    gap: 2rem 5rem;
+    gap: 2rem 2.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
     overflow: visible;
     position: relative;
     z-index: 0;
     margin-bottom: 30rem;
     pointer-events: none; /* prevents banner layer intercepting clicks below */
 }
+/* Curved bottom edge, lifted straight from .community-page .hero::after:
+   a strip of the page green clipped to an ellipse, so the green arcs up
+   through the photo in the middle and the corners stay photo.          */
+.wellnessbanner::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: clamp(70px, 9vw, 170px);
+    background: var(--color-apple-bg);
+    clip-path: ellipse(58% 100% at 50% 100%);
+    z-index: 1;              /* under the cards, which sit at z-index 20 */
+    pointer-events: none;
+}
+
 .wellnessbanner .column-container,
 .wellnessbanner .column-container * {
     pointer-events: auto; /* keep banner cards clickable */
@@ -1082,33 +1112,41 @@ html {
     display: flex;
     justify-content: center;
     align-content: flex-start;
-    padding: 20px;
+    padding: 0 20px;
     flex-direction: column;
 }
 
 
 .column-container {
-    flex: 1 1 280px;
-    min-width: min(280px, 100%);
+    flex: 1 1 320px;
+    min-width: min(300px, 100%);
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
 
-    min-height:450px;
+    min-height: 480px;
 
 
-    background-color: var(--color-apple-nav);
+    /* Frosted glass: blurs the hero photo showing through the card.        */
+    /* Same technique as .chip-card-glass, tinted with the brand dark green */
+    /* so the existing white card text stays readable.                      */
+    background-color: rgba(26, 46, 5, 0.72);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.22);
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     text-align: center;
+    padding-top: 2rem;
     overflow: hidden;
     color: white;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
 
     position: relative;
-    margin-bottom: -225px;
+    margin-bottom: -220px;
     z-index:20;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
 }
@@ -1118,15 +1156,23 @@ html {
 }
 /* overrides the h3 that was already set above for some reason, and p */
 .column-container h3 {
-    padding: 20px 20px;
+    padding: 0;
+    margin: 0 0 0.4rem;
     color:inherit;
     font-weight: bolder ;
     font-size: 2rem;
 }
 
 .column-container p {
-    color:inherit;
-    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.82);
+    margin: 0;
+    /* All three blurbs are written to a similar length so they wrap to two */
+    /* lines; reserving those two keeps the Learn More buttons aligned.     */
+    min-height: calc(1.55em * 2);
+    text-wrap: balance;
+    font-size: 1.05rem;
+    font-weight: 400;
+    line-height: 1.55;
     overflow-wrap: anywhere;
     word-wrap: break-word;
     hyphens: auto;
@@ -1136,7 +1182,21 @@ html {
     box-sizing: border-box;
 
 }
-/* Banner image for the columns */
+/* Card photo: sits below the heading, copy and button, and grows to fill
+   whatever height is left in the card. The card's own overflow:hidden +
+   border-radius clips the bottom corners, so no radius is needed here.  */
+.column-photo {
+    width: 100%;
+    flex: 1 1 auto;      /* eats the leftover space under the button */
+    min-height: 170px;
+    margin-top: 1.5rem;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* .column-banner (the card thumbnails) was removed from wellness.html.
+   Rule kept, commented, in case the cards get images again.
 .column-banner {
     width: 100%;
     height: 150px;
@@ -1144,14 +1204,13 @@ html {
     object-position: center;
     display: block;
     flex-shrink: 0;
-
-}
+} */
 
 /* the buttons that will jump you through the page */
 .column-button {
 
-    margin-top: auto;
-    margin-bottom: 20px;
+    margin-top: 0.9rem;
+    margin-bottom: 0;
 
     background-color: var(--color-apple-red-hover);
     padding: 10px 25px;
@@ -1423,6 +1482,24 @@ html {
 }
 
 
+/* Cards fill their slide, so the row has one flat bottom edge instead of
+   each card ending wherever its text happens to stop.
+
+   The bottom gap has to live INSIDE the slide. Padding on the slider box
+   does not work: overflow:hidden clips at the padding box, so a stretched
+   card simply renders over that padding. And the card's own bottom margin
+   is not counted in scrollable overflow, which is why the top 10px shows
+   and the bottom 10px does not.                                        */
+.card-list .card-item {
+    display: flex;
+    list-style: none;
+    padding-bottom: 14px;
+}
+
+.card-list .card-item .card-link {
+    flex: 1 1 auto;
+}
+
 .card-list .card-item .card-link{
     max-width: 250px;
     min-height: 310px;
@@ -1455,6 +1532,181 @@ html {
     border-radius: 10px;
 }
 
+/* =========================================
+   Nutrition -> Prevention transition + full-width feature slides
+   ========================================= */
+
+/* Same device as .community-page .programs::after: a strip of the NEXT
+   section's colour, clipped to an ellipse so it arcs up into this one.
+   Prevention is #d9f99d rather than the shared 179,210,121 green, or the
+   two sections would butt together with nothing to see.               */
+#Nutrition {
+    position: relative;
+    overflow: hidden;
+    /* clearance so the section's own content never runs under the arc */
+    padding-bottom: clamp(130px, 14vw, 220px);
+}
+
+#Nutrition::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: clamp(55px, 7vw, 110px);
+    background: var(--color-apple-bg);
+    clip-path: ellipse(58% 100% at 50% 100%);
+    pointer-events: none;
+}
+
+/* Blog-style accent rule above the Prevention heading. */
+#Prevention .section-accent-rule {
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--color-apple-red);
+    margin: 0 auto 0.85rem;
+    border-radius: 999px;
+}
+
+/* Heading - larger than the default h1 sizing elsewhere on the page. */
+#Prevention h1 {
+    font-size: clamp(2.2rem, 3.8vw, 3.1rem);
+    line-height: 1.15;
+    margin: 0 0 0.9rem;
+}
+
+/* Sit up closer to the arc instead of floating mid-section, and leave
+   room before the divider into the Whistle-Stop section below.      */
+#Prevention {
+    padding-top: clamp(2rem, 4vw, 3.25rem);
+    padding-bottom: clamp(3.5rem, 6vw, 5.5rem);
+}
+
+/* Whistle-Stop section, styled after .community-page .slideshow-section
+   (Community in Action): a soft 2px red rule top and bottom rather than
+   a hard line. The background is rgb(179, 210, 121) - the same green as
+   the Nutrition section - so the page alternates mid / light / mid down
+   the page instead of staying one pale green throughout.              */
+#wellness,
+#chipboard {
+    background-color: rgb(179, 210, 121);
+}
+
+/* The red rules bracket the PAIR, not each section - no seam between
+   the two now that they share a background.                        */
+#wellness {
+    border-top: 2px solid rgba(220, 38, 38, 0.18);
+    padding-top: clamp(3.5rem, 6vw, 5.5rem);
+}
+
+#chipboard {
+    border-bottom: 2px solid rgba(220, 38, 38, 0.18);
+}
+
+.feature-slide {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0;
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+    min-height: 320px;
+}
+
+.feature-slide__body {
+    flex: 1 1 auto;
+    padding: 2rem 2.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    color: var(--color-apple-dark);
+}
+
+.feature-slide__step {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-apple-red);
+    margin-bottom: 0.5rem;
+}
+
+.feature-slide__body h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+}
+
+.feature-slide__body p {
+    font-size: 1.02rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* The link rail down one side. */
+.feature-slide__aside {
+    flex: 0 0 240px;
+    background: var(--color-apple-panel);
+    border-left: 1px solid rgba(26, 46, 5, 0.08);
+    padding: 1.75rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+.feature-slide__aside img {
+    width: 100%;
+    max-height: 70px;
+    object-fit: contain;
+}
+
+.feature-slide__link {
+    display: inline-block;
+    background: var(--color-apple-red-hover);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.92rem;
+    padding: 0.6rem 1.1rem;
+    border-radius: 999px;
+    transition: transform 0.25s ease;
+}
+
+.feature-slide__link:hover {
+    transform: scale(1.05);
+}
+
+/* Stack the rail under the copy once there is no room beside it. */
+@media (max-width: 860px) {
+    .feature-slide {
+        flex-direction: column;
+        min-height: 0;
+    }
+    .feature-slide__aside {
+        flex: 0 0 auto;
+        border-left: none;
+        border-top: 1px solid rgba(26, 46, 5, 0.08);
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .feature-slide__aside img { width: auto; max-width: 45%; }
+}
+
+/* Resource slides show partner logos rather than photos, so contain them
+   instead of cropping to 16/9 like the recipe cards.                   */
+.card-list .card-link.resource-slide .card-image {
+    object-fit: contain;
+    background: #ffffff;
+    padding: 8px;
+}
+
 .card-list .card-link .badge{
     color: blue;
     background: white;
@@ -1475,29 +1727,104 @@ html {
 
 
 
-.swiper-button-next,
-.swiper-button-prev {
-    width: 32px;
-    height: 32px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+/* Slider controls: one centred bar under each slideshow, so nothing sits on
+   top of a slide. The bar is a sibling of .swiper, which means Swiper's own
+   absolute positioning has to be unwound with position: static.          */
+.swiper-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 0.85rem;
+    margin-top: 0.75rem;
+}
+
+.swiper-controls .swiper-button-next,
+.swiper-controls .swiper-button-prev {
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin: 0;
+    width: 22px;
+    height: 22px;
+    --swiper-navigation-size: 20px;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    box-shadow: none;
     color: var(--color-apple-red);
-
+    transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.swiper-button-next:hover,
-.swiper-button-prev:hover {
-    transform: scale(1.08);
-    opacity: 0.85;
+/* Swiper also renders an arrow INSIDE the button, not only through
+   ::after - that is the second, larger arrow. Hide any child it adds
+   and any ::before, so only our CSS chevron is drawn.              */
+.swiper-controls .swiper-button-next > *,
+.swiper-controls .swiper-button-prev > * {
+    display: none;
+}
+
+.swiper-controls .swiper-button-next::before,
+.swiper-controls .swiper-button-prev::before {
+    content: none;
+}
+
+/* Swiper's default arrow is a heavy glyph from its own icon font. Blank
+   the content and draw a thin chevron from two borders instead - crisp
+   at any size and it inherits the button colour.                      */
+.swiper-controls .swiper-button-next::after,
+.swiper-controls .swiper-button-prev::after {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-top: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+}
+
+.swiper-controls .swiper-button-next::after {
+    transform: rotate(45deg);
+    margin-left: -2px;
+}
+
+.swiper-controls .swiper-button-prev::after {
+    transform: rotate(-135deg);
+    margin-right: -2px;
+}
+
+.swiper-controls .swiper-button-next:hover,
+.swiper-controls .swiper-button-prev:hover {
+    transform: scale(1.15);
+    opacity: 0.7;
+}
+
+.swiper-controls .swiper-pagination {
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: auto;
+    transform: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    --swiper-pagination-bullet-size: 8px;
+    --swiper-pagination-color: var(--color-apple-red);
+    --swiper-pagination-bullet-inactive-color: var(--color-apple-dark);
+    --swiper-pagination-bullet-inactive-opacity: 0.25;
+}
+
+.swiper-controls .swiper-pagination-bullet {
+    margin: 0 !important;
 }
 
 
 
-.swiper-pagination-bullet-active {
-    background: #dc2626;
-}
+
 
 
 
@@ -1505,6 +1832,14 @@ html {
     background-color: #d9f99d;
 }
 
+
+/* Between the mobile breakpoint and ~1100px the cards get narrow enough that
+   two of the paragraphs take a 4th line, so reserve one more there. */
+@media (min-width: 1025px) and (max-width: 1100px) {
+    .column-container p {
+        min-height: calc(1.55em * 3);
+    }
+}
 
 /* this makes the columns not stack on mobile screens, it used to have all of the columns stacked because of the negative margin that made the columns overlap the banner image */ 
 
