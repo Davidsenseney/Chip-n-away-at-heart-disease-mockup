@@ -1,0 +1,1 @@
+{"version":3,"file":"ErrorHandlerInternalAPI.d.ts","sourceRoot":"","sources":["../../../src/types/ErrorHandlerInternalAPI.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,cAAc,EAAE,MAAM,kBAAkB,CAAC;AAElD,MAAM,WAAW,kBAAkB;IACjC,cAAc,CAAC,EAAE,cAAc,CAAC;CACjC;AAED,MAAM,WAAW,uBAAuB;IACtC,WAAW,EAAE,CAAC,KAAK,EAAE,OAAO,EAAE,OAAO,CAAC,EAAE,kBAAkB,KAAK,IAAI,CAAC;CACrE"}

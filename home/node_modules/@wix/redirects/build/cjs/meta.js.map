@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../meta.ts"],"sourcesContent":["export * as redirects from '@wix/auto_sdk_redirects_redirects/meta';\n"],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,gBAA2B;","names":[]}

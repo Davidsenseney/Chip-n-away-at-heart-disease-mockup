@@ -177,7 +177,7 @@ const donationModalTemplate = `
             <button type="button" class="chip-modal-close" id="donation-close" aria-label="Close donation form">&times;</button>
 
             <div class="chip-modal-avatar">
-                <img src="images/cynthiamaloneheadshot.avif" alt="cynthia malone headshot">
+                <img src="images/cynthiamaloneheadshot(1).avif" alt="cynthia malone headshot">
             </div>
 
             <h2 class="chip-modal-title" id="donation-modal-title">Chip In Today</h2>
