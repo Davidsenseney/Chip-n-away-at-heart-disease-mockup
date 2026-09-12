@@ -1,6 +1,7 @@
 import { createClient, OAuthStrategy, media } from '@wix/sdk';
 import { items } from '@wix/data';
 
+
 // Vite only exposes vars prefixed with VITE_
 const clientId =
   import.meta.env.VITE_WIX_CLIENT_ID ||
