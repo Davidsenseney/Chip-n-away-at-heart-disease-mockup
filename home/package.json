@@ -17,9 +17,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "tailwindcss": "^4.3.3",
     "vite": "^8.3.0"
   },
   "dependencies": {
+    "@tailwindcss/cli": "^4.3.3",
     "@wix/data": "^1.0.519",
     "@wix/sdk": "^1.21.16"
   }

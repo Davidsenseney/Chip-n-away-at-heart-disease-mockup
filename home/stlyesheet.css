@@ -8,7 +8,7 @@
 /* =========================================
    1. GLOBAL VARIABLES (COLORS & FONTS)
    ========================================= */
-:root {
+   :root {
     /* Brand Colors */
     --color-apple-bg: #d9f99d;       /* Main Page Background (Crisp Green Apple) */
     --color-apple-panel: #ecfccb;    /* Slightly lighter green for cards/panels */
