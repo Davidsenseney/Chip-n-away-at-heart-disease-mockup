@@ -6,30 +6,8 @@
  * and page-specific feature modules safely with defensive checks.
  */
 
-// ==========================================================================
-// 1. CONFIGURATION
-// ==========================================================================
-window.tailwind = window.tailwind || {};
-window.tailwind.config = {
-    theme: {
-        extend: {
-            colors: {
-                apple: {
-                    bg: '#d9f99d',      /* Crisp Green Apple background */
-                    panel: '#ecfccb',   /* Slightly lighter green apple for panels */
-                    dark: '#1a2e05',    /* Very dark green for text and nav */
-                    nav: '#2a4a0b',     /* Secondary dark green */
-                    red: '#dc2626',     /* Crisp Apple Red */
-                    redHover: '#b91c1c' /* Darker red for hover states */
-                }
-            },
-            fontFamily: {
-                sans: ['Inter', 'system-ui', 'sans-serif'],
-                heading: ['Montserrat', 'system-ui', 'sans-serif'],
-            }
-        }
-    }
-};
+// Production Tailwind v4 (Vite + @tailwindcss/vite). Brand tokens live in src/input.css @theme.
+import './src/input.css';
 
 // ==========================================================================
 // 2. SHARED TEMPLATES

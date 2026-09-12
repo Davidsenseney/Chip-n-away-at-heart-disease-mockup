@@ -1,1 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap");
 @import "tailwindcss";
+
+/* Scan HTML/JS for utility classes used across the site */
+@source "../**/*.{html,js}";
+
+/*
+  Brand theme (replaces the old CDN window.tailwind.config).
+  Creates utilities like: bg-apple-dark, text-apple-red, font-heading, etc.
+*/
+@theme {
+  --color-apple-bg: #d9f99d;
+  --color-apple-panel: #ecfccb;
+  --color-apple-dark: #1a2e05;
+  --color-apple-nav: #2a4a0b;
+  --color-apple-red: #dc2626;
+  --color-apple-red-hover: #b91c1c;
+
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-heading: "Montserrat", system-ui, sans-serif;
+}
