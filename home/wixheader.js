@@ -1,61 +1,61 @@
 import { createClient, OAuthStrategy, media } from '@wix/sdk';
 import { items } from '@wix/data';
 
-const clientId = import.meta.env.VITE_WIX_CLIENT_ID;
-// Initialize the Wix Client
-const wixClient = createClient({
-  modules: { items },
-  auth: OAuthStrategy({
-    clientId: clientId
-  })
-});
+// Vite only exposes vars prefixed with VITE_
+const clientId =
+  import.meta.env.VITE_WIX_CLIENT_ID ||
+  import.meta.env.VITE_CLIENT_ID ||
+  import.meta.env.CLIENT_ID;
+
+let wixClient = null;
+try {
+  if (clientId) {
+    wixClient = createClient({
+      modules: { items },
+      auth: OAuthStrategy({ clientId })
+    });
+  } else {
+    console.warn('Wix client ID missing. Add VITE_WIX_CLIENT_ID to your .env file.');
+  }
+} catch (err) {
+  console.error('Failed to initialize Wix client:', err);
+}
 
 /**
  * Convert any common Wix CMS image field shape into a public https URL.
- * Handles: https strings, wix:image:// strings, and image objects.
  */
 function resolveWixImage(value) {
   if (!value) return '';
 
-  // Already a usable web URL
   if (typeof value === 'string' && /^https?:\/\//i.test(value)) {
     return value;
   }
 
-  // Object forms returned by some CMS / media responses
   if (typeof value === 'object') {
     if (typeof value.url === 'string' && /^https?:\/\//i.test(value.url)) {
       return value.url;
     }
-    // Prefer nested media identifiers
     return resolveWixImage(value.src || value.id || value.fileUrl || value.uri || '');
   }
 
   if (typeof value !== 'string') return '';
 
-  // Manual parse for wix:image://v1/<fileId>/<filename>#...
   if (value.startsWith('wix:image://v1/')) {
     const withoutProtocol = value.replace('wix:image://v1/', '');
     const fileId = withoutProtocol.split('/')[0].split('#')[0];
-    if (fileId) {
-      return `https://static.wixstatic.com/media/${fileId}`;
-    }
+    if (fileId) return `https://static.wixstatic.com/media/${fileId}`;
   }
 
-  // Legacy image:// prefix
   if (value.startsWith('image://v1/')) {
     const fileId = value.replace('image://v1/', '').split('/')[0].split('#')[0];
-    if (fileId) {
-      return `https://static.wixstatic.com/media/${fileId}`;
-    }
+    if (fileId) return `https://static.wixstatic.com/media/${fileId}`;
   }
 
-  // Official SDK helper as a final fallback
   try {
     const result = media.getImageUrl(value);
     if (result?.url) return result.url;
   } catch {
-    // ignore and fall through
+    // ignore
   }
 
   return '';
@@ -81,6 +81,8 @@ function setImageSrc(elementId, imageValue) {
 }
 
 async function loadHomepageData() {
+  if (!wixClient) return;
+
   try {
     const response = await wixClient.items.query('home_editables').find();
 
@@ -91,12 +93,6 @@ async function loadHomepageData() {
 
     const data = response.items[0];
 
-    // Debug: inspect image fields in DevTools Console after refresh (do not paste these by hand)
-    console.log('Wix CMS item keys:', Object.keys(data));
-    console.log('Wix CMS aboutImage raw:', data.aboutImage);
-    console.log('Wix CMS bannerImage raw:', data.bannerImage);
-
-    // --- HERO SECTION ---
     if (data.heroTitle) {
       const el = document.getElementById('hero-title');
       if (el) el.textContent = data.heroTitle;
@@ -107,14 +103,12 @@ async function loadHomepageData() {
       if (descEl) descEl.textContent = data.heroDescription;
     }
 
-    // Support a few common field-key variants from the CMS
     const bannerValue = data.bannerImage || data.banner_image || data.banner;
     if (bannerValue) {
       const ok = setBackgroundImage('banner-image', bannerValue);
       if (!ok) console.warn('Wix CMS: could not resolve banner image', bannerValue);
     }
 
-    // --- ABOUT SECTION ---
     if (data.aboutTitle) {
       const el = document.getElementById('about_title');
       if (el) el.textContent = data.aboutTitle;
@@ -130,7 +124,6 @@ async function loadHomepageData() {
       if (!ok) console.warn('Wix CMS: could not resolve about image', aboutValue);
     }
 
-    // --- QUOTE ---
     if (data.quoteText) {
       const el = document.getElementById('quote-text');
       if (el) el.textContent = data.quoteText;
@@ -144,7 +137,6 @@ async function loadHomepageData() {
       if (el) el.textContent = data.quoteRole;
     }
 
-    // --- IMPACT DASHBOARD ---
     if (data.updated) {
       const el = document.getElementById('updated');
       if (el) el.textContent = `Updated ${data.updated}`;
@@ -166,7 +158,6 @@ async function loadHomepageData() {
       if (el) el.textContent = data.yearsOfService;
     }
 
-    // --- CLOSING STATEMENT ---
     if (data.closingStatement) {
       const el = document.getElementById('closing-statement');
       if (el) el.innerHTML = data.closingStatement;
@@ -176,4 +167,86 @@ async function loadHomepageData() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', loadHomepageData);
+function setVolunteerFormStatus(message, isError = false) {
+  const statusEl = document.getElementById('volunteer-form-status');
+  if (!statusEl) return;
+  statusEl.textContent = message;
+  statusEl.classList.toggle('text-apple-red', isError);
+  statusEl.classList.toggle('text-apple-dark', !isError);
+}
+
+async function handleFormSubmit(event) {
+  event.preventDefault();
+
+  const form = event.currentTarget;
+  const submitBtn = form.querySelector('[type="submit"]');
+
+  const firstname = document.getElementById('firstname')?.value?.trim() || '';
+  const lastname = document.getElementById('lastname')?.value?.trim() || '';
+  const email = document.getElementById('email')?.value?.trim() || '';
+  const phonenumber = document.getElementById('phonenumber')?.value?.trim() || '';
+
+  if (!firstname || !lastname || !email) {
+    setVolunteerFormStatus('Please fill in first name, last name, and email.', true);
+    return;
+  }
+
+  const formData = { firstname, lastname, email, phonenumber };
+
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.value = 'Sending...';
+    if (submitBtn.tagName === 'BUTTON') submitBtn.textContent = 'Sending...';
+  }
+  setVolunteerFormStatus('Sending your volunteer request...');
+
+  try {
+    const response = await fetch('https://www.chipnaway.com/_functions/sendEmail', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+
+    let result = null;
+    try {
+      result = await response.json();
+    } catch {
+      result = null;
+    }
+
+    if (response.ok && (result?.success !== false)) {
+      setVolunteerFormStatus('Thanks! Your volunteer request was sent.');
+      form.reset();
+    } else {
+      const errorMsg = result?.error || `Request failed (${response.status}). Please try again.`;
+      setVolunteerFormStatus(errorMsg, true);
+      console.error('Volunteer form error:', result || response.statusText);
+    }
+  } catch (err) {
+    console.error('Network or fetch error:', err);
+    setVolunteerFormStatus(
+      'Could not reach the server. If you are on localhost, the Wix function may be blocking CORS.',
+      true
+    );
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.value = 'Submit';
+      if (submitBtn.tagName === 'BUTTON') submitBtn.textContent = 'Submit';
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Homepage CMS (no-op on pages without those elements)
+  loadHomepageData();
+
+  // Volunteer form — always bind when present
+  const volunteerForm = document.getElementById('volunteer-form');
+  if (volunteerForm) {
+    volunteerForm.addEventListener('submit', handleFormSubmit);
+    console.log('Volunteer form submit handler attached');
+  }
+});

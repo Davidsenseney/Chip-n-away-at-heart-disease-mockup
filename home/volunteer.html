@@ -9,7 +9,8 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <!-- Shared JavaScript reference -->
-    <script src="javaScript.js" defer></script>
+    <script type="module" src="javaScript.js" defer></script>
+    <script type="module" src="wixheader.js" defer></script>
     
     <!-- Resource for live map -->
     <link
@@ -69,28 +70,32 @@
                     Stay connected with Chip ‘N Away at Heart Disease on <a class="volunteer-blue-link" href="https://www.facebook.com/ChipNAwayatHeartDisease/" target="_blank"> Facebook</a> and <a class="volunteer-blue-link" href="https://www.instagram.com/chipawayheartdisease" target="_blank">Instagram</a> for updates, events, and community health resources.</p>
 
                 
-                <form class="mt-6 space-y-3 text-left chip-card-solid"> 
+                <form id="volunteer-form" class="mt-6 space-y-3 text-left chip-card-solid"> 
                     <div>
-                    <label class="block font-heading font-bold text-apple-dark mb-1" for="fname"> First name: </label>
-                    <input class="w-full border border-gray-400 bg-white p-2 rounded" type="text" id="fname" name="fname">
+                    <label class="block font-heading font-bold text-apple-dark mb-1" for="firstname"> First name: </label>
+                    <input class="w-full border border-gray-400 bg-white p-2 rounded" type="text" id="firstname" name="firstname" required>
                     </div>
 
                     <div>
-                    <label class="block font-heading font-bold text-apple-dark mb-1" for="lname"> Last name</label>
-                    <input class="w-full border border-gray-400 bg-white p-2 rounded" type="text" id="lname" name="lname">
+                    <label class="block font-heading font-bold text-apple-dark mb-1" for="lastname"> Last name</label>
+                    <input class="w-full border border-gray-400 bg-white p-2 rounded" type="text" id="lastname" name="lastname" required>
                     </div>
 
                     <div>
                     <label class="block font-heading font-bold text-apple-dark mb-1" for="email">Email address: </label>
-                    <input class="w-full border border-gray-400 bg-white p-2 rounded" type="email" id="email" name="email">
+                    <input class="w-full border border-gray-400 bg-white p-2 rounded" type="email" id="email" name="email" required>
                     </div>
 
                     <div>
-                    <label class="block font-heading font-bold text-apple-dark mb-1" for="pnumber"> Phone number: </label>
-                    <input class="w-full border border-gray-400 bg-white p-2 rounded" type="text" id="pnumber" name="pnumber">
+                    <label class="block font-heading font-bold text-apple-dark mb-1" for="phonenumber"> Phone number: </label>
+                    <input class="w-full border border-gray-400 bg-white p-2 rounded" type="text" id="phonenumber" name="phonenumber">
                     </div>
 
-                    <input class="w-full chip-btn-primary mt-4 cursor-pointer text-center" type="submit" value="Submit">
+                    <p id="volunteer-form-status" class="text-sm font-medium min-h-[1.25rem]" aria-live="polite"></p>
+
+                    <button type="submit" class="w-full chip-btn-primary mt-4 cursor-pointer text-center">
+                        Submit
+                    </button>
                 </form>
 
             </div>
