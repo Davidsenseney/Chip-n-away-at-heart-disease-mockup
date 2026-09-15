@@ -966,6 +966,7 @@ html {
     width: min(72rem, calc(100% - 2rem));
     margin: 0 auto;
     text-align: center;
+    filter: drop-shadow(0 10px 24px rgba(17, 24, 39, 0.18));
 }
 
 .volunteer-banner-content p.lead {
@@ -988,6 +989,35 @@ html {
     justify-content: center;
     gap: 1rem;
     margin-top: 1.75rem;
+}
+
+@media (max-width: 768px) {
+    .volunteer-banner-content {
+        width: min(72rem, calc(100% - 1.5rem));
+    }
+
+    .volunteer-banner-content .chip-title-banner {
+        font-size: 1rem;
+        padding: 0.55rem 1rem;
+        line-height: 1.25;
+    }
+
+    .volunteer-banner-content p.lead {
+        margin-top: 0.75rem;
+        font-size: 0.95rem;
+        line-height: 1.45;
+        padding: 0.55rem 0.85rem;
+        border-radius: 14px;
+    }
+
+    .volunteer-hero-actions {
+        margin-top: 1rem;
+    }
+
+    .volunteer-hero-actions .chip-btn-primary {
+        font-size: 0.85rem;
+        padding: 0.65rem 1.1rem;
+    }
 }
 
 #volunteer-signup,
@@ -1602,8 +1632,9 @@ html {
     pointer-events: none;
 }
 
-/* Blog-style accent rule above the Prevention heading. */
-#Prevention .section-accent-rule {
+/* Blog-style accent rule above section headings. */
+#Prevention .section-accent-rule,
+#events .section-accent-rule {
     display: block;
     width: 80px;
     height: 4px;
@@ -1912,12 +1943,19 @@ html {
 
 /* Volunteer hero overrides .wellnessbanner after it so the 30rem card gap is not applied */
 .wellnessbanner.volunteer-banner {
-    background-image: url('images/Event 2.jpg');
-    background-position: center 40%;
+    background-image:
+        linear-gradient(rgba(247, 252, 239, 0.25), rgba(247, 252, 239, 0.28)),
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.55), transparent 35%),
+        linear-gradient(120deg, rgba(120, 160, 103, 0.75), rgba(74, 124, 70, 0.56)),
+        url('images/Event 2.jpg');
+    background-position: center, center, center, center 40%;
+    background-size: cover, cover, cover, cover;
+    background-repeat: no-repeat;
     margin-bottom: 0;
     pointer-events: auto;
     align-items: center;
     justify-content: center;
+    min-height: 80vh;
     padding-top: 7rem;
     padding-bottom: 6rem;
 }
@@ -1928,7 +1966,7 @@ html {
         padding-top: 6rem;
         padding-bottom: 4rem;
         align-items: center;
-        min-height: 70vh;
+        min-height: 80vh;
     }
 }
 

@@ -555,6 +555,45 @@ const App = {
             .openPopup();
     },
 
+    /** Auto-advances volunteer page carousels; pauses while hovered */
+    initVolunteerCarousels: function() {
+        const carousels = [
+            { id: 'carousel-benefits', intervalMs: 4500, startDelayMs: 0 },
+            { id: 'carousel-impact', intervalMs: 4500, startDelayMs: 2200 }
+        ];
+
+        carousels.forEach(({ id, intervalMs, startDelayMs }) => {
+            const carousel = document.getElementById(id);
+            if (!carousel || carousel.children.length < 2) return;
+
+            const frame = carousel.closest('.chip-image-framed') || carousel.parentElement;
+            let timer = null;
+
+            const start = () => {
+                if (timer) return;
+                timer = window.setInterval(() => {
+                    if (typeof window.moveSlide === 'function') {
+                        window.moveSlide(id, 1);
+                    }
+                }, intervalMs);
+            };
+
+            const stop = () => {
+                if (!timer) return;
+                window.clearInterval(timer);
+                timer = null;
+            };
+
+            window.setTimeout(start, startDelayMs);
+            if (frame) {
+                frame.addEventListener('mouseenter', stop);
+                frame.addEventListener('mouseleave', start);
+                frame.addEventListener('focusin', stop);
+                frame.addEventListener('focusout', start);
+            }
+        });
+    },
+
     /** Initializes the Swiper Slider */
     initSwiper: function() {
         if (typeof Swiper === 'undefined') return;
@@ -1348,6 +1387,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Step 3: Initialize modular page features (they will self-exit if not needed)
     safe(() => App.initContactForm());
     safe(() => App.initMap());
+    safe(() => App.initVolunteerCarousels());
     safe(() => App.initSwiper());
     safe(() => App.initImpactCounters());
 
