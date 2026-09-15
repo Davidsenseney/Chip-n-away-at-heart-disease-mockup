@@ -957,6 +957,47 @@ html {
 .volunteer-blue-link:hover::after {
     transform: scaleX(1);
 }
+
+/* Volunteer hero copy + lead (background overrides live after .wellnessbanner) */
+.volunteer-banner-content {
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+    width: min(72rem, calc(100% - 2rem));
+    margin: 0 auto;
+    text-align: center;
+}
+
+.volunteer-banner-content p.lead {
+    max-width: 760px;
+    margin: 1.1rem auto 0;
+    font-size: clamp(1.1rem, 2vw, 1.45rem);
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--color-apple-dark);
+    background: rgba(247, 252, 239, 0.76);
+    display: inline-block;
+    padding: 0.75rem 1.1rem;
+    border-radius: 18px;
+    box-shadow: 0 20px 40px rgba(17, 24, 39, 0.12);
+}
+
+.volunteer-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.75rem;
+}
+
+#volunteer-signup,
+#why-volunteer,
+#impact,
+#events {
+    position: relative;
+    z-index: 5;
+}
+
 /* =========================================
    9. wellness styles
    ========================================= */
@@ -1866,6 +1907,28 @@ html {
 
 
 
+    }
+}
+
+/* Volunteer hero overrides .wellnessbanner after it so the 30rem card gap is not applied */
+.wellnessbanner.volunteer-banner {
+    background-image: url('images/Event 2.jpg');
+    background-position: center 40%;
+    margin-bottom: 0;
+    pointer-events: auto;
+    align-items: center;
+    justify-content: center;
+    padding-top: 7rem;
+    padding-bottom: 6rem;
+}
+
+@media (max-width: 1024px) {
+    .wellnessbanner.volunteer-banner {
+        margin-bottom: 0;
+        padding-top: 6rem;
+        padding-bottom: 4rem;
+        align-items: center;
+        min-height: 70vh;
     }
 }
 
