@@ -24,6 +24,8 @@
   "dependencies": {
     "@tailwindcss/cli": "^4.3.3",
     "@wix/data": "^1.0.519",
+    "@wix/ecom": "^1.0.2514",
+    "@wix/redirects": "^1.0.129",
     "@wix/sdk": "^1.21.16"
   }
 }
