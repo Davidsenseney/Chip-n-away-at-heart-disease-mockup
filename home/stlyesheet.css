@@ -143,6 +143,23 @@ html {
     text-align: center;
 }
 
+/* Accordion chevrons: keep them inside the title, centered on its right edge */
+#risk-assessment .accordion-item > button.chip-title-banner {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+#risk-assessment .accordion-chevron {
+    position: absolute;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+}
+#risk-assessment .accordion-item.is-open .accordion-chevron {
+    transform: translateY(-50%) rotate(180deg);
+}
+
 /* C. The Title Banner (Used for the "Before the Whistle Blows" heading) */
 .chip-title-banner {
     display: inline-block;
