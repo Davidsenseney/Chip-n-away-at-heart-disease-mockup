@@ -1,0 +1,27 @@
+{
+  "name": "chip-n-away-at-heart-disease-mockup",
+  "version": "1.0.0",
+  "description": "This README documents the **Wellness** portion of the mockup: **Whistle‑Stop Wellness** and the interactive features added to `home/wellness.html`.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Davidsenseney/Chip-n-away-at-heart-disease-mockup.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Davidsenseney/Chip-n-away-at-heart-disease-mockup/issues"
+  },
+  "homepage": "https://github.com/Davidsenseney/Chip-n-away-at-heart-disease-mockup#readme",
+  "devDependencies": {
+    "vite": "^8.3.0"
+  },
+  "dependencies": {
+    "@wix/data": "^1.0.519",
+    "@wix/sdk": "^1.21.16"
+  }
+}
