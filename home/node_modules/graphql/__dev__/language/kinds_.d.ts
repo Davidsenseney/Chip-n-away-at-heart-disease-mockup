@@ -1,1 +1,0 @@
-export * from '../../language/kinds_.js';

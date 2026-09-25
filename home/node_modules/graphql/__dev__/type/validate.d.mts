@@ -1,1 +1,0 @@
-export * from '../../type/validate.mjs';

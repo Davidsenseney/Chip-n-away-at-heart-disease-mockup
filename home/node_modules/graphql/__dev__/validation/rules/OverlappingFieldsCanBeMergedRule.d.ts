@@ -1,1 +1,0 @@
-export * from '../../../validation/rules/OverlappingFieldsCanBeMergedRule.js';

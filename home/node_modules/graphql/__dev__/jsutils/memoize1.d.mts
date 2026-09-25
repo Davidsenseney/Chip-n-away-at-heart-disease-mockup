@@ -1,1 +1,0 @@
-export * from '../../jsutils/memoize1.mjs';
