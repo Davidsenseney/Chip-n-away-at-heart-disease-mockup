@@ -6,6 +6,8 @@ import { fileURLToPath } from 'node:url';
 const rootDir = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
+  // Relative asset paths so the build works under a GitHub Pages sub-path.
+  base: './',
   plugins: [tailwindcss()],
   build: {
     rollupOptions: {
