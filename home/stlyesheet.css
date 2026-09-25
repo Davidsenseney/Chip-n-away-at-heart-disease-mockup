@@ -93,6 +93,13 @@ html {
     }
 }
 
+/* Ultra-wide: leave one card-width of empty space on the right so the card sits one width left */
+@media (min-width: 1440px) {
+    .chip-hero-layout {
+        justify-self: end;
+    }
+}
+
 /* Standard page container to keep content centered */
 .chip-container {
     max-width: 64rem; /* 1024px max width */
