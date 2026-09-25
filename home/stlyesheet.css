@@ -167,6 +167,19 @@ html {
     transition: all 0.3s ease;
     border: 2px solid var(--color-apple-red);
 }
+
+/* Smaller pill for the header nav (Donate / Volunteer) so the whistle can sit centered */
+.chip-btn-primary.chip-btn-nav {
+    padding: 0.4rem 1rem;
+}
+
+/* Phones: Volunteer is in the hamburger menu, so hide the header pill to make room.
+   (Plain CSS because .chip-btn-primary's display would override Tailwind's `hidden`.) */
+@media (max-width: 767px) {
+    .chip-btn-nav-volunteer {
+        display: none;
+    }
+}
 .chip-btn-primary:hover {
     background-color: var(--color-apple-red-hover);
     border-color: var(--color-apple-red-hover);
@@ -2198,6 +2211,72 @@ body.chip-modal-open {
 .chip-btn-paypal:focus-visible {
     outline: 3px solid rgba(0, 156, 222, 0.5);
     outline-offset: 2px;
+}
+
+/* Donation modal: amount presets + frequency select (Wix checkout hand-off) */
+.chip-modal-form[hidden] {
+    display: none;
+}
+
+.chip-field-label {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.chip-amount-options {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+}
+
+.chip-amount-btn {
+    padding: 0.6rem 0.25rem;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-apple-dark);
+    background-color: #ffffff;
+    border: 2px solid rgba(26, 46, 5, 0.2);
+    border-radius: 0.65rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.chip-amount-btn:hover {
+    border-color: var(--color-apple-red);
+}
+
+.chip-amount-btn.is-active {
+    color: #ffffff;
+    background-color: var(--color-apple-red);
+    border-color: var(--color-apple-red);
+}
+
+.chip-amount-btn:focus-visible,
+.chip-field select:focus-visible {
+    outline: none;
+    border-color: var(--color-apple-red);
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.25);
+}
+
+.chip-field select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.65rem 0.85rem;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    color: var(--color-apple-dark);
+    background-color: #ffffff;
+    border: 1px solid rgba(26, 46, 5, 0.2);
+    border-radius: 0.65rem;
+}
+
+.chip-modal-submit:disabled {
+    opacity: 0.7;
+    cursor: wait;
 }
 
 .chip-modal-note {

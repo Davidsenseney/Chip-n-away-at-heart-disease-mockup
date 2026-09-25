@@ -1,26 +1,5 @@
-import { createClient, OAuthStrategy, media } from '@wix/sdk';
-import { items } from '@wix/data';
-
-
-// Vite only exposes vars prefixed with VITE_
-const clientId =
-  import.meta.env.VITE_WIX_CLIENT_ID ||
-  import.meta.env.VITE_CLIENT_ID ||
-  import.meta.env.CLIENT_ID;
-
-let wixClient = null;
-try {
-  if (clientId) {
-    wixClient = createClient({
-      modules: { items },
-      auth: OAuthStrategy({ clientId })
-    });
-  } else {
-    console.warn('Wix client ID missing. Add VITE_WIX_CLIENT_ID to your .env file.');
-  }
-} catch (err) {
-  console.error('Failed to initialize Wix client:', err);
-}
+import { media } from '@wix/sdk';
+import { wixClient, wixFunctionUrl } from './wixClient.js';
 
 /**
  * Convert any common Wix CMS image field shape into a public https URL.
@@ -202,7 +181,7 @@ async function handleFormSubmit(event) {
   setVolunteerFormStatus('Sending your volunteer request...');
 
   try {
-    const response = await fetch('https://www.chipnaway.com/_functions/sendEmail', {
+    const response = await fetch(wixFunctionUrl('sendEmail'), { // TODO(WIX): needs post_sendEmail + options_sendEmail (CORS) in backend/http-functions.js
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

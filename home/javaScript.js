@@ -9,51 +9,56 @@
 // Production Tailwind v4 (Vite + @tailwindcss/vite). Brand tokens live in src/input.css @theme.
 import './src/input.css';
 
+// Images used inside the JS templates below must be imported so Vite copies
+// them into dist/ (it can't see paths written inside template strings).
+import chipLogoUrl from './images/chiplogo.png';
+import whistleGraphicUrl from './images/whistle_graphic.png';
+import cynthiaHeadshotUrl from './images/cynthiamaloneheadshot(1).avif';
+
 // ==========================================================================
 // 2. SHARED TEMPLATES
 // ==========================================================================
 const sharedHeaderTemplate = `
    <nav class="fixed top-0 left-0 w-full z-[9999] bg-apple-dark/95 backdrop-blur-md border-b border-gray-800 shadow-lg" style="position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; z-index: 9999 !important;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-24 relative">
-                <div class="flex-1 flex items-center justify-start">
+            <div class="flex justify-between items-center gap-2 h-24 relative xl:grid xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] xl:grid-rows-1">                <div class="flex-1 min-w-0 flex items-center justify-start">
                     <a href="index.html" class="group flex-shrink-0 flex items-center gap-2 lg:gap-3 transition-colors duration-200">
                         <div class="w-[80px] h-[80px] rounded-full bg-apple-panel flex items-center justify-center border-2 border-apple-red overflow-hidden">                        
-                            <img src="images/chiplogo.png" alt="Chip'n Away Logo" class="w-full h-full object-contain p-1">
+                            <img src="${chipLogoUrl}" alt="Chip'n Away Logo" class="w-full h-full object-contain p-1">
                         </div>
                         <span class="font-heading font-bold text-xl lg:text-2xl tracking-wider uppercase text-white group-hover:text-apple-red transition-colors duration-200 hidden sm:block">Chip'n Away</span>
                     </a>
-                    <div class="hidden md:flex space-x-4 lg:space-x-8 ml-auto mr-[20px]">
+                    <div class="hidden xl:flex space-x-6 ml-auto mr-6">
                         <a href="index.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Home</a>
                         <a href="community.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Community</a>
                     </div>
                 </div>
 
-                <div class="flex-shrink-0 flex items-center justify-center z-50 px-2 lg:px-4">
-                    <a href="coaches.html" class="group flex items-center justify-center w-[80px] lg:w-[100px] transform transition-transform duration-300 hover:scale-105 translate-y-[10px] lg:translate-y-[20px]">
-                        <img src="images/whistle_graphic.png" alt="whistle_graphic" class="w-full h-auto object-contain drop-shadow-2xl">
+                <div class="flex-shrink-0 flex items-center justify-center z-50 px-1 sm:px-2 lg:px-4">
+                    <a href="coaches.html" class="group flex items-center justify-center w-[64px] sm:w-[80px] lg:w-[100px] transform transition-transform duration-300 hover:scale-105 translate-y-[10px] lg:translate-y-[20px]">
+                        <img src="${whistleGraphicUrl}" alt="whistle_graphic" class="w-full h-auto object-contain drop-shadow-2xl">
                     </a>
                 </div>
 
-                <div class="flex-1 flex items-center justify-end">
-                    <div class="hidden md:flex space-x-4 lg:space-x-8 mr-auto ml-[10px] lg:ml-[20px]">
+                <div class="flex-1 min-w-0 flex items-center justify-end">
+                    <div class="hidden xl:flex space-x-6 mr-auto ml-6">
                         <a href="blog.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Blog</a>
-                        <a href="wellness.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm mr-4">Wellness</a>
+                        <a href="wellness.html" class="text-white hover:text-apple-red transition-colors duration-200 font-medium uppercase tracking-wider text-xs lg:text-sm">Wellness</a>
                     </div>
 
-                    <div class="flex items-center gap-3 lg:gap-4 ml-3 lg:ml-6">
-                        <button type="button" data-donate-open class="chip-btn-primary px-3 py-1.5 text-xs lg:text-sm whitespace-nowrap">
+                    <div class="flex items-center gap-2 lg:gap-3 ml-auto xl:ml-0">
+                        <button type="button" data-donate-open class="chip-btn-primary chip-btn-nav text-xs lg:text-sm whitespace-nowrap">
                             Donate
                         </button>
-                        <a href="volunteer.html" class="chip-btn-primary px-3 py-1.5 text-xs lg:text-sm whitespace-nowrap">
+                        <a href="volunteer.html" class="chip-btn-primary chip-btn-nav chip-btn-nav-volunteer text-xs lg:text-sm whitespace-nowrap">
                             Volunteer
                         </a>
-                        <button id="nav-wellness-pill" type="button" class="hidden md:inline-flex items-center gap-2 px-3 py-2 rounded-full bg-apple-panel/90 border border-white/10 text-apple-dark hover:bg-apple-panel transition-colors shadow-sm">
+                        <button id="nav-wellness-pill" type="button" aria-label="Chips banked this week" title="Chips banked this week" class="hidden xl:inline-flex items-center gap-2 px-3 py-2 rounded-full bg-apple-panel/90 border border-white/10 text-apple-dark hover:bg-apple-panel transition-colors shadow-sm">
                             <i data-lucide="timer" class="w-4 h-4 text-apple-red"></i>
-                            <span class="text-xs font-semibold uppercase tracking-widest">Chips</span>
+                            <span class="sr-only">Chips</span>
                             <span id="nav-wellness-count" class="min-w-[1.5rem] text-center text-xs font-bold px-2 py-0.5 rounded-full bg-white/80 border border-apple-dark/10">0</span>
                         </button>
-                        <button id="mobile-menu-btn" class="md:hidden text-white hover:text-apple-red focus:outline-none">
+                        <button id="mobile-menu-btn" class="xl:hidden text-white hover:text-apple-red focus:outline-none">
                             <i data-lucide="menu" class="w-8 h-8"></i>
                         </button>
                     </div>
@@ -62,7 +67,7 @@ const sharedHeaderTemplate = `
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-apple-nav border-b border-gray-700">
+        <div id="mobile-menu" class="hidden xl:hidden bg-apple-nav border-b border-gray-700">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
                 <a href="index.html" class="block px-3 py-2 text-base font-medium text-white hover:text-apple-red">Home</a>
                 <button type="button" data-donate-open class="block w-full px-3 py-2 text-base font-medium text-white hover:text-apple-red bg-transparent border-0 cursor-pointer">Donate</button>
@@ -155,7 +160,7 @@ const donationModalTemplate = `
             <button type="button" class="chip-modal-close" id="donation-close" aria-label="Close donation form">&times;</button>
 
             <div class="chip-modal-avatar">
-                <img src="images/cynthiamaloneheadshot(1).avif" alt="cynthia malone headshot">
+                <img src="${cynthiaHeadshotUrl}" alt="cynthia malone headshot">
             </div>
 
             <h2 class="chip-modal-title" id="donation-modal-title">Chip In Today</h2>
@@ -166,51 +171,40 @@ const donationModalTemplate = `
             <form class="chip-modal-form" id="donation-form" novalidate>
 
                 <div class="chip-field">
-                    <label for="donation-amount">Donation Amount (USD)</label>
+                    <span class="chip-field-label" id="donation-preset-label">Choose an amount (USD)</span>
+                    <div class="chip-amount-options" role="group" aria-labelledby="donation-preset-label">
+                        <button type="button" class="chip-amount-btn" data-amount="25">$25</button>
+                        <button type="button" class="chip-amount-btn" data-amount="50">$50</button>
+                        <button type="button" class="chip-amount-btn" data-amount="100">$100</button>
+                        <button type="button" class="chip-amount-btn" data-amount="250">$250</button>
+                    </div>
+                </div>
+
+                <div class="chip-field">
+                    <label for="donation-amount">Or enter an amount</label>
                     <input type="text" id="donation-amount" name="donation-amount" inputmode="decimal"
                            placeholder="50.00" aria-describedby="donation-amount-error">
                     <p class="chip-field-error" id="donation-amount-error"></p>
                 </div>
 
                 <div class="chip-field">
-                    <label for="cardholder-name">Cardholder Name</label>
-                    <input type="text" id="cardholder-name" name="cardholder-name" autocomplete="cc-name"
-                           placeholder="Jordan Malone" aria-describedby="cardholder-name-error">
-                    <p class="chip-field-error" id="cardholder-name-error"></p>
-                </div>
-
-                <div class="chip-field">
-                    <label for="card-number">Card Number</label>
-                    <input type="text" id="card-number" name="card-number" inputmode="numeric" autocomplete="cc-number"
-                           placeholder="4242 4242 4242 4242" maxlength="23" aria-describedby="card-number-error">
-                    <p class="chip-field-error" id="card-number-error"></p>
-                </div>
-
-                <div class="chip-field-row">
-                    <div class="chip-field">
-                        <label for="card-expiry">Expiration Date (MM/YY)</label>
-                        <input type="text" id="card-expiry" name="card-expiry" inputmode="numeric" autocomplete="cc-exp"
-                               placeholder="12/30" maxlength="5" aria-describedby="card-expiry-error">
-                        <p class="chip-field-error" id="card-expiry-error"></p>
-                    </div>
-                    <div class="chip-field">
-                        <label for="card-cvv">CVV</label>
-                        <input type="text" id="card-cvv" name="card-cvv" inputmode="numeric" autocomplete="cc-csc"
-                               placeholder="123" maxlength="4" aria-describedby="card-cvv-error">
-                        <p class="chip-field-error" id="card-cvv-error"></p>
-                    </div>
+                    <label for="donation-frequency">How often?</label>
+                    <select id="donation-frequency" name="donation-frequency">
+                        <option value="ONE_TIME" selected>One time</option>
+                        <option value="MONTH">Monthly</option>
+                        <option value="YEAR">Yearly</option>
+                    </select>
                 </div>
 
                 <button type="submit" class="chip-btn-primary chip-modal-submit" id="donation-submit">
-                    Confirm Donation
+                    Continue to Secure Checkout
                 </button>
             </form>
 
-            <div class="chip-modal-divider"><span>or</span></div>
-
-            <button type="button" class="chip-btn-paypal" id="donation-paypal">
-                Donate with <strong>Pay</strong><em>Pal</em>
-            </button>
+            <p class="chip-modal-note">
+                You'll finish on our secure Wix checkout, where you can pay with PayPal or card.
+                We never see or store your payment details.
+            </p>
 
             <p class="chip-modal-status" id="donation-status" role="status" aria-live="polite"></p>
         </div>
@@ -340,7 +334,10 @@ const App = {
         window.setTimeout(() => layer.remove(), (longest + 0.5) * 1000);
     },
 
-    /** Initializes the demo Donation Modal (credit card + PayPal, no real processing) */
+    /**
+     * Donation modal: donor picks an amount + frequency, then we hand off to
+     * Wix-hosted checkout (see donate.js). No payment details are collected here.
+     */
     initDonationModal: function() {
         const overlay = document.getElementById('donation-modal');
         if (!overlay) return;
@@ -348,17 +345,15 @@ const App = {
         const dialog = overlay.querySelector('.chip-modal');
         const form = document.getElementById('donation-form');
         const closeBtn = document.getElementById('donation-close');
-        const paypalBtn = document.getElementById('donation-paypal');
+        const submitBtn = document.getElementById('donation-submit');
         const statusEl = document.getElementById('donation-status');
         const amountEl = document.getElementById('donation-amount');
-        const nameEl = document.getElementById('cardholder-name');
-        const numberEl = document.getElementById('card-number');
-        const expiryEl = document.getElementById('card-expiry');
-        const cvvEl = document.getElementById('card-cvv');
+        const frequencyEl = document.getElementById('donation-frequency');
+        const presetBtns = Array.from(overlay.querySelectorAll('.chip-amount-btn'));
+        const submitLabel = submitBtn.textContent.trim();
 
-        const FOCUSABLE = 'button, input, [href], select, textarea, [tabindex]:not([tabindex="-1"])';
+        const FOCUSABLE = 'button, input, select, [href], textarea, [tabindex]:not([tabindex="-1"])';
         let lastTrigger = null;
-        let closeTimer = null;
 
         const setError = (input, message) => {
             const errorEl = document.getElementById(`${input.id}-error`);
@@ -367,24 +362,31 @@ const App = {
             input.setAttribute('aria-invalid', message ? 'true' : 'false');
         };
 
-        const clearErrors = () => {
-            [amountEl, nameEl, numberEl, expiryEl, cvvEl].forEach(input => setError(input, ''));
+        const setBusy = (busy) => {
+            submitBtn.disabled = busy;
+            submitBtn.textContent = busy ? 'Opening checkout...' : submitLabel;
         };
 
-        const digitsOnly = (value) => value.replace(/\D/g, '');
+        const selectPreset = (value) => {
+            presetBtns.forEach(btn => {
+                const active = btn.dataset.amount === value;
+                btn.classList.toggle('is-active', active);
+                btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+            });
+        };
 
         const openModal = (trigger) => {
-            window.clearTimeout(closeTimer);
             lastTrigger = trigger || null;
             statusEl.textContent = '';
+            setBusy(false);
+            form.hidden = false;
             overlay.hidden = false;
             document.body.classList.add('chip-modal-open');
             document.getElementById('mobile-menu')?.classList.add('hidden');
-            amountEl.focus();
+            (presetBtns[0] || amountEl).focus();
         };
 
         const closeModal = () => {
-            window.clearTimeout(closeTimer);
             overlay.hidden = true;
             document.body.classList.remove('chip-modal-open');
             lastTrigger?.focus();
@@ -431,92 +433,56 @@ const App = {
             }
         });
 
-        numberEl.addEventListener('input', () => {
-            const groups = digitsOnly(numberEl.value).slice(0, 19).match(/.{1,4}/g);
-            numberEl.value = groups ? groups.join(' ') : '';
-        });
-
-        expiryEl.addEventListener('input', () => {
-            const digits = digitsOnly(expiryEl.value).slice(0, 4);
-            expiryEl.value = digits.length > 2 ? `${digits.slice(0, 2)}/${digits.slice(2)}` : digits;
-        });
-
-        cvvEl.addEventListener('input', () => {
-            cvvEl.value = digitsOnly(cvvEl.value).slice(0, 4);
+        presetBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                amountEl.value = btn.dataset.amount;
+                selectPreset(btn.dataset.amount);
+                setError(amountEl, '');
+            });
         });
 
         amountEl.addEventListener('input', () => {
             amountEl.value = amountEl.value.replace(/[^\d.]/g, '');
+            selectPreset(amountEl.value);
         });
 
-        const validate = () => {
-            clearErrors();
-            let firstInvalid = null;
-
-            const fail = (input, message) => {
-                setError(input, message);
-                firstInvalid = firstInvalid || input;
-            };
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            setError(amountEl, '');
+            statusEl.textContent = '';
 
             const amount = parseFloat(amountEl.value);
-            if (!amountEl.value.trim() || Number.isNaN(amount) || amount <= 0) {
-                fail(amountEl, 'Enter a donation amount greater than zero.');
+            if (!Number.isFinite(amount) || amount <= 0) {
+                setError(amountEl, 'Enter a donation amount greater than zero.');
+                amountEl.focus();
+                return;
             }
 
-            if (nameEl.value.trim().length < 2) {
-                fail(nameEl, 'Enter the name printed on the card.');
+            setBusy(true);
+            try {
+                // Loaded on demand so the Wix SDK only downloads when someone donates.
+                const { startDonation } = await import('./donate.js');
+                await startDonation({ amount, frequency: frequencyEl.value });
+                // On success the browser is already navigating to Wix checkout.
+            } catch (err) {
+                console.error('[Donate]', err);
+                statusEl.textContent = err?.message || 'Something went wrong. Please try again.';
+                setBusy(false);
             }
-
-            const cardDigits = digitsOnly(numberEl.value);
-            if (cardDigits.length < 13 || cardDigits.length > 19) {
-                fail(numberEl, 'Card number must be 13 to 19 digits.');
-            }
-
-            const expiryMatch = expiryEl.value.match(/^(\d{2})\/(\d{2})$/);
-            if (!expiryMatch) {
-                fail(expiryEl, 'Use the MM/YY format.');
-            } else {
-                const month = Number(expiryMatch[1]);
-                const year = 2000 + Number(expiryMatch[2]);
-                const now = new Date();
-                const endOfMonth = new Date(year, month, 0);
-                if (month < 1 || month > 12) {
-                    fail(expiryEl, 'Month must be between 01 and 12.');
-                } else if (endOfMonth < now) {
-                    fail(expiryEl, 'That card has expired.');
-                }
-            }
-
-            if (cvvEl.value.length < 3) {
-                fail(cvvEl, 'CVV must be 3 or 4 digits.');
-            }
-
-            if (firstInvalid) {
-                statusEl.textContent = '';
-                firstInvalid.focus();
-                return false;
-            }
-            return true;
-        };
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault(); // Demo only: never submit or navigate.
-            if (!validate()) return;
-
-            const amount = parseFloat(amountEl.value).toFixed(2);
-            statusEl.textContent = `Thank you! Your demo donation of $${amount} was recorded.`;
-            App.launchConfetti();
-            form.reset();
-            clearErrors();
-            closeTimer = window.setTimeout(closeModal, 2800);
         });
 
-        paypalBtn.addEventListener('click', (e) => {
-            e.preventDefault(); // Demo only: no redirect to PayPal.
-            clearErrors();
-            statusEl.textContent = 'PayPal demo - the external redirect is disabled in this mockup.';
+        // Returning from Wix checkout: ?donation=thanks&orderId=...
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('donation') === 'thanks') {
+            openModal(null);
+            form.hidden = true;
+            statusEl.textContent = 'Thank you! Your donation was received. A receipt is on its way to your email.';
             App.launchConfetti();
-        });
+            params.delete('donation');
+            params.delete('orderId');
+            const clean = window.location.pathname + (params.toString() ? `?${params}` : '') + window.location.hash;
+            window.history.replaceState(null, '', clean);
+        }
     },
 
     /** Initializes the Contact Form logic */
