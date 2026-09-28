@@ -38,6 +38,7 @@ jobs:
           VITE_WIX_CLIENT_ID: ${{ secrets.VITE_WIX_CLIENT_ID }}
           VITE_WIX_SITE_URL: ${{ secrets.VITE_WIX_SITE_URL }}
           VITE_WIX_DONATION_CAMPAIGN_ID: ${{ secrets.VITE_WIX_DONATION_CAMPAIGN_ID }}
+          VITE_FORMSPREE_ENDPOINT: ${{ secrets.VITE_FORMSPREE_ENDPOINT || secrets.FORMSPREE_ENDPOINT || secrets.FORMSPREE_URL }}
         run: npm run build
 
       - uses: actions/configure-pages@v5
