@@ -1,5 +1,5 @@
 import { media } from '@wix/sdk';
-import { wixClient, wixFunctionUrl } from './wixClient.js';
+import { wixClient } from './wixClient.js';
 
 /**
  * Convert any common Wix CMS image field shape into a public https URL.
@@ -173,6 +173,26 @@ async function handleFormSubmit(event) {
 
   const formData = { firstname, lastname, email, phonenumber };
 
+  const rawEndpoint = (
+    import.meta.env.VITE_FORMSPREE_ENDPOINT ||
+    import.meta.env.VITE_FORMSPREE_URL ||
+    import.meta.env.VITE_FORMSPREE_FORM_ID ||
+    ''
+  ).trim();
+
+  const endpoint = rawEndpoint.startsWith('http://') || rawEndpoint.startsWith('https://')
+    ? rawEndpoint
+    : (rawEndpoint ? `https://formspree.io/f/${rawEndpoint}` : '');
+
+  if (!endpoint || endpoint.endsWith('/YOUR_FORM_ID') || endpoint === 'YOUR_FORM_ID') {
+    setVolunteerFormStatus(
+      'Formspree endpoint is not configured. Please set VITE_FORMSPREE_ENDPOINT in your .env file.',
+      true
+    );
+    console.warn('[Formspree] VITE_FORMSPREE_ENDPOINT is missing or set to placeholder.');
+    return;
+  }
+
   if (submitBtn) {
     submitBtn.disabled = true;
     submitBtn.value = 'Sending...';
@@ -181,12 +201,16 @@ async function handleFormSubmit(event) {
   setVolunteerFormStatus('Sending your volunteer request...');
 
   try {
-    const response = await fetch(wixFunctionUrl('sendEmail'), { // TODO(WIX): needs post_sendEmail + options_sendEmail (CORS) in backend/http-functions.js
+    const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
       },
-      body: JSON.stringify(formData)
+      body: JSON.stringify({
+        ...formData,
+        _subject: 'New volunteer request'
+      })
     });
 
     let result = null;
@@ -196,18 +220,25 @@ async function handleFormSubmit(event) {
       result = null;
     }
 
-    if (response.ok && (result?.success !== false)) {
+    if (response.ok) {
       setVolunteerFormStatus('Thanks! Your volunteer request was sent.');
       form.reset();
     } else {
-      const errorMsg = result?.error || `Request failed (${response.status}). Please try again.`;
+      let errorMsg = 'Request failed. Please try again.';
+      if (result?.errors && Array.isArray(result.errors)) {
+        errorMsg = result.errors.map(err => err.message).join(', ');
+      } else if (result?.error) {
+        errorMsg = result.error;
+      } else {
+        errorMsg = `Request failed (${response.status}). Please try again.`;
+      }
       setVolunteerFormStatus(errorMsg, true);
       console.error('Volunteer form error:', result || response.statusText);
     }
   } catch (err) {
     console.error('Network or fetch error:', err);
     setVolunteerFormStatus(
-      'Could not reach the server. If you are on localhost, the Wix function may be blocking CORS.',
+      'Could not reach the server. Please check your connection and try again.',
       true
     );
   } finally {

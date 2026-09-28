@@ -1,6 +1,6 @@
 # Chip'n Away @ Heart Disease — Website
 
-Static multi-page site (Vite + Tailwind v4) running **headless on Wix**: the pages are our own HTML/CSS/JS, and Wix provides the backend — CMS content, the volunteer form's email function, and **donations through Wix Donations + Wix checkout**.
+Static multi-page site (Vite + Tailwind v4) running **headless on Wix**: the pages are our own HTML/CSS/JS, Wix provides CMS content and **donations through Wix Donations + Wix checkout**, and the volunteer form routes directly through **Formspree**.
 
 ## Run locally
 
@@ -27,15 +27,16 @@ Search the code for `TODO(WIX)` and `TODO(CAMPAIGN)` to find every spot.
 | `VITE_WIX_CLIENT_ID` | Headless OAuth client ID | Wix dashboard → **Settings → Development & integrations → Headless Settings** → create/copy the OAuth client | _TBD_ |
 | `VITE_WIX_SITE_URL` | Live site URL, no trailing slash | Currently defaults to `https://www.chipnaway.com` — confirm this is right | _TBD_ |
 | `VITE_WIX_DONATION_CAMPAIGN_ID` | ID of the Wix Donations campaign | Wix dashboard → **Donations** → open the campaign. The ID is a GUID (`xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`), usually visible in the campaign page's URL. **Verify this is the campaign ID and not the page/app ID.** | _TBD_ |
+| `VITE_FORMSPREE_ENDPOINT` | Formspree endpoint or form ID | Formspree dashboard → Forms → Form endpoint (`https://formspree.io/f/YOUR_FORM_ID` or just `YOUR_FORM_ID`) | _TBD_ |
 
 ### 2. Wix dashboard setup
 
 - **Headless OAuth client** created (gives `VITE_WIX_CLIENT_ID`).
 - **Allowed domains** on that client: `localhost` (for dev) **and** the domain the frontend is hosted on. Headless Settings → the client → Settings → *Allowed redirect domains*. Without this the redirect back from checkout fails.
--**Wix Donations** app installed and a **campaign** created. Decide whether it allows one-time, monthly, yearly (the modal offers all three; remove any the campaign doesn't allow from the `<select>` in `javaScript.js`).
+- **Wix Donations** app installed and a **campaign** created. Decide whether it allows one-time, monthly, yearly (the modal offers all three; remove any the campaign doesn't allow from the `<select>` in `javaScript.js`).
 - **Payments connected** — Wix dashboard → **Settings → Accept Payments**: connect **PayPal** (and optionally Wix Payments for cards). This is the nonprofit's account, so it's where the money lands.
 - **CMS collection `home_editables`** exists with read permission for *Anyone*. Fields used: `heroTitle`, `heroDescription`, `bannerImage`, `aboutTitle`, `aboutBody`, `aboutImage`, `quoteText`, `quoteAuthor`, `quoteRole`, `updated`, `livesReached`, `carShows`, `screeningsGiven`, `yearsOfService`, `closingStatement`.
-- **Backend function `sendEmail`** in the Wix site's `backend/http-functions.js`: needs `post_sendEmail` **and** `options_sendEmail`, both returning CORS headers (`Access-Control-Allow-Origin` set to our frontend's domain, `Access-Control-Allow-Methods: POST, OPTIONS`, `Access-Control-Allow-Headers: Content-Type`). Without the `options_` handler the browser blocks the request.
+- **Volunteer Form**: Form submissions are sent directly to **Formspree** via `VITE_FORMSPREE_ENDPOINT`.
 - home/dist/ when hosted needs to be added to allowed domains so redirects can come back to the website without getting blocked
 
 
