@@ -255,6 +255,17 @@
                                 <span class="text-gray-700">900 North Houston Road, Warner Robins, GA 31093</span>
                             </dd>
                         </dl>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-12 mx-auto w-full max-w-sm sm:max-w-full">
+                            <button class="chip-btn-primary py-4 text-base font-bold shadow-lg hover:-translate-y-1 transition-all text-center flex flex-col items-center justify-center leading-[1.2]" onclick="document.getElementById('driver-modal').removeAttribute('hidden'); document.body.classList.add('chip-modal-open');">
+                                <span>Driver</span>
+                                <span>Registration</span>
+                            </button>
+                            <button class="chip-btn-primary py-4 text-base font-bold shadow-lg hover:-translate-y-1 transition-all text-center flex flex-col items-center justify-center leading-[1.2]" onclick="document.getElementById('vendor-modal').removeAttribute('hidden'); document.body.classList.add('chip-modal-open');">
+                                <span>Vendor</span>
+                                <span>Registration</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -278,6 +289,207 @@
 
     <!-- Shared Footer insert -->
     <div id="shared-footer"></div>
+
+    <!-- Modals -->
+    <div class="chip-modal-overlay" id="driver-modal" hidden>
+        <div class="chip-modal" style="max-width: 600px; max-height: 90vh; padding: 0; overflow: hidden; display: flex; flex-direction: column;" role="dialog" aria-modal="true" aria-labelledby="driver-modal-title">
+            <!-- Header (sticky) -->
+            <div class="bg-white px-6 py-4 border-b border-gray-100 flex justify-between items-center rounded-t-[1.5rem] flex-shrink-0">
+                <div>
+                    <h2 class="chip-modal-title" id="driver-modal-title" style="margin-bottom: 0;">Driver Registration</h2>
+                    <p class="chip-modal-intro text-sm" style="margin-bottom: 0;">Cardiac Car Show - Saturday, November 7, 2026</p>
+                </div>
+                <button type="button" class="text-gray-400 hover:text-apple-red transition-colors text-3xl leading-none" onclick="document.getElementById('driver-modal').setAttribute('hidden', ''); document.body.classList.remove('chip-modal-open');" aria-label="Close form">&times;</button>
+            </div>
+            
+            <!-- Body (scrollable) -->
+            <div class="overflow-y-auto px-6 py-4">
+                <form class="chip-modal-form" id="driver-form">
+                    
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 border-b border-gray-100 pb-1">Personal Details</h4>
+                    
+                    <div class="chip-field">
+                        <label>Name:</label>
+                        <input type="text" name="name" placeholder="John Doe" required>
+                    </div>
+                    <div class="chip-field">
+                        <label>Address:</label>
+                        <input type="text" name="address" placeholder="123 Main St" required>
+                    </div>
+                    <div class="chip-field-row" style="grid-template-columns: 1fr 1fr 1fr;">
+                        <div class="chip-field">
+                            <label>City:</label>
+                            <input type="text" name="city" placeholder="Warner Robins" required>
+                        </div>
+                        <div class="chip-field">
+                            <label>State:</label>
+                            <input type="text" name="state" placeholder="GA" required>
+                        </div>
+                        <div class="chip-field">
+                            <label>Zip:</label>
+                            <input type="text" name="zip" placeholder="31093" required>
+                        </div>
+                    </div>
+                    <div class="chip-field-row">
+                        <div class="chip-field">
+                            <label>Phone #:</label>
+                            <input type="tel" name="phone" placeholder="(555) 123-4567" required>
+                        </div>
+                        <div class="chip-field">
+                            <label>Email Address:</label>
+                            <input type="email" name="email" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+                    <div class="chip-field">
+                        <label>Club (Optional):</label>
+                        <input type="text" name="club" placeholder="Corvette Club">
+                    </div>
+                    
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mt-6 mb-2 border-b border-gray-100 pb-1">Vehicle Details</h4>
+
+                    <div class="chip-field-row">
+                        <div class="chip-field">
+                            <label>Year:</label>
+                            <input type="text" name="vehicle_year" placeholder="1969" required>
+                        </div>
+                        <div class="chip-field">
+                            <label>Make:</label>
+                            <input type="text" name="vehicle_make" placeholder="Chevrolet" required>
+                        </div>
+                    </div>
+                    <div class="chip-field-row">
+                        <div class="chip-field">
+                            <label>Model:</label>
+                            <input type="text" name="vehicle_model" placeholder="Camaro" required>
+                        </div>
+                        <div class="chip-field">
+                            <label>Color:</label>
+                            <input type="text" name="vehicle_color" placeholder="Red" required>
+                        </div>
+                    </div>
+
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mt-6 mb-2 border-b border-gray-100 pb-1">Agreement</h4>
+                    
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 mt-2">
+                        <label class="flex items-start gap-3 cursor-pointer mb-2">
+                            <input type="checkbox" name="agreed_liability" value="Yes" required class="mt-1 w-5 h-5 text-apple-red rounded border-gray-300 focus:ring-apple-red flex-shrink-0 cursor-pointer">
+                            <span class="text-sm text-gray-800 font-bold mt-0.5">I agree to the Liability Disclaimer</span>
+                        </label>
+                        <details class="text-sm text-gray-600 ml-8">
+                            <summary class="cursor-pointer select-none font-medium hover:text-apple-red transition-colors">Read Full Disclaimer</summary>
+                            <p class="mt-2 leading-relaxed text-gray-500">
+                                By attending or participating in the CARDIAC Car Show, you acknowledge and voluntarily assume all risks associated with your attendance and participation, including but not limited to personal injury, property damage, or other loss. You hereby release and hold harmless all event organizers, sponsors, vendors, volunteers, and affiliated entities from any and all liability, claims, demands, or causes of action arising out of or related to your participation in the event.
+                            </p>
+                        </details>
+                    </div>
+
+                    <div class="chip-field mt-4">
+                        <label>Digital Signature (Type full name):</label>
+                        <input type="text" name="digital_signature" placeholder="John Doe" required>
+                    </div>
+
+                    <p id="driver-form-status" class="text-sm font-medium min-h-[1.25rem] mt-2" aria-live="polite"></p>
+                    <p id="vendor-form-status" class="text-sm font-medium min-h-[1.25rem] mt-2" aria-live="polite"></p>
+                    <!-- Footer / Submit -->
+                    <div class="pt-6 mt-2 pb-2">
+                        <button type="submit" class="chip-btn-primary w-full py-4 text-lg font-bold shadow-lg hover:-translate-y-1 transition-all">
+                            Complete Registration & Pay $25.00
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="chip-modal-overlay" id="vendor-modal" hidden>
+        <div class="chip-modal" style="max-width: 600px; max-height: 90vh; padding: 0; overflow: hidden; display: flex; flex-direction: column;" role="dialog" aria-modal="true" aria-labelledby="vendor-modal-title">
+            
+            <!-- Header (sticky) -->
+            <div class="bg-white px-6 py-4 border-b border-gray-100 flex justify-between items-center rounded-t-[1.5rem] flex-shrink-0">
+                <div>
+                    <h2 class="chip-modal-title" id="vendor-modal-title" style="margin-bottom: 0;">Vendor Registration</h2>
+                    <p class="chip-modal-intro text-sm" style="margin-bottom: 0;">Cardiac Car Show - Saturday, November 7, 2026</p>
+                </div>
+                <button type="button" class="text-gray-400 hover:text-apple-red transition-colors text-3xl leading-none" onclick="document.getElementById('vendor-modal').setAttribute('hidden', ''); document.body.classList.remove('chip-modal-open');" aria-label="Close form">&times;</button>
+            </div>
+            
+            <!-- Body (scrollable) -->
+            <div class="overflow-y-auto px-6 py-4">
+                
+                <!-- Info Banner -->
+                <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6 flex flex-col md:flex-row justify-between text-sm text-blue-800">
+                    <div>
+                        <strong>Event Hours:</strong> 9:00 a.m. to 3:00 p.m.<br>
+                        <strong>Set Up:</strong> 8:30 a.m. to 9:00 a.m.
+                    </div>
+                    <div class="mt-2 md:mt-0 text-left md:text-right">
+                        <strong>Provided by Venue:</strong><br>
+                        Table, Chairs, Electricity
+                    </div>
+                </div>
+
+                <form class="chip-modal-form" id="vendor-form">
+                    
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 border-b border-gray-100 pb-1">Business Details</h4>
+                    
+                    <div class="chip-field-row">
+                        <div class="chip-field">
+                            <label>Contact Name:</label>
+                            <input type="text" name="contact_name" placeholder="Jane Smith" required>
+                        </div>
+                        <div class="chip-field">
+                            <label>Company:</label>
+                            <input type="text" name="company" placeholder="Acme Health" required>
+                        </div>
+                    </div>
+                    
+                    <div class="chip-field">
+                        <label>Type of business:</label>
+                        <input type="text" name="business_type" placeholder="Medical Supplies, Wellness Coaching, etc." required>
+                    </div>
+
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mt-6 mb-2 border-b border-gray-100 pb-1">Contact Information</h4>
+
+                    <div class="chip-field">
+                        <label>Address:</label>
+                        <input type="text" name="address" placeholder="123 Business Rd, City, State, Zip" required>
+                    </div>
+                    <div class="chip-field-row">
+                        <div class="chip-field">
+                            <label>Phone:</label>
+                            <input type="tel" name="phone" placeholder="(555) 987-6543" required>
+                        </div>
+                        <div class="chip-field">
+                            <label>Email:</label>
+                            <input type="email" name="email" placeholder="jane@acme.com" required>
+                        </div>
+                    </div>
+
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mt-6 mb-2 border-b border-gray-100 pb-1">Agreement</h4>
+                    
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 mt-2">
+                        <label class="flex items-start gap-3 cursor-pointer mb-2">
+                            <input type="checkbox" name="agreed_vendor" value="Yes" required class="mt-1 w-5 h-5 text-apple-red rounded border-gray-300 focus:ring-apple-red flex-shrink-0 cursor-pointer">
+                            <span class="text-sm text-gray-800 font-bold mt-0.5">I agree to the Vendor Agreement</span>
+                        </label>
+                        <details class="text-sm text-gray-600 ml-8">
+                            <summary class="cursor-pointer select-none font-medium hover:text-apple-red transition-colors">Read Full Agreement</summary>
+                            <p class="mt-2 leading-relaxed text-gray-500">
+                                Vendors enjoy promoting their business and getting potential leads! You assume all risks associated with participation and hereby release Chip'n Away @ Heart Disease, event organizers, sponsors & venue from all liability associated with merchandise, property, and your physical condition.
+                            </p>
+                        </details>
+                    </div>
+
+                    <!-- Footer / Submit -->
+                    <div class="pt-6 mt-2 pb-2">
+                        <button type="submit" class="chip-btn-primary w-full py-4 text-lg font-bold shadow-lg hover:-translate-y-1 transition-all">
+                            Complete Registration & Pay $50.00
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script
         src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"

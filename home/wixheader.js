@@ -155,6 +155,91 @@ function setVolunteerFormStatus(message, isError = false) {
   statusEl.classList.toggle('text-apple-dark', !isError);
 }
 
+
+async function handleModalFormSubmit(event, subject, statusId, amount) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const submitBtn = form.querySelector('[type="submit"]');
+  const statusEl = document.getElementById(statusId);
+
+  const setStatus = (message, isError = false) => {
+    if (!statusEl) return;
+    statusEl.textContent = message;
+    statusEl.classList.toggle('text-apple-red', isError);
+    statusEl.classList.toggle('text-apple-dark', !isError);
+  };
+
+  const formDataObj = Object.fromEntries(new FormData(form));
+
+  const rawEndpoint = (
+    import.meta.env.VITE_FORMSPREE_ENDPOINT ||
+    import.meta.env.VITE_FORMSPREE_URL ||
+    import.meta.env.VITE_FORMSPREE_FORM_ID ||
+    ''
+  ).trim();
+
+  const endpoint = rawEndpoint.startsWith('http://') || rawEndpoint.startsWith('https://')
+    ? rawEndpoint
+    : (rawEndpoint ? `https://formspree.io/f/${rawEndpoint}` : '');
+
+  if (!endpoint || endpoint.endsWith('/YOUR_FORM_ID') || endpoint === 'YOUR_FORM_ID') {
+    setStatus('Formspree endpoint is not configured.', true);
+    return;
+  }
+
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+  }
+  setStatus('Sending your registration...');
+
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        ...formDataObj,
+        _subject: subject
+      })
+    });
+
+    let result = null;
+    try { result = await response.json(); } catch {}
+
+    if (response.ok) {
+      if (amount) {
+        setStatus('Redirecting to checkout...');
+        try {
+          const { startDonation } = await import('./donate.js');
+          await startDonation({ amount: amount });
+        } catch (err) {
+          console.error('[Checkout Redirect]', err);
+          form.innerHTML = `<p class="text-center text-apple-red font-bold text-xl my-8">Registration successful, but we could not redirect to checkout. Please contact us to complete payment.</p>`;
+        }
+      } else {
+        form.innerHTML = '<p class="text-center text-apple-red font-bold text-xl my-8">Thank you for registering!</p>';
+      }
+    } else {
+      let errorMsg = 'Request failed. Please try again.';
+      if (result?.errors && Array.isArray(result.errors)) {
+        errorMsg = result.errors.map(err => err.message).join(', ');
+      }
+      setStatus(errorMsg, true);
+    }
+  } catch (err) {
+    console.error('Network or fetch error:', err);
+    setStatus('Could not reach the server. Please check your connection and try again.', true);
+  } finally {
+    if (submitBtn && form.contains(submitBtn)) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Complete Registration & Pay';
+    }
+  }
+}
+
 async function handleFormSubmit(event) {
   event.preventDefault();
 
@@ -259,5 +344,17 @@ document.addEventListener('DOMContentLoaded', () => {
   if (volunteerForm) {
     volunteerForm.addEventListener('submit', handleFormSubmit);
     console.log('Volunteer form submit handler attached');
+  }
+
+  const driverForm = document.getElementById('driver-form');
+  if (driverForm) {
+    driverForm.addEventListener('submit', (e) => handleModalFormSubmit(e, 'New Driver Registration', 'driver-form-status', 25));
+    console.log('Driver form submit handler attached');
+  }
+
+  const vendorForm = document.getElementById('vendor-form');
+  if (vendorForm) {
+    vendorForm.addEventListener('submit', (e) => handleModalFormSubmit(e, 'New Vendor Registration', 'vendor-form-status', 50));
+    console.log('Vendor form submit handler attached');
   }
 });
