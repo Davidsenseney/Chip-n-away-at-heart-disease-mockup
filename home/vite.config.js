@@ -19,6 +19,7 @@ export default defineConfig({
         contact: resolve(rootDir, 'contact.html'),
         coaches: resolve(rootDir, 'coaches.html'),
         blog: resolve(rootDir, 'blog.html'),
+        post: resolve(rootDir, 'post.html'),
         ebook: resolve(rootDir, 'ebook.html'),
       },
     },

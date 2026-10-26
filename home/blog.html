@@ -4,13 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chip'n Away | Blog</title>
+  <meta name="description" content="Stories, events, and heart-health tips from the Chip'n Away @ Heart Disease community." />
 
   <link rel="stylesheet" href="stlyesheet.css">
   <script src="https://unpkg.com/lucide@latest"></script>
   <script type="module" src="javaScript.js" defer></script>
+  <script type="module" src="blog.js"></script>
 </head>
 
 <body class="font-sans antialiased flex flex-col min-h-screen">
+
+  <a href="#posts" class="blog-skip-link">Skip to articles</a>
 
   <div id="shared-header"></div>
 
@@ -19,7 +23,7 @@
     <section class="blog-hero">
       <div class="blog-container">
         <div class="blog-hero-box">
-          <h1>News & Updates</h1>
+          <h1>News &amp; Updates</h1>
 
           <p class="blog-lead">
             Stay connected with the latest stories, events, and insights from our community.
@@ -32,103 +36,44 @@
       </div>
     </section>
 
-    <section class="blog-section">
+    <section id="featured-section" class="blog-section" aria-labelledby="featured-title">
       <div class="blog-container">
-        <h2 class="blog-section-title">Featured Story</h2>
-
-        <article class="featured-post">
-          <img src="images/blog1.png" alt="Featured blog story">
-
-          <div class="featured-copy">
-            <h3>Honoring the Professionals Behind Coach Malone’s Heart Journey</h3>
-
-            <p>
-              A life-saving heart transplant becomes a story of resilience,
-              innovation, and unwavering care.
-            </p>
-
-            <a href="#" class="blog-btn blog-btn-primary">Read More</a>
+        <h2 id="featured-title" class="blog-section-title">Featured Story</h2>
+        <article id="featured-mount" class="featured-post">
+          <div class="blog-skeleton featured-skeleton" aria-hidden="true"><div class="sk-img"></div></div>
+          <div class="featured-copy blog-skeleton" aria-hidden="true">
+            <div class="sk-line w40"></div><div class="sk-line"></div><div class="sk-line w60"></div>
           </div>
         </article>
       </div>
     </section>
 
-    <section id="posts" class="blog-section blog-posts-wrap">
+    <section id="posts" class="blog-section blog-posts-wrap" aria-labelledby="posts-title">
       <div class="blog-container">
+        <h2 id="posts-title" class="blog-section-title">All Articles</h2>
 
-        <div class="blog-grid">
+        <form class="blog-toolbar" role="search" aria-label="Search and filter articles">
+          <div class="blog-search">
+            <label for="blog-search" class="sr-only">Search articles</label>
+            <i data-lucide="search" aria-hidden="true"></i>
+            <input id="blog-search" type="search" placeholder="Search by title, topic, or author" autocomplete="off">
+          </div>
+          <div id="blog-chips" class="blog-chips" role="group" aria-label="Filter by category"></div>
+          <button type="button" id="blog-clear" class="blog-link-btn" hidden>Clear filters</button>
+        </form>
 
-          <article class="blog-card">
-            <img src="images/blog2.png" alt="Blog image">
-            <h3>A New Season of Showing Up</h3>
-            <p>
-              As life shifts into a new season of caregiving, this reflection highlights
-              a renewed commitment to heart-health awareness and community impact.
-            </p>
-            <span>Jan 1, 2026 • Cynthia Malone</span>
-          </article>
+        <p id="blog-status" class="blog-status" role="status" aria-live="polite"></p>
 
-          <article class="blog-card">
-            <img src="images/blog3.png" alt="Blog image">
-            <h3>The Ripple Legacy</h3>
-            <p>A celebration of the CARDIAC Car Show and the lasting impact.</p>
-            <span>Dec 10, 2025 • Cynthia Malone</span>
-          </article>
+        <div id="blog-grid" class="blog-grid"></div>
 
-          <article class="blog-card">
-            <img src="images/blog4.png" alt="Blog image">
-            <h3>Ah Man - I'm Not THAT Old</h3>
-            <p>Simple habits that can reduce heart disease risk.</p>
-            <span>Apr 16, 2026 • Cynthia Malone</span>
-          </article>
-
-          <!-- Hidden Posts -->
-          <article class="blog-card extra-post hidden-post">
-            <img src="images/blog5.jpg" alt="Blog image">
-            <h3>Blog 5</h3>
-            <p>Description.</p>
-            <span>Date • Team</span>
-          </article>
-
-          <article class="blog-card extra-post hidden-post">
-            <img src="images/blog6.jpg" alt="Blog image">
-            <h3>Blog 6</h3>
-            <p>Description.</p>
-            <span>Date • Team</span>
-          </article>
-
-          <article class="blog-card extra-post hidden-post">
-            <img src="images/blog7.jpg" alt="Blog image">
-            <h3>Blog 7</h3>
-            <p>Description.</p>
-            <span>Date • Team</span>
-          </article>
-
-          <article class="blog-card extra-post hidden-post">
-            <img src="images/blog8.jpg" alt="Blog image">
-            <h3>Blog 8</h3>
-            <p>Description.</p>
-            <span>Date • Team</span>
-          </article>
-
-          <article class="blog-card extra-post hidden-post">
-            <img src="images/blog9.jpg" alt="Blog image">
-            <h3>Blog 9</h3>
-            <p>Description.</p>
-            <span>Date • Team</span>
-          </article>
-
-          <article class="blog-card extra-post hidden-post">
-            <img src="images/blog9.jpg" alt="Blog image">
-            <h3>Blog 10</h3>
-            <p>Description.</p>
-            <span>Date • Team</span>
-          </article>
-
+        <div id="blog-empty" class="blog-empty" hidden>
+          <h3>No articles found</h3>
+          <p>Try a different keyword or browse every category.</p>
+          <button type="button" id="blog-empty-reset" class="blog-btn blog-btn-primary">Show all articles</button>
         </div>
 
         <div class="blog-more-wrap">
-          <button id="toggle-posts" class="blog-btn blog-btn-secondary" type="button">
+          <button id="toggle-posts" class="blog-btn blog-btn-secondary" type="button" hidden>
             Show More Posts
           </button>
         </div>
@@ -145,7 +90,7 @@
 
         <div class="blog-actions">
           <a href="volunteer.html" class="blog-btn blog-btn-primary">Volunteer</a>
-          <a href="donate.html" class="blog-btn blog-btn-secondary">Donate</a>
+          <button type="button" data-donate-open class="blog-btn blog-btn-secondary">Donate</button>
         </div>
 
       </div>
@@ -154,27 +99,6 @@
   </main>
 
   <div id="shared-footer"></div>
-
-  <script>
-    const togglePostsBtn = document.getElementById("toggle-posts");
-    const hiddenPosts = document.querySelectorAll(".extra-post");
-
-    if (togglePostsBtn) {
-      togglePostsBtn.addEventListener("click", () => {
-        const isHidden =
-          hiddenPosts[0]?.style.display === "" ||
-          hiddenPosts[0]?.style.display === "none";
-
-        hiddenPosts.forEach(post => {
-          post.style.display = isHidden ? "block" : "none";
-        });
-
-        togglePostsBtn.textContent = isHidden
-          ? "Show Fewer Posts"
-          : "Show More Posts";
-      });
-    }
-  </script>
 
 </body>
 </html>
