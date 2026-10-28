@@ -11,6 +11,7 @@ import blog1 from './images/blog1.png';
 import blog2 from './images/blog2.png';
 import blog3 from './images/blog3.png';
 import blog4 from './images/blog4.png';
+import event1 from './images/Event1.jpg';
 
 export const FALLBACK_POSTS = [
   {
@@ -20,12 +21,17 @@ export const FALLBACK_POSTS = [
       'A life-saving heart transplant becomes a story of resilience, innovation, and unwavering care.',
     coverImage: blog1,
     coverAlt: 'Coach Malone with the care team who supported his heart journey',
+    secondImage: event1,
+    secondImageAlt: 'Community members gathering for heart health awareness',
+    secondImageCaption: 'Caregivers and supporters coming together during Coach Malone’s journey.',
     author: 'Cynthia Malone',
     publishDate: '2026-04-20',
     category: 'Stories',
     isFeatured: true,
     content:
       '<p>A life-saving heart transplant becomes a story of resilience, innovation, and unwavering care.</p>' +
+      '<p>Through every stage of the recovery process, community support and specialized medical care paved the way for hope and renewed purpose.</p>' +
+      '<p>Today, Coach Malone’s journey inspires countless families navigating similar health crises, underscoring the urgent need for early detection and education.</p>' +
       '<p>This is sample content. Add the full article in the Wix CMS <strong>blog_posts</strong> collection and it will replace this text automatically.</p>',
   },
   {
