@@ -63,68 +63,6 @@ function sanitizeHtml(html = '') {
   return doc.body.firstElementChild.innerHTML;
 }
 
-/**
- * Safely inserts a midway image section halfway through the paragraphs.
- * If there is no second image (null, undefined, or empty), content is returned
- * normally and no section is included.
- */
-function renderPostBody(contentHtml = '', secondImage = '', secondImageAlt = '', secondImageCaption = '') {
-  const cleanHtml = sanitizeHtml(contentHtml);
-  if (!secondImage || typeof secondImage !== 'string' || !secondImage.trim()) {
-    return cleanHtml;
-  }
-
-  try {
-    const doc = new DOMParser().parseFromString(`<div>${cleanHtml}</div>`, 'text/html');
-    const container = doc.body.firstElementChild;
-    if (!container) return cleanHtml;
-
-    // Convert plain text with newlines into paragraphs if no block elements exist
-    const hasBlockElements = container.querySelector('p, div, h1, h2, h3, h4, h5, h6, ul, ol, blockquote');
-    if (!hasBlockElements && container.textContent.trim()) {
-      const paras = container.textContent.trim().split(/\n\s*\n/);
-      container.innerHTML = paras.map((p) => `<p>${escapeHtml(p.trim())}</p>`).join('');
-    }
-
-    // Build the midway figure section
-    const figure = doc.createElement('figure');
-    figure.className = 'post-midway-figure';
-
-    const img = doc.createElement('img');
-    img.className = 'post-midway-image';
-    img.src = secondImage.trim();
-    img.alt = secondImageAlt || '';
-    img.loading = 'lazy';
-    figure.appendChild(img);
-
-    if (secondImageCaption && secondImageCaption.trim()) {
-      const caption = doc.createElement('figcaption');
-      caption.className = 'post-midway-caption';
-      caption.textContent = secondImageCaption.trim();
-      figure.appendChild(caption);
-    }
-
-    // Insert midway through top-level paragraphs (or general child elements)
-    const paragraphs = Array.from(container.querySelectorAll(':scope > p'));
-    if (paragraphs.length >= 2) {
-      const insertIdx = Math.ceil(paragraphs.length / 2) - 1;
-      paragraphs[insertIdx].after(figure);
-    } else if (paragraphs.length === 1) {
-      paragraphs[0].after(figure);
-    } else if (container.children.length > 0) {
-      const insertIdx = Math.ceil(container.children.length / 2) - 1;
-      container.children[insertIdx].after(figure);
-    } else {
-      container.appendChild(figure);
-    }
-
-    return container.innerHTML;
-  } catch (err) {
-    console.warn('[Blog] Could not inject midway image:', err);
-    return cleanHtml;
-  }
-}
-
 function stripTags(html = '') {
   return new DOMParser().parseFromString(html, 'text/html').body.textContent || '';
 }
@@ -165,9 +103,6 @@ function normalise(raw) {
     excerpt: raw.excerpt || raw.Excerpt || raw.summary || stripTags(content).slice(0, 160).trim(),
     coverImage: resolveImage(raw.coverImage || raw.CoverImage || raw.image || raw.Image),
     coverAlt: raw.coverAlt || raw.CoverAlt || raw.imageAltText || `Cover image for ${title}`,
-    secondImage: resolveImage(raw.secondImage || raw.SecondImage || raw.secondaryImage || raw.bodyImage || raw.midwayImage || raw.image2),
-    secondImageAlt: raw.secondImageAlt || raw.SecondImageAlt || raw.secondaryImageAlt || `Supporting image for ${title}`,
-    secondImageCaption: raw.secondImageCaption || raw.SecondImageCaption || raw.secondaryImageCaption || raw.caption || '',
     author: raw.author || raw.Author || 'Chip’n Away Team',
     publishDate: raw.publishDate || raw.PublishDate || raw._publishDate || raw._createdDate || '',
     category: raw.category || raw.Category || 'News',
@@ -421,7 +356,7 @@ async function initPost() {
       <p class="blog-meta">${escapeHtml(post.author)} • ${escapeHtml(formatDate(post.publishDate))} • ${readingTime(post.content)} min read</p>
     </header>
     ${post.coverImage ? `<img class="post-cover" src="${escapeHtml(post.coverImage)}" alt="${escapeHtml(post.coverAlt)}">` : ''}
-    <div class="post-body">${renderPostBody(post.content, post.secondImage, post.secondImageAlt, post.secondImageCaption)}</div>
+    <div class="post-body">${sanitizeHtml(post.content)}</div>
     <div class="post-actions">
       <a class="blog-btn blog-btn-secondary" href="blog.html">← All articles</a>
       <button type="button" id="post-share" class="blog-btn blog-btn-primary">Copy link</button>
