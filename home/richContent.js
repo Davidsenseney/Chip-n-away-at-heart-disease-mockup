@@ -2,9 +2,16 @@
  * Wix Rich Content (Ricos) -> HTML
  * -----------------------------------------------------------
  * Converts Wix "Rich content" CMS fields (Ricos JSON documents) into clean,
- * semantic HTML while inheriting author formatting (text alignment, indentation,
- * line spacing, font size, text colors, background highlights, image sizing/wrapping,
- * captions, video, galleries, dividers, and tables).
+ * semantic HTML while accurately inheriting author formatting:
+ *   - Image sizing: handles preset sizes (SMALL, MEDIUM, LARGE, ORIGINAL, FULL_WIDTH, CONTENT),
+ *     custom pixel/percent dimensions, natural aspect ratios, and responsive mobile behavior.
+ *   - Image alignment & wrap: handles text wrapping floats (LEFT, RIGHT), non-wrapped margins,
+ *     centered placement, and aligned captions.
+ *   - Text typography: preserves font sizes (px, pt, em, rem, %), font families, bold weights,
+ *     italic, underline, strikethrough, super/subscripts.
+ *   - Colors & highlights: validates and applies foreground colors and background highlight boxes.
+ *   - Layout & flow: text alignment (LEFT, CENTER, RIGHT, JUSTIFY), line heights, indentation,
+ *     proper list hierarchy without gaping bullet gaps, and structural unnesting for headings.
  *
  * Accepts:
  *   - Ricos document object: { nodes: [...], documentStyle?: {...} }
@@ -38,7 +45,16 @@ export function ricosMediaUrl(src) {
   return `https://static.wixstatic.com/media/${id}`;
 }
 
-const CSS_COLOR = /^(#[0-9a-f]{3,8}|rgba?\([\d\s.,%]+\)|[a-z]+)$/i;
+/** Validates and standardizes CSS color strings (hex, rgb, rgba, hsl, hsla, named). */
+function sanitizeColor(val) {
+  if (!val || typeof val !== 'string') return '';
+  const trimmed = val.trim();
+  if (/^[0-9a-f]{3,8}$/i.test(trimmed)) return `#${trimmed}`;
+  if (/^(#[0-9a-f]{3,8}|rgba?\([\d\s.,%]+\)|hsla?\([\d\s.,%degradturn]+\)|[a-z]+)$/i.test(trimmed)) {
+    return trimmed;
+  }
+  return '';
+}
 
 function linkAttrs(linkData) {
   const link = linkData?.link || linkData || {};
@@ -76,23 +92,64 @@ function blockStyle(data) {
   return styles.length ? ` style="${styles.join('; ')}"` : '';
 }
 
-/** Format container styles (alignment, text-wrap float, custom widths). */
-function containerDataStyles(containerData, defaultAlign = 'CENTER') {
+/**
+ * Format container styles for media (alignment, text-wrap float, custom or preset widths).
+ * Accurately translates Wix Ricos width presets (SMALL, MEDIUM, LARGE, ORIGINAL, FULL_WIDTH, CONTENT).
+ */
+function containerDataStyles(containerData, defaultAlign = 'CENTER', origWidth = null) {
   const styles = [];
   const classes = [];
   const align = String(containerData?.alignment || defaultAlign).toUpperCase();
   const textWrap = containerData?.textWrap === true;
-  const widthObj = containerData?.width || {};
 
   classes.push(`post-align-${align.toLowerCase()}`);
   if (textWrap) classes.push('is-wrapped');
 
-  if (widthObj.custom && Number.isFinite(Number(widthObj.custom))) {
-    styles.push(`max-width: ${Number(widthObj.custom)}px`);
+  let widthVal = containerData?.width;
+  if (widthVal && typeof widthVal === 'object') {
+    if (widthVal.custom !== undefined) widthVal = widthVal.custom;
+    else if (widthVal.size !== undefined) widthVal = widthVal.size;
+  }
+
+  const sizeStr = typeof widthVal === 'string' ? widthVal.toUpperCase().trim() : '';
+
+  if (sizeStr === 'SMALL') {
+    styles.push('max-width: 320px');
     styles.push('width: 100%');
-  } else if (widthObj.size === 'FULL_WIDTH') {
+  } else if (sizeStr === 'MEDIUM') {
+    styles.push('max-width: 520px');
     styles.push('width: 100%');
+  } else if (sizeStr === 'LARGE' || sizeStr === 'FULL_WIDTH' || sizeStr === 'CONTENT') {
     styles.push('max-width: 100%');
+    styles.push('width: 100%');
+  } else if (sizeStr === 'ORIGINAL') {
+    if (origWidth && Number.isFinite(Number(origWidth))) {
+      styles.push(`max-width: min(100%, ${Number(origWidth)}px)`);
+    } else {
+      styles.push('max-width: 100%');
+    }
+    styles.push('width: 100%');
+  } else if (widthVal && typeof widthVal === 'string' && widthVal.endsWith('%')) {
+    styles.push(`max-width: ${widthVal}`);
+    styles.push('width: 100%');
+  } else if (widthVal && (typeof widthVal === 'number' || (typeof widthVal === 'string' && /^\d+(\.\d+)?(px)?$/i.test(widthVal.trim())))) {
+    const px = parseFloat(widthVal);
+    if (Number.isFinite(px)) {
+      styles.push(`max-width: ${px}px`);
+      styles.push('width: 100%');
+    }
+  } else {
+    // If no explicit width specified by author:
+    if (textWrap && (align === 'LEFT' || align === 'RIGHT')) {
+      styles.push('max-width: 320px');
+      styles.push('width: 100%');
+    } else if (origWidth && Number.isFinite(Number(origWidth)) && Number(origWidth) < 650) {
+      styles.push(`max-width: min(100%, ${Number(origWidth)}px)`);
+      styles.push('width: 100%');
+    } else {
+      styles.push('max-width: 100%');
+      styles.push('width: 100%');
+    }
   }
 
   if (align === 'LEFT') {
@@ -137,6 +194,8 @@ function renderText(node) {
       case 'BOLD':
         if (d.fontWeightValue === undefined || d.fontWeightValue >= 600) {
           html = `<strong>${html}</strong>`;
+        } else if (d.fontWeightValue) {
+          styles.push(`font-weight: ${d.fontWeightValue}`);
         }
         break;
       case 'ITALIC':
@@ -155,24 +214,29 @@ function renderText(node) {
         html = `<sub>${html}</sub>`;
         break;
       case 'COLOR': {
-        const fg = d.colorData?.foreground;
-        const bg = d.colorData?.background;
-        if (fg && CSS_COLOR.test(fg)) styles.push(`color: ${fg}`);
-        if (bg && CSS_COLOR.test(bg)) styles.push(`background-color: ${bg}; padding: 0.1em 0.25em; border-radius: 3px`);
+        const fg = sanitizeColor(d.colorData?.foreground);
+        const bg = sanitizeColor(d.colorData?.background);
+        if (fg) styles.push(`color: ${fg}`);
+        if (bg) {
+          styles.push(`background-color: ${bg}; padding: 0.15em 0.35em; border-radius: 4px; box-decoration-break: clone; -webkit-box-decoration-break: clone`);
+        }
         break;
       }
       case 'FONT_SIZE': {
         const f = d.fontSizeData;
-        if (f?.value && Number.isFinite(Number(f.value))) {
-          const unit = String(f.unit || 'px').toLowerCase() === 'em' ? 'em' : 'px';
-          styles.push(`font-size: ${Number(f.value)}${unit}`);
+        const val = typeof f === 'object' ? f.value : f;
+        if (val && Number.isFinite(Number(val))) {
+          const unitMap = { px: 'px', pt: 'pt', em: 'em', rem: 'rem', '%': '%' };
+          const unit = unitMap[String(f?.unit || '').toLowerCase()] || 'px';
+          styles.push(`font-size: ${Number(val)}${unit}`);
         }
         break;
       }
       case 'FONT_FAMILY': {
         const family = d.fontFamilyData?.family || d.fontData?.family || d.fontFamily;
         if (family && typeof family === 'string') {
-          styles.push(`font-family: ${esc(family)}`);
+          const cleanFamily = family.replace(/[^\w\s,-]/g, '').trim();
+          if (cleanFamily) styles.push(`font-family: ${cleanFamily}`);
         }
         break;
       }
@@ -213,19 +277,25 @@ function renderImage(node) {
   const src = ricosMediaUrl(d.image?.src);
   if (!src) return '';
 
-  const layout = containerDataStyles(d.containerData, 'CENTER');
   const w = d.image?.width;
   const h = d.image?.height;
+  const layout = containerDataStyles(d.containerData, 'CENTER', w);
+
+  const styleParts = [];
+  if (w && h && Number.isFinite(Number(w)) && Number.isFinite(Number(h))) {
+    styleParts.push(`aspect-ratio: ${Number(w)} / ${Number(h)}`);
+  }
 
   let img = `<img src="${esc(src)}" alt="${esc(d.altText || '')}" loading="lazy"` +
-    `${w ? ` width="${Number(w)}"` : ''}${h ? ` height="${Number(h)}"` : ''}>`;
+    `${w ? ` width="${Number(w)}"` : ''}${h ? ` height="${Number(h)}"` : ''}` +
+    `${styleParts.length ? ` style="${styleParts.join('; ')}"` : ''}>`;
 
   const href = linkAttrs(d.link);
   if (href) img = `<a${href}>${img}</a>`;
 
   const captionText = extractCaption(node);
   const caption = captionText
-    ? `<figcaption>${esc(captionText)}</figcaption>`
+    ? `<figcaption class="post-caption-${layout.align.toLowerCase()}">${esc(captionText)}</figcaption>`
     : '';
 
   return `<figure class="post-figure ${layout.className}"${layout.styleAttr}>${img}${caption}</figure>`;
@@ -265,7 +335,7 @@ function renderNode(node) {
       return renderText(node);
     case 'PARAGRAPH': {
       const inner = children(node);
-      // If paragraph is completely empty, it was an explicit blank line in the editor
+      // If paragraph is completely empty, it represents an explicit blank line in the editor
       if (!inner || !inner.trim()) {
         return '<div class="post-spacer" aria-hidden="true"></div>';
       }
@@ -322,6 +392,76 @@ function renderNode(node) {
   }
 }
 
+/**
+ * Normalizes document nodes by unnesting major block-level elements (such as HEADINGS)
+ * that were accidentally captured inside a LIST_ITEM in the Wix editor canvas.
+ */
+function normalizeDocumentNodes(nodes = []) {
+  const result = [];
+  for (const node of nodes) {
+    if ((node.type === 'BULLETED_LIST' || node.type === 'ORDERED_LIST') && node.nodes) {
+      let hasHeading = false;
+      for (const li of node.nodes) {
+        if (li.type === 'LIST_ITEM' && li.nodes?.some((c) => c.type === 'HEADING')) {
+          hasHeading = true;
+          break;
+        }
+      }
+
+      if (!hasHeading) {
+        result.push({
+          ...node,
+          nodes: node.nodes.map((li) => ({
+            ...li,
+            nodes: normalizeDocumentNodes(li.nodes || []),
+          })),
+        });
+        continue;
+      }
+
+      // Split list at the heading breakout
+      let currentListItems = [];
+      const flushList = () => {
+        if (currentListItems.length) {
+          result.push({ ...node, nodes: currentListItems });
+          currentListItems = [];
+        }
+      };
+
+      for (const li of node.nodes) {
+        if (li.type !== 'LIST_ITEM' || !li.nodes) {
+          currentListItems.push(li);
+          continue;
+        }
+        const headingIdx = li.nodes.findIndex((c) => c.type === 'HEADING');
+        if (headingIdx === -1) {
+          currentListItems.push(li);
+        } else {
+          const before = li.nodes.slice(0, headingIdx);
+          const after = li.nodes.slice(headingIdx);
+
+          if (before.length > 0) {
+            currentListItems.push({ ...li, nodes: [before[0]] });
+            flushList();
+            for (let b = 1; b < before.length; b++) {
+              result.push(before[b]);
+            }
+          } else {
+            flushList();
+          }
+
+          const normalizedAfter = normalizeDocumentNodes(after);
+          result.push(...normalizedAfter);
+        }
+      }
+      flushList();
+    } else {
+      result.push(node);
+    }
+  }
+  return result;
+}
+
 /** Is this value a Ricos document? */
 export function isRicosDocument(v) {
   return Boolean(v) && typeof v === 'object' && Array.isArray(v.nodes);
@@ -343,6 +483,9 @@ export function contentToHtml(value) {
     }
     return value;
   }
-  if (isRicosDocument(value)) return value.nodes.map(renderNode).join('');
+  if (isRicosDocument(value)) {
+    const cleanNodes = normalizeDocumentNodes(value.nodes);
+    return cleanNodes.map(renderNode).join('');
+  }
   return '';
 }
