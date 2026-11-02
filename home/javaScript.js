@@ -490,17 +490,67 @@ const App = {
         const contactForm = document.getElementById('contactForm');
         if (!contactForm) return;
 
-        contactForm.addEventListener('submit', function(e) {
+        const successMessage = document.getElementById('successMessage');
+        const statusEl = document.getElementById('contactFormStatus');
+        const submitBtn = contactForm.querySelector('[type="submit"]');
+        const originalBtnText = submitBtn ? submitBtn.textContent : '';
+
+        const setStatus = (message) => {
+            if (statusEl) statusEl.textContent = message;
+        };
+
+        // Same Formspree endpoint as the volunteer forms (see wixheader.js / README).
+        const rawEndpoint = (import.meta.env.VITE_FORMSPREE_ENDPOINT || '').trim();
+        const endpoint = /^https?:\/\//.test(rawEndpoint)
+            ? rawEndpoint
+            : (rawEndpoint ? `https://formspree.io/f/${rawEndpoint}` : '');
+
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            // Optional: Grab values for processing
-            // const formData = new FormData(contactForm);
-            
-            const successMessage = document.getElementById('successMessage');
-            if (successMessage) {
-                successMessage.classList.remove('hidden');
-                setTimeout(() => successMessage.classList.add('hidden'), 5000);
+            if (successMessage) successMessage.classList.add('hidden');
+            setStatus('');
+
+            if (!endpoint || endpoint.endsWith('/YOUR_FORM_ID')) {
+                console.warn('[Contact] VITE_FORMSPREE_ENDPOINT is not set.');
+                setStatus('Sorry, the contact form is not available right now. Please email us instead.');
+                return;
             }
-            contactForm.reset();
+
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+            }
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({
+                        ...Object.fromEntries(new FormData(contactForm)),
+                        _subject: 'New contact form message',
+                    }),
+                });
+
+                if (response.ok) {
+                    contactForm.reset();
+                    if (successMessage) successMessage.classList.remove('hidden');
+                } else {
+                    let result = null;
+                    try { result = await response.json(); } catch {}
+                    const msg = Array.isArray(result?.errors)
+                        ? result.errors.map((err) => err.message).join(', ')
+                        : `Something went wrong (${response.status}). Please try again.`;
+                    setStatus(msg);
+                }
+            } catch (err) {
+                console.error('[Contact] Network error:', err);
+                setStatus('Could not reach the server. Please check your connection and try again.');
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
+                }
+            }
         });
     },
 

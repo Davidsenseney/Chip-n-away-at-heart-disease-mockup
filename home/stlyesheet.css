@@ -1737,7 +1737,7 @@ html {
 
 ---------------------------------------------------------------------------- */
 .columncontent {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: var(--font-primary);
     font-size:larger;
     color:white; 
     display: flex;
@@ -2012,7 +2012,7 @@ html {
     max-width: 800px;
     line-height: 1.6;
     margin: 1.5rem 0 3rem 0;
-    font-family: var(--font-heading);
+    font-family: var(--font-primary);
 
 }
 
@@ -2648,7 +2648,7 @@ body.chip-modal-open {
 }
 
 .chip-field label {
-    font-family: var(--font-heading);
+    font-family: var(--font-primary);
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -2726,7 +2726,7 @@ body.chip-modal-open {
     display: block;
     width: 100%;
     padding: 0.7rem 1.5rem;
-    font-family: var(--font-heading);
+    font-family: var(--font-primary);
     font-size: 1rem;
     color: #003087;
     background-color: #ffffff;
@@ -2762,7 +2762,7 @@ body.chip-modal-open {
 }
 
 .chip-field-label {
-    font-family: var(--font-heading);
+    font-family: var(--font-primary);
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -2777,7 +2777,7 @@ body.chip-modal-open {
 
 .chip-amount-btn {
     padding: 0.6rem 0.25rem;
-    font-family: var(--font-heading);
+    font-family: var(--font-primary);
     font-size: 1rem;
     font-weight: 700;
     color: var(--color-apple-dark);
@@ -2831,7 +2831,7 @@ body.chip-modal-open {
 
 .chip-modal-status {
     margin: 0.5rem 0 0;
-    font-family: var(--font-heading);
+    font-family: var(--font-primary);
     font-size: 0.9rem;
     font-weight: 600;
     text-align: center;

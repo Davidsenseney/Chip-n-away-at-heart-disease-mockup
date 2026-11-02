@@ -161,6 +161,7 @@ async function handleModalFormSubmit(event, subject, statusId, amount) {
   const form = event.currentTarget;
   const submitBtn = form.querySelector('[type="submit"]');
   const statusEl = document.getElementById(statusId);
+  const originalBtnText = submitBtn ? submitBtn.textContent : '';
 
   const setStatus = (message, isError = false) => {
     if (!statusEl) return;
@@ -235,7 +236,7 @@ async function handleModalFormSubmit(event, subject, statusId, amount) {
   } finally {
     if (submitBtn && form.contains(submitBtn)) {
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Complete Registration & Pay';
+      submitBtn.textContent = originalBtnText;
     }
   }
 }
