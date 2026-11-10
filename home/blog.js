@@ -386,5 +386,165 @@ async function initPost() {
   if (window.lucide) window.lucide.createIcons();
 }
 
+/* ------------------------------------------------------------------ */
+/* Homepage: latest posts slider (index.html)                          */
+/* ------------------------------------------------------------------ */
+/* Same data as blog.html (loadPosts → Wix "Blogs" collection, falling  */
+/* back to blog-data.js). One wide slide per post, styled like the      */
+/* .swiper-feature slider on wellness.html. Swiper is loaded from the   */
+/* CDN in index.html; if it is missing the slides simply stack.         */
+
+const HOME_SLIDE_COUNT = 6;
+
+function homeSlideHtml(post) {
+  const url = postUrl(post);
+  const media = post.coverImage
+    ? `<img src="${escapeHtml(post.coverImage)}" alt="${escapeHtml(post.coverAlt)}" loading="lazy" width="800" height="500">`
+    : '<div class="blog-card-placeholder" aria-hidden="true"><i data-lucide="heart-pulse"></i></div>';
+  return `
+    <li class="swiper-slide">
+      <article class="feature-slide blog-slide">
+        <a class="blog-slide__media" href="${url}" tabindex="-1" aria-hidden="true">${media}</a>
+        <div class="feature-slide__body blog-slide__body">
+          <span class="feature-slide__step">${escapeHtml(post.category)}</span>
+          <h3><a href="${url}">${escapeHtml(post.title)}</a></h3>
+          <p class="blog-slide__excerpt">${escapeHtml(post.excerpt)}</p>
+          <span class="blog-meta">${escapeHtml(formatDate(post.publishDate))} • ${escapeHtml(post.author)} • ${readingTime(post.content)} min read</span>
+          <a href="${url}" class="feature-slide__link blog-slide__cta">Read Full Story &rarr;</a>
+        </div>
+      </article>
+    </li>`;
+}
+
+function homeSlideSkeletonHtml() {
+  return `
+    <li class="swiper-slide" aria-hidden="true">
+      <div class="feature-slide blog-slide blog-skeleton">
+        <div class="blog-slide__media"><div class="sk-img"></div></div>
+        <div class="feature-slide__body blog-slide__body">
+          <div class="sk-line w40"></div><div class="sk-line"></div><div class="sk-line"></div><div class="sk-line w60"></div>
+        </div>
+      </div>
+    </li>`;
+}
+
+async function initLatestPosts() {
+  const slider = $('latest-posts-slider');
+  const wrapper = $('latest-posts-wrapper');
+  if (!slider || !wrapper) return;
+  const controls = $('latest-posts-controls');
+
+  wrapper.innerHTML = homeSlideSkeletonHtml();
+  slider.setAttribute('aria-busy', 'true');
+
+  const { posts } = await loadPosts();
+  const latest = posts.slice(0, HOME_SLIDE_COUNT);
+  slider.removeAttribute('aria-busy');
+
+  if (!latest.length) {
+    $('latest-posts')?.setAttribute('hidden', '');
+    return;
+  }
+
+  wrapper.innerHTML = latest.map(homeSlideHtml).join('');
+  if (window.lucide) window.lucide.createIcons();
+
+  // Nothing to slide between with a single post — hide the arrows/dots.
+  if (latest.length < 2) {
+    if (controls) controls.hidden = true;
+    return;
+  }
+
+  if (typeof window.Swiper === 'undefined') {
+    console.warn('[Blog] Swiper not loaded; showing homepage posts stacked.');
+    slider.classList.add('home-blog-swiper--static');
+    if (controls) controls.hidden = true;
+    return;
+  }
+
+  // eslint-disable-next-line no-new
+  new window.Swiper(slider, {
+    loop: latest.length > 2,
+    rewind: latest.length === 2, // loop needs 3+ slides; rewind keeps arrows working
+    spaceBetween: 24,
+    slidesPerView: 1,
+    grabCursor: true,
+    keyboard: { enabled: true, onlyInViewport: true },
+    a11y: { prevSlideMessage: 'Previous post', nextSlideMessage: 'Next post' },
+    pagination: {
+      el: controls?.querySelector('.swiper-pagination'),
+      clickable: true,
+      dynamicBullets: false,
+    },
+    navigation: {
+      nextEl: controls?.querySelector('.swiper-button-next'),
+      prevEl: controls?.querySelector('.swiper-button-prev'),
+    },
+  });
+}
+
+/* ------------------------------------------------------------------ */
+/* "Subscribe for Blog Updates" form (any page with #subscribe-form)   */
+/* ------------------------------------------------------------------ */
+
+function initSubscribe() {
+  const form = $('subscribe-form');
+  if (!form) return;
+
+  const statusEl = $('subscribe-status');
+  const submitBtn = form.querySelector('[type="submit"]');
+  const originalBtnText = submitBtn ? submitBtn.textContent : '';
+  const setStatus = (msg, isError = false) => {
+    if (!statusEl) return;
+    statusEl.textContent = msg;
+    statusEl.classList.toggle('text-apple-red', isError);
+  };
+
+  // Same Formspree endpoint as the contact + volunteer forms.
+  const raw = (import.meta.env.VITE_FORMSPREE_ENDPOINT || '').trim();
+  const endpoint = /^https?:\/\//.test(raw) ? raw : (raw ? `https://formspree.io/f/${raw}` : '');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!endpoint) {
+      console.warn('[Subscribe] VITE_FORMSPREE_ENDPOINT is not set.');
+      setStatus('Sign-ups aren’t available right now. Please try again later.', true);
+      return;
+    }
+
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Subscribing...'; }
+    setStatus('');
+
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          ...Object.fromEntries(new FormData(form)),
+          form: 'Blog subscription',
+          _subject: 'New blog subscriber',
+        }),
+      });
+      if (res.ok) {
+        form.reset();
+        setStatus('You’re subscribed! We’ll let you know when new stories are posted.');
+      } else {
+        let result = null;
+        try { result = await res.json(); } catch {}
+        setStatus(Array.isArray(result?.errors)
+          ? result.errors.map((err) => err.message).join(', ')
+          : `Something went wrong (${res.status}). Please try again.`, true);
+      }
+    } catch (err) {
+      console.error('[Subscribe] Network error:', err);
+      setStatus('Could not reach the server. Please check your connection and try again.', true);
+    } finally {
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalBtnText; }
+    }
+  });
+}
+
 initBlogIndex();
 initPost();
+initLatestPosts();
+initSubscribe();
